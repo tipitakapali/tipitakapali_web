@@ -1,3 +1,5 @@
+// file web/handleClickFontPage_dev.js
+
 let ftsAPIURL = "https://api.tipitakapali.org/api/fts"
 var BookExpandChapter = BookExpandChapter ? BookExpandChapter : {}
 var expandSessionKey = "tipitakapali_org_EXPANDED_SESSION_KEY"
@@ -374,7 +376,7 @@ function preparePostOp(postObj) {
   return {
     method: "POST",
     headers: {
-      //// use this to avoid preflight
+      /* use URLSearchParams to avoid preflight */
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: new URLSearchParams(postObj).toString(),
@@ -432,6 +434,11 @@ function updateSort() {
   fetchFTS(false)
 }
 
+function isChecked(id) {
+  var el = document.getElementById(id)
+  return el && typeof el.checked === "boolean" ? el.checked : false
+}
+
 function fetchFTS(callBySearchButton = true) {
   let ftsInput = document.getElementById("fts_input")
 
@@ -460,21 +467,23 @@ function fetchFTS(callBySearchButton = true) {
   distance_n = getNumberInput("distance_n") || distance_n
   snippet_len = getNumberInput("snippet_len") || snippet_len
 
-  const filters = {
-    isAll: document.getElementById("filter-all-cat").checked && document.getElementById("filter-all-type").checked,
-    categories: {
-      mula: document.getElementById("filter-mula").checked,
-      attha: document.getElementById("filter-attha").checked,
-      tika: document.getElementById("filter-tika").checked,
-    },
-    types: {
-      vinaya: document.getElementById("filter-vinaya").checked,
-      sutta: document.getElementById("filter-sutta").checked,
-      abhidhamma: document.getElementById("filter-abhidhamma").checked,
-      anna: document.getElementById("filter-anna").checked,
-    },
-  }
+  // can not use with form so need to flatten it
+  // const filters = {
+  //   isAll: document.getElementById("filter-all-cat").checked && document.getElementById("filter-all-type").checked,
+  //   categories: {
+  //     mula: document.getElementById("filter-mula").checked,
+  //     attha: document.getElementById("filter-attha").checked,
+  //     tika: document.getElementById("filter-tika").checked,
+  //   },
+  //   types: {
+  //     vinaya: document.getElementById("filter-vinaya").checked,
+  //     sutta: document.getElementById("filter-sutta").checked,
+  //     abhidhamma: document.getElementById("filter-abhidhamma").checked,
+  //     anna: document.getElementById("filter-anna").checked,
+  //   },
+  // }
 
+  // Flatten the filters object into individual key-value pairs
   /* Max limit is coded in the server */
   let postObj = {
     search_words: words,
@@ -484,7 +493,15 @@ function fetchFTS(callBySearchButton = true) {
     distance_n,
     snippet_len,
     pali_scriptkey: currentScript2char,
-    filters: filters,
+    /* using URLSearchParams to avoid CORS preflight*/
+    isAll: isChecked("filter-all-cat") && isChecked("filter-all-type"),
+    mula: isChecked("filter-mula"),
+    attha: isChecked("filter-attha"),
+    tika: isChecked("filter-tika"),
+    vinaya: isChecked("filter-vinaya"),
+    sutta: isChecked("filter-sutta"),
+    abhidhamma: isChecked("filter-abhidhamma"),
+    anna: isChecked("filter-anna"),
   }
 
   let resultsEle = document.getElementById("fts_results")
