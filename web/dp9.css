@@ -1,0 +1,518 @@
+.dp9 h3 {
+  font-size: 130%;
+  margin-top: 10px;
+  margin-bottom: 1px;
+}
+
+.dp9 body {
+  font-family: "Noto Sans", "DejaVu Serif", "Verajja Serif";
+}
+
+.dp9 div.content {
+  border: 2px solid #00a4cc;
+  border-radius: 7px;
+  line-height: 150%;
+  margin: 0px 0px;
+  overflow: auto;
+  padding: 3px 7px;
+  text-align: left;
+}
+
+.dp9 p {
+  line-height: 150%;
+  margin: 0px 0px;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.dp9 p.heading {
+  margin: 0px 0px;
+  padding: 2px 0px;
+}
+
+.dp9 .underlined {
+  border-bottom: 1px solid #00a4cc;
+  margin-bottom: 5px;
+}
+
+.dp9 .overlined {
+  border-top: 1px solid #00a4cc;
+  margin-top: 5px;
+}
+
+.dp9 p.heading b {
+  font-weight: 700;
+}
+
+.dp9 p.footer {
+  border-top: 1px solid #00a4cc;
+  font-size: 0.8em;
+  padding: 5px 0px;
+}
+
+.dp9 table {
+  margin: 3px 0px;
+}
+
+.dp9 table.grammar {
+  border: none;
+}
+
+.dp9 table.grammar td,
+.dp9 table.grammar th {
+  text-align: left;
+  vertical-align: top;
+  padding: 0px 0px;
+}
+
+.dp9 table.grammar th {
+  color: #00a4cc;
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 0px 5px 2px 0px;
+}
+
+.dp9 table.grammar b {
+  font-weight: 700;
+}
+
+.dp9 p.sutta {
+  color: #00a4cc;
+  font-style: italic;
+  padding: 0px 0px 7px 0px;
+}
+
+.dp9 p.sutta_sbs {
+  color: #ab7b38;
+  font-style: italic;
+  padding: 0px 0px 7px 0px;
+}
+
+.dp9 table.inflection {
+  width: 100%;
+  padding: 0 0 5px 0px;
+}
+
+.dp9 table.inflection td,
+.dp9 table.inflection th {
+  border: 1px solid gray;
+  border-radius: 7px;
+  line-height: 150%;
+  padding: 5px 5px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.dp9 table.inflection th {
+  border: 1px solid #00a4cc;
+  color: #00a4cc;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dp9 span.gray {
+  color: gray;
+}
+
+.dp9 a.jump {
+  color: #00a4cc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.dp9 table.family td,
+.dp9 table.family th {
+  text-align: left;
+  vertical-align: top;
+}
+
+.dp9 table.family th {
+  color: #00a4cc;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dp9 table.family td {
+  padding-right: 7px;
+}
+
+.dp9 table.family b {
+  font-weight: 700;
+}
+
+.dp9 div.button-box {
+  font-size: 0px;
+  margin: 2px 0px 3px 0px;
+}
+
+.dp9 a.button {
+  background-color: #65dbff;
+  border-radius: 7px;
+  box-shadow: 0px 4px 4px -2px #888888;
+  color: #000;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 400;
+  margin: 0px 1px 2px 0px;
+  padding: 3px 5px;
+  text-decoration: none;
+  user-select: none;
+}
+
+.dp9 a.button.close {
+  float: right;
+  margin: 10px;
+}
+
+.dp9 a.button.active {
+  background-color: #00a4cc;
+  color: black;
+  user-select: none;
+}
+
+.dp9 a.button:hover {
+  background-color: #00a4cc;
+  color: white;
+  user-select: none;
+}
+
+.dp9 .link {
+  color: #00a4cc;
+  font-weight: 700;
+}
+
+.dp9 .hidden {
+  display: none;
+}
+
+.dp9 table.freq th,
+.dp9 table.freq td {
+  vertical-align: middle;
+}
+
+.dp9 table.freq thead th {
+  text-align: center;
+}
+
+.dp9 table.freq tbody th {
+  border: 1px solid #00a4cc;
+  border-radius: 7px;
+  padding: 5px;
+  text-align: center;
+  width: auto;
+}
+
+.dp9 .vertical-text {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  /* inline-size: fit-content;
+    transform: rotate(-90deg); */
+}
+
+.dp9 table.freq td {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 7px;
+  text-align: center;
+  width: 12%;
+  white-space: nowrap;
+}
+
+.dp9 td.void {
+  border: 0px solid transparent;
+}
+
+.dp9 td.gr0 {
+  border: 1px solid #dbdbff;
+}
+
+.dp9 td.gr1 {
+  background-color: #ddecfa;
+  border-color: #ddecfa;
+  color: #000;
+}
+
+.dp9 td.gr2 {
+  background-color: #d2e2ff;
+  border-color: #d2e2ff;
+  color: #000;
+}
+
+.dp9 td.gr3 {
+  background-color: #b0dbff;
+  border-color: #b0dbff;
+  color: #000;
+}
+
+.dp9 td.gr4 {
+  background-color: #9dc3fd;
+  border-color: #9dc3fd;
+  color: #000;
+}
+
+.dp9 td.gr5 {
+  background-color: #668efc;
+  border-color: #668efc;
+  color: #000;
+}
+
+.dp9 td.gr6 {
+  background-color: #4668ff;
+  border-color: #4668ff;
+  color: #fff;
+}
+
+.dp9 td.gr7 {
+  background-color: #314ffc;
+  border-color: #314ffc;
+  color: #fff;
+}
+
+.dp9 td.gr8 {
+  background-color: #003cff;
+  border-color: #003cff;
+  color: #fff;
+}
+
+.dp9 td.gr9 {
+  background-color: #0000bb;
+  border-color: #0000bb;
+  color: #fff;
+}
+
+.dp9 td.gr10 {
+  background-color: #00008f;
+  border-color: #00008f;
+  color: #fff;
+}
+
+/* variant */
+
+.dp9 div.variant {
+  border: 2px solid #ff0055;
+  border-radius: 7px;
+  line-height: 150%;
+  margin: 0px 0px;
+  overflow: auto;
+  padding: 3px 7px;
+  text-align: left;
+}
+
+.dp9 p.variant {
+  line-height: 150%;
+  margin: 2px 0px;
+  vertical-align: middle;
+  text-align: left;
+}
+
+/* help */
+
+.dp9 div.help {
+  border: 2px solid #0ab33d;
+  border-radius: 7px;
+  line-height: 150%;
+  margin: 0px 0px;
+  overflow: auto;
+  padding: 3px 5px;
+  text-align: left;
+}
+
+.dp9 table.help {
+  border: none;
+  width: 100%;
+}
+
+.dp9 table.help td,
+.dp9 table.help th {
+  line-height: 150%;
+  padding: 0px 5px 0px 0px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.dp9 table.help th {
+  color: #0ab33d;
+  font-weight: 700;
+  width: 10%;
+}
+
+.dp9 table.help td {
+  width: 90%;
+}
+
+.dp9 table.help b {
+  font-weight: 700;
+}
+
+/* roots */
+
+.dp9 div.root_content {
+  border: 2px solid #ab3c00;
+  border-radius: 7px;
+  line-height: 150%;
+  margin: 0px 0px;
+  overflow: auto;
+  padding: 3px 7px;
+  text-align: left;
+}
+
+.dp9 .root_underlined {
+  border-bottom: 1px solid #ab3c00;
+  margin-bottom: 5px;
+}
+
+.dp9 .root_overlined {
+  border-top: 1px solid #ab3c00;
+  margin-top: 5px;
+}
+
+.dp9 p.root_heading b {
+  font-weight: 700;
+  color: inherit;
+}
+
+.dp9 p.root_footer {
+  border-top: 1px solid #ab3c00;
+  font-size: 0.8em;
+  padding: 5px 0px;
+}
+
+.dp9 table.root_info {
+  border: none;
+}
+
+.dp9 table.root_info td,
+.dp9 table.root_info th {
+  text-align: left;
+  vertical-align: top;
+  padding: 0px 0px;
+}
+
+.dp9 table.root_info th {
+  color: #ab3c00;
+  font-weight: 700;
+  white-space: normal;
+  padding: 0px 5px 2px 0px;
+}
+
+.dp9 table.root_info b {
+  font-weight: 700;
+}
+
+.dp9 table.root_family td,
+.dp9 table.root_family th {
+  text-align: left;
+  vertical-align: top;
+}
+
+.dp9 table.root_family th {
+  color: #ab3c00;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dp9 table.root_family b {
+  font-weight: 700;
+}
+
+.dp9 div.root_button_box {
+  font-size: 0px;
+  margin: 2px 0px 3px 0px;
+}
+
+.dp9 a.root_button {
+  background-color: #f95700;
+  border-radius: 7px;
+  box-shadow: 0 4px 4px -2px #888888;
+  color: #000;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 400;
+  margin: 0px 1px 2px 0px;
+  padding: 3px 5px;
+  text-decoration: none;
+  user-select: none;
+}
+
+.dp9 a.root_button.close {
+  float: right;
+  margin: 10px;
+}
+
+.dp9 a.root_button.active {
+  background-color: #ab3c00;
+  color: black;
+  user-select: none;
+}
+
+.dp9 a.root_button:hover {
+  background-color: #ab3c00;
+  color: white;
+  user-select: none;
+}
+
+.dp9 .root_link {
+  color: #ab3c00;
+  font-weight: 700;
+}
+
+.dp9 table.root_matrix {
+  width: 100%;
+}
+
+.dp9 table.root_matrix th,
+.dp9 table.root_matrix td {
+  border-radius: 5px;
+  line-height: 150%;
+  vertical-align: top;
+  padding: 5px 5px;
+  overflow: auto;
+}
+
+.dp9 table.root_matrix th {
+  border: 1px solid #ab3c00;
+  color: #f95700;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.dp9 table.root_matrix td {
+  border: 1px solid gray;
+  text-align: left;
+}
+
+.dp9 table.root_matrix td b {
+  color: #ab3c00;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dp9 span.colour {
+  color: #ab3c00;
+  font-weight: 700;
+}
+
+/* epd */
+
+.dp9 div.epd {
+  border: 2px solid #8b008b;
+  border-radius: 7px;
+  line-height: 150%;
+  margin: 0px 0px;
+  overflow: auto;
+  padding: 3px 7px;
+  text-align: left;
+}
+
+.dp9 b.epd {
+  color: #8b008b;
+  font-weight: 700;
+}
+
+.dp9 sup {
+  font-size: 0.6em;
+  vertical-align: super;
+}

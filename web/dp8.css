@@ -1,0 +1,39 @@
+.dp8 body {
+  font-family: "Noto Sans", "DejaVu Serif", "Verajja Serif";
+}
+.dp8 h3 {
+  font-size: 130%;
+  margin-top: 10px;
+  margin-bottom: 1px;
+}
+.dp8 div.deconstructor {
+  border: 2px solid #ffd700;
+  border-radius: 7px;
+  line-height: 150%;
+  margin: 0px 0px;
+  overflow: auto;
+  padding: 3px 7px;
+  text-align: left;
+}
+.dp8 p.deconstructor {
+  line-height: 150%;
+  margin: 0px 0px;
+  vertical-align: middle;
+  text-align: left;
+}
+.dp8 a.deconstructor_feedback {
+  float: right;
+  text-decoration: none;
+  margin: 1px;
+  vertical-align: top;
+}
+.dp8 p.deconstructor_footer {
+  border-top: 1px solid #ffd700;
+  font-size: 0.8em;
+  margin: 5px 0 0 0;
+  padding: 5px 0px;
+}
+.dp8 .link {
+  color: #00a4cc;
+  font-weight: 700;
+}

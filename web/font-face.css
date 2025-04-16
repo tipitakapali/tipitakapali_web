@@ -1,0 +1,69 @@
+
+@font-face{src:local("Noto Sans Sinhala"),url("fonts/google/Noto_Sans_Sinhala/static/NotoSansSinhala-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Sans Sinhala";}
+@font-face{src:local("Noto Sans Sinhala"),url("fonts/google/Noto_Sans_Sinhala/static/NotoSansSinhala-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Sans Sinhala";}
+
+
+@font-face{src:local("Noto Sans Myanmar"),url("fonts/google/Noto_Sans_Myanmar/static/NotoSansMyanmar-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Sans Myanmar";}
+@font-face{src:local("Noto Sans Myanmar"),url("fonts/google/Noto_Sans_Myanmar/static/NotoSansMyanmar-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Sans Myanmar";}
+
+        
+@font-face{src:local("Noto Sans Devanagari"),url("fonts/google/Noto_Sans_Devanagari/static/NotoSansDevanagari-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Sans Devanagari";}
+@font-face{src:local("Noto Sans Devanagari"),url("fonts/google/Noto_Sans_Devanagari/static/NotoSansDevanagari-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Sans Devanagari";}
+
+        
+@font-face{src:local("Noto Sans"),url("fonts/google/Noto_Sans/static/NotoSans-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Sans";}
+@font-face{src:local("Noto Sans"),url("fonts/google/Noto_Sans/static/NotoSans-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Sans";}
+
+        
+@font-face{src:local("Noto Sans Thai"),url("fonts/google/Noto_Sans_Thai/static/NotoSansThai-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Sans Thai";}
+@font-face{src:local("Noto Sans Thai"),url("fonts/google/Noto_Sans_Thai/static/NotoSansThai-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Sans Thai";}
+
+        
+@font-face{src:local("Noto Sans Lao"),url("fonts/google/Noto_Sans_Lao/static/NotoSansLao-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Sans Lao";}
+@font-face{src:local("Noto Sans Lao"),url("fonts/google/Noto_Sans_Lao/static/NotoSansLao-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Sans Lao";}
+
+        
+@font-face{src:local("Noto Sans Khmer"),url("fonts/google/Noto_Sans_Khmer/static/NotoSansKhmer-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Sans Khmer";}
+@font-face{src:local("Noto Sans Khmer"),url("fonts/google/Noto_Sans_Khmer/static/NotoSansKhmer-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Sans Khmer";}
+
+        
+@font-face{src:local("Noto Sans Bengali"),url("fonts/google/Noto_Sans_Bengali/static/NotoSansBengali-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Sans Bengali";}
+@font-face{src:local("Noto Sans Bengali"),url("fonts/google/Noto_Sans_Bengali/static/NotoSansBengali-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Sans Bengali";}
+
+        
+@font-face{src:local("Noto Sans Gurmukhi"),url("fonts/google/Noto_Sans_Gurmukhi/static/NotoSansGurmukhi-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Sans Gurmukhi";}
+@font-face{src:local("Noto Sans Gurmukhi"),url("fonts/google/Noto_Sans_Gurmukhi/static/NotoSansGurmukhi-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Sans Gurmukhi";}
+
+        
+@font-face{src:local("Noto Sans Gujarati"),url("fonts/google/Noto_Sans_Gujarati/static/NotoSansGujarati-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Sans Gujarati";}
+@font-face{src:local("Noto Sans Gujarati"),url("fonts/google/Noto_Sans_Gujarati/static/NotoSansGujarati-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Sans Gujarati";}
+
+        
+@font-face{src:local("Noto Sans Telugu"),url("fonts/google/Noto_Sans_Telugu/static/NotoSansTelugu-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Sans Telugu";}
+@font-face{src:local("Noto Sans Telugu"),url("fonts/google/Noto_Sans_Telugu/static/NotoSansTelugu-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Sans Telugu";}
+
+        
+@font-face{src:local("Noto Sans Kannada"),url("fonts/google/Noto_Sans_Kannada/static/NotoSansKannada-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Sans Kannada";}
+@font-face{src:local("Noto Sans Kannada"),url("fonts/google/Noto_Sans_Kannada/static/NotoSansKannada-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Sans Kannada";}
+
+        
+@font-face{src:local("Noto Sans Malayalam"),url("fonts/google/Noto_Sans_Malayalam/static/NotoSansMalayalam-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Sans Malayalam";}
+@font-face{src:local("Noto Sans Malayalam"),url("fonts/google/Noto_Sans_Malayalam/static/NotoSansMalayalam-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Sans Malayalam";}
+
+        
+@font-face{src:local("Noto Sans Tai Tham"),url("fonts/google/Noto_Sans_Tai_Tham/static/NotoSansTaiTham-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Sans Tai Tham";}
+@font-face{src:local("Noto Sans Tai Tham"),url("fonts/google/Noto_Sans_Tai_Tham/static/NotoSansTaiTham-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Sans Tai Tham";}
+
+
+/* NotoSanBrahmi has Regular */
+@font-face{src:local("Noto Sans Brahmi"),url("fonts/google/Noto_Sans_Brahmi/static/NotoSansBrahmi-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Sans Brahmi";}
+
+        
+@font-face{src:local("Noto Serif Tibetan"),url("fonts/google/Noto_Serif_Tibetan/static/NotoSerifTibetan-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Serif Tibetan";}
+@font-face{src:local("Noto Serif Tibetan"),url("fonts/google/Noto_Serif_Tibetan/static/NotoSerifTibetan-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Serif Tibetan";}
+
+        
+@font-face{src:local("Noto Serif"),url("fonts/google/Noto_Serif/static/NotoSerif-Regular.ttf")format("truetype");font-display:swap;font-weight:normal;font-family:"Noto Serif";}
+@font-face{src:local("Noto Serif"),url("fonts/google/Noto_Serif/static/NotoSerif-Bold.ttf")format("truetype");font-display:swap;font-weight:bold;font-family:"Noto Serif";}
+
+        

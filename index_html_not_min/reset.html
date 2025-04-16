@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <title>Tipitakapali.Org Reset Settings</title>
+    <style>
+        :root {
+      --safe-area-inset-top: env(safe-area-inset-top, 25px);
+      --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-area-inset-left: env(safe-area-inset-left, 0px);
+      --safe-area-inset-right: env(safe-area-inset-right, 0px);
+      }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            padding: calc(var(--safe-area-inset-top) + 20px) calc(var(--safe-area-inset-right) + 10px) calc(var(--safe-area-inset-bottom) + 10px) calc(var(--safe-area-inset-left) + 10px);
+
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .error-image {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .redirect-message {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .redirect-link {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .redirect-link:hover {
+            color: #daa520;
+        }
+
+        .loader-container {
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    /* adapted from https://css-loaders.com/spinner */
+    width: 50px;
+    aspect-ratio: 1;
+    color: #854f1d;
+    border-radius: 50%;
+    display: grid;
+    background: 
+      conic-gradient(from 90deg at 4px 4px,#0000 90deg,currentColor 0)
+      -4px -4px/calc(50% + 2px) calc(50% + 2px),
+      radial-gradient(farthest-side,currentColor 6px,#0000 7px calc(100% - 6px),currentColor calc(100% - 5px)) no-repeat;
+    animation: l10 2s infinite linear;
+    position: relative;
+  }
+  .loader:before {
+    content: "";
+    border-radius: inherit;
+    background: inherit;
+    transform: rotate(45deg);
+  }
+  @keyframes l10 {to{transform: rotate(.5turn)}}
+
+  .title {
+    margin: 10px;
+    font-weight: bold;
+  }
+      
+  .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: orange;
+            color: #0e0e72;
+            border: none;
+            padding: 12px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a class="aNoHover" href="index.html"><div class="loader-container"><div class="loader"></div></div></a>
+        <div class="title">Tipitakapali.org (TPO)</div>
+        <div class="container">
+            <div>💡 This helps to restore the app's default settings. Use this when you encounter errors. You can also re-download the app from <a href="https://github.com/tipitakapali/tipitakapali.org/releases" target="_blank" style="text-decoration: none;">HERE.</a></div>
+            <h1>Reset App's Settings</h1>
+            <button onclick="resetLocalStorage()">Reset</button>
+            <div></div>
+        </div>
+    
+        <script>
+            function resetLocalStorage() {
+                const resets = [
+                    'tipitakapali_org_CURRENT_BOOK_KEY',
+                    'tipitakapali_org_paliScript',
+                    'tipitakapali_org_isDarkMode',
+                    'tipitakapali_org_isAbhidhan',
+                    "tipitakapali_org_PSC13Mar22"
+                ]
+                const confirmReset = confirm("If the errors persist, please try uninstalling & reinstalling the app.\nOr forget about this app. \n\nProceed?");
+                if (confirmReset) {
+                    try {
+                        for (const x of resets) {
+                            localStorage.removeItem(x);
+                            console.log("Removed", x)
+                        }
+                    } catch (error) {
+                        console.log(error)
+                    }
+                    window.location.href = "https://tipitakapali.org"
+                }
+            }
+        </script>
+    </body>
+    
+    </html>

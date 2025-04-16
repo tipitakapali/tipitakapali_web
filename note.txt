@@ -1,0 +1,22 @@
+if (window.location && window.navigator) {
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      const isBot = /bot|google|msn|bing|baidu|yandex|crawl|spider|slurp|mediapartners/i.test(userAgent);
+      const lastVisitScript = localStorage.getItem("tipitakapali_org_paliScript");
+
+      if (!isBot) {
+        if (lastVisitScript && lastVisitScript != "ro") {
+          if (window.screen) {
+            if (window.screen.width < 600 || window.screen.height < 600) {
+              window.location.assign(lastVisitScript + "/mula.html");
+            }
+          }
+          window.location.assign(lastVisitScript + "/index.html");
+        } else {
+          if (window.screen) {
+            if (window.screen.width < 600 || window.screen.height < 600) {
+              window.location.assign("mula.html");
+            }
+          }
+        }
+      }
+    }
