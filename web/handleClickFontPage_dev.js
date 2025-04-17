@@ -560,43 +560,30 @@ function ftsTyping(id) {
 
     var lastFile = localStorage.getItem("tipitakapali_org_CURRENT_BOOK_KEY") || "index.html"
 
-    //   const homeLink2 = `<a id="index.html" href="./${lastFile}">
-    //   <button id="goBackButton" style="padding: 2px 6px; line-height: 1;">
-    //     <img width="16" height="16" src="web/icons/toplogo.webp" alt="Tipitakapali.org"/> Go back
-    //   </button>
-    // </a>`
-
-    //   const homeLink22 = `
-    // <div style="float: left;">
-    //   <a id="index.html" href="./${lastFile}">
-    //     <button id="goBackButton">
-    //       <img width="16" height="16" src="web/icons/toplogo.webp" alt="Tipitakapali.org"/> Go back
-    //     </button>
-    //   </a>
-    // </div>`
-
-    //   let searchButtonHTML2 = `<br>${homeLink}<button id="clearTextButton" onclick="clearTextFTS()"><i class="fas fa-trash-alt" style="color:red"></i> Clear Text</button> <button id="searchButton" onclick="fetchFTS()">Search <i class="fa fa-search" style="color:green"></i></button>`
-
-    const homeLink = `
-  <div style="float: left;">
-    <a id="index.html" href="./${lastFile}">
-      <button id="goBackButton">
-        <img width="16" height="16" src="web/icons/toplogo.webp" alt="Tipitakapali.org"/> Back
-      </button>
-    </a>
-  </div>`
+    let homeLink = `
+    <div style="position: absolute; top: 0; left: 0;">
+      <a id="index.html" href="./${lastFile}">
+        <button id="goBackButton">
+          <img width="16" height="16" src="web/icons/toplogo.webp" alt="Tipitakapali.org"/> Go back
+        </button>
+      </a>
+    </div>`
 
     const buttonGroup = `
-  <div style="text-align: center; margin-top: 5px;">
-    <button id="clearTextButton" onclick="clearTextFTS()">
-      <i class="fas fa-trash-alt" style="color:red"></i> Clear Text
-    </button>
-    <button id="searchButton" onclick="fetchFTS()">
-      Search <i class="fa fa-search" style="color:green"></i>
-    </button>
-  </div>`
+    <div style="text-align: center; margin-top: 5px;">
+      <button id="clearTextButton" onclick="clearTextFTS()">
+        <i class="fas fa-trash-alt" style="color:red"></i> Clear Text
+      </button>
+      <button id="searchButton" onclick="fetchFTS()">
+        Search <i class="fa fa-search" style="color:green"></i>
+      </button>
+    </div>`
 
-    const searchButtonHTML = `<br>${homeLink}${buttonGroup}`
+    const searchButtonHTML = `
+    <div style="position: relative; width: 100%; min-height: 40px;">
+      ${homeLink}
+      ${buttonGroup}
+    </div>`
 
     const imgLogo = document.getElementsByClassName("namo")
     if (imgLogo.length > 0) {
