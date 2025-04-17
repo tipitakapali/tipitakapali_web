@@ -560,14 +560,10 @@ function ftsTyping(id) {
 
     var lastFile = localStorage.getItem("tipitakapali_org_CURRENT_BOOK_KEY") || "index.html"
 
-    let homeLink = `
-    <div style="position: absolute; top: 0; left: 0;">
-      <a id="index.html" href="./${lastFile}">
-        <button id="goBackButton">
-          <img width="16" height="16" src="web/icons/toplogo.webp" alt="Tipitakapali.org"/> Go back
-        </button>
-      </a>
-    </div>`
+    const goBackLink = document.getElementById("gobackFromSearchLink")
+    if (goBackLink) {
+      goBackLink.href = `./${lastFile}`
+    }
 
     const buttonGroup = `
     <div style="text-align: center; margin-top: 5px;">
@@ -581,7 +577,6 @@ function ftsTyping(id) {
 
     const searchButtonHTML = `
     <div style="position: relative; width: 100%; min-height: 40px;">
-      ${homeLink}
       ${buttonGroup}
     </div>`
 
