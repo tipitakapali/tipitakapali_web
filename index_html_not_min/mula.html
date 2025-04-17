@@ -72,8 +72,7 @@
 <!-- cst ends now full text search and settings -->
 <div style="display: none;" class="sortandfilter" id="sortandfilter">
 
-  <div style="display: none;text-align:center;" id="fts_setting_toggle_button"><button onclick="toggleFTSsetting()"><i
-        class="fas fa-cog" style="color: #205eda;"></i> <span style="color:#0e0e72;">▶ Show|Hide More Search Settings</span></button></div>
+  <div style="display: none;text-align:center;" id="fts_setting_toggle_button"><button onclick="toggleFTSsetting()"><span style="color:#0e0e72;font-size:smaller;">▶ Show|Hide More Search Settings</span></button></div>
 
   <div id="fts_setting" class="hidenme">
     <br>
@@ -129,7 +128,7 @@
     <hr
       style="height: 1px;border: none; background: linear-gradient(to right, transparent, #8b4513, transparent) !important; margin: 15px 0;">
   </div>
-  <br><span style="font-weight:bold;">Sort result by</span>
+  <br><span style="font-weight:bold;">Sort by</span>
   <label class="circleRadio" for="rank"><input title="fts settings" checked="checked" type="radio" id="rank"
       name="res_sort" value="rank" onclick="updateSort()">
     Relevance</label>
@@ -142,11 +141,11 @@
   <hr
     style="height: 1px;border: none; background: linear-gradient(to right, transparent, #8b4513, transparent) !important; margin: 15px 0;">
   <span
-    style="padding:2px;font-size: large; font-weight: bold; color:#0e0e72;">Filter
+    style="padding:2px;font-size: normal; font-weight: bold; color:#0e0e72;">Filter
     results</span>
 
   <!-- sort and filter -->
-  <div style="text-align: center; margin: 10px; font-size: large;">
+  <div style="text-align: center; margin: 10px; font-size: normal;">
     <div>
       <label><input type="checkbox" id="filter-all-cat" checked onchange="toggleAllCategories()"> <b>All</b></label>
       <label><input type="checkbox" id="filter-mula" checked onchange="updateFilters()"> Mūla</label>
@@ -166,7 +165,7 @@
 <!-- sort and filter ends -->
 <div style="text-align:center;">
   <input title="fts settings"
-    style="height: 25px; color: brown; font-size: large;font-style: normal;font-family: 'DejaVu Sans', 'Times New Roman', Times, serif;font-weight: bold;"
+    style="height: 25px; color: brown; font-size: normal;font-style: normal;font-family: 'DejaVu Sans', 'Times New Roman', Times, serif;font-weight: bold;"
     name="search_words" oninput="ftsTyping('fts_input')" id="fts_input" type="text"
     placeholder="🔍 Full text search - accepts 17 pāḷi scripts" autofocus>
 </div>
@@ -226,7 +225,7 @@
 
 <script src="web/BookExpandChapter_v2.js" defer></script>
 <script src="web/paliscriptconverter_edited_v2.js" defer></script>
-<script src="web/handleClickFontPage_v22.js" defer></script>
+<script src="web/handleClickFontPage_v2.1.js" defer></script>
 
 </body>
 

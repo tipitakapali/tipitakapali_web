@@ -543,16 +543,13 @@ function fetchFTS(callBySearchButton = true) {
 
 function ftsTyping(id) {
   if (toHideShowGoBack) {
+    toHideShowGoBack = false
     let ftsInput = document.getElementById("fts_input")
 
-    let matika = document.getElementsByClassName("tableContainer")
-    matika[0].remove()
-
-    // let logo = document.getElementsByClassName("namo")
-    // logo[0].remove()
-
-    // let cstTitle = document.getElementById("cst_name")
-    // cstTitle.remove()
+    const matika = document.getElementsByClassName("tableContainer")
+    if (matika.length > 0) {
+      matika[0].remove()
+    }
 
     let ftsSettingButton = document.getElementById("fts_setting_toggle_button")
     ftsSettingButton.style.display = ""
@@ -561,18 +558,60 @@ function ftsTyping(id) {
     const sortandfilter = document.getElementById("sortandfilter")
     sortandfilter.style.display = ""
 
-    let searchButtonHTML = '<br><button id="clearTextButton" onclick="clearTextFTS()"><i class="fas fa-trash-alt" style="color:red"></i> Clear Text</button> <button id="searchButton" onclick="fetchFTS()">Search <i class="fa fa-search" style="color:green"></i></button>'
-
     var lastFile = localStorage.getItem("tipitakapali_org_CURRENT_BOOK_KEY") || "index.html"
 
-    const homeLink = `<span><a id="index.html" href="./${lastFile}"><button id="goBackButton"><i class="fas fa-undo"></i> Go back</button></a></span>`
+    //   const homeLink2 = `<a id="index.html" href="./${lastFile}">
+    //   <button id="goBackButton" style="padding: 2px 6px; line-height: 1;">
+    //     <img width="16" height="16" src="web/icons/toplogo.webp" alt="Tipitakapali.org"/> Go back
+    //   </button>
+    // </a>`
 
-    let cst_name = document.getElementById("cst_name")
-    cst_name.insertAdjacentHTML("afterEnd", homeLink)
+    //   const homeLink22 = `
+    // <div style="float: left;">
+    //   <a id="index.html" href="./${lastFile}">
+    //     <button id="goBackButton">
+    //       <img width="16" height="16" src="web/icons/toplogo.webp" alt="Tipitakapali.org"/> Go back
+    //     </button>
+    //   </a>
+    // </div>`
+
+    //   let searchButtonHTML2 = `<br>${homeLink}<button id="clearTextButton" onclick="clearTextFTS()"><i class="fas fa-trash-alt" style="color:red"></i> Clear Text</button> <button id="searchButton" onclick="fetchFTS()">Search <i class="fa fa-search" style="color:green"></i></button>`
+
+    const homeLink = `
+  <div style="float: left;">
+    <a id="index.html" href="./${lastFile}">
+      <button id="goBackButton">
+        <img width="16" height="16" src="web/icons/toplogo.webp" alt="Tipitakapali.org"/> Back
+      </button>
+    </a>
+  </div>`
+
+    const buttonGroup = `
+  <div style="text-align: center; margin-top: 5px;">
+    <button id="clearTextButton" onclick="clearTextFTS()">
+      <i class="fas fa-trash-alt" style="color:red"></i> Clear Text
+    </button>
+    <button id="searchButton" onclick="fetchFTS()">
+      Search <i class="fa fa-search" style="color:green"></i>
+    </button>
+  </div>`
+
+    const searchButtonHTML = `<br>${homeLink}${buttonGroup}`
+
+    const imgLogo = document.getElementsByClassName("namo")
+    if (imgLogo.length > 0) {
+      imgLogo[0].remove()
+    }
+
+    const cst_name = document.getElementById("cst_name")
+    if (cst_name) {
+      cst_name.remove()
+      // cst_name.style.textAlign = "left"
+      // cst_name.style.fontSize = "small"
+      // cst_name.innerHTML = homeLink
+    }
 
     ftsInput.insertAdjacentHTML("afterEnd", searchButtonHTML)
-
-    toHideShowGoBack = false
   }
 
   let t = document.getElementById(id)
