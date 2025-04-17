@@ -388,6 +388,11 @@ function toggleAllCategories() {
   document.getElementById("filter-mula").checked = allCat
   document.getElementById("filter-attha").checked = allCat
   document.getElementById("filter-tika").checked = allCat
+
+  // sync Anna category ↔ Annatext type:
+  document.getElementById("filter-anna").checked = allCat
+  document.getElementById("filter-annatext").checked = allCat
+
   updateFilters()
 }
 
@@ -396,7 +401,11 @@ function toggleAllTypes() {
   document.getElementById("filter-vinaya").checked = allType
   document.getElementById("filter-sutta").checked = allType
   document.getElementById("filter-abhidhamma").checked = allType
+
+  // sync Annatext type ↔ Anna category:
+  document.getElementById("filter-annatext").checked = allType
   document.getElementById("filter-anna").checked = allType
+
   updateFilters()
 }
 
@@ -404,27 +413,28 @@ function updateFilters() {
   const mula = document.getElementById("filter-mula")
   const attha = document.getElementById("filter-attha")
   const tika = document.getElementById("filter-tika")
+  const anna = document.getElementById("filter-anna")
 
   // Prevent unchecking all category filters
-  if (!mula.checked && !attha.checked && !tika.checked) {
+  if (!mula.checked && !attha.checked && !tika.checked && !anna.checked) {
     mula.checked = true // Default to keeping at least one checked
   }
 
   const allCat = document.getElementById("filter-all-cat")
-  allCat.checked = mula.checked && attha.checked && tika.checked
+  allCat.checked = mula.checked && attha.checked && tika.checked && anna.checked
 
   const vinaya = document.getElementById("filter-vinaya")
   const sutta = document.getElementById("filter-sutta")
   const abhidhamma = document.getElementById("filter-abhidhamma")
-  const anna = document.getElementById("filter-anna")
+  const annatext = document.getElementById("filter-annatext")
 
   // Prevent unchecking all type filters
-  if (!vinaya.checked && !sutta.checked && !abhidhamma.checked && !anna.checked) {
+  if (!vinaya.checked && !sutta.checked && !abhidhamma.checked && !annatext.checked) {
     vinaya.checked = true // Default to keeping at least one checked
   }
 
   const allType = document.getElementById("filter-all-type")
-  allType.checked = vinaya.checked && sutta.checked && abhidhamma.checked && anna.checked
+  allType.checked = vinaya.checked && sutta.checked && abhidhamma.checked && annatext.checked
 
   fetchFTS(false)
 }
@@ -467,19 +477,20 @@ function fetchFTS(callBySearchButton = true) {
   distance_n = getNumberInput("distance_n") || distance_n
   snippet_len = getNumberInput("snippet_len") || snippet_len
 
-  // can not use with form so need to flatten it
+  // CORS pre-flight issues
   // const filters = {
   //   isAll: document.getElementById("filter-all-cat").checked && document.getElementById("filter-all-type").checked,
   //   categories: {
   //     mula: document.getElementById("filter-mula").checked,
   //     attha: document.getElementById("filter-attha").checked,
   //     tika: document.getElementById("filter-tika").checked,
+  //     anna: document.getElementById("filter-anna").checked,
   //   },
   //   types: {
   //     vinaya: document.getElementById("filter-vinaya").checked,
   //     sutta: document.getElementById("filter-sutta").checked,
   //     abhidhamma: document.getElementById("filter-abhidhamma").checked,
-  //     anna: document.getElementById("filter-anna").checked,
+  //     annatext: document.getElementById("filter-annatext").checked,
   //   },
   // }
 
@@ -502,6 +513,7 @@ function fetchFTS(callBySearchButton = true) {
     sutta: isChecked("filter-sutta"),
     abhidhamma: isChecked("filter-abhidhamma"),
     anna: isChecked("filter-anna"),
+    annatext: isChecked("filter-annatext"),
   }
 
   let resultsEle = document.getElementById("fts_results")
@@ -536,6 +548,12 @@ function ftsTyping(id) {
     let matika = document.getElementsByClassName("tableContainer")
     matika[0].remove()
 
+    // let logo = document.getElementsByClassName("namo")
+    // logo[0].remove()
+
+    // let cstTitle = document.getElementById("cst_name")
+    // cstTitle.remove()
+
     let ftsSettingButton = document.getElementById("fts_setting_toggle_button")
     ftsSettingButton.style.display = ""
 
@@ -547,9 +565,10 @@ function ftsTyping(id) {
 
     var lastFile = localStorage.getItem("tipitakapali_org_CURRENT_BOOK_KEY") || "index.html"
 
-    const homeLink = `<p><a id="index.html" class="headtype" href="./${lastFile}"><button id="goBackButton"><i class="fas fa-undo"></i> Go back</button></a></p>`
+    const homeLink = `<span><a id="index.html" href="./${lastFile}"><button id="goBackButton"><i class="fas fa-undo"></i> Go back</button></a></span>`
 
-    sortandfilter.insertAdjacentHTML("beforeBegin", homeLink)
+    let cst_name = document.getElementById("cst_name")
+    cst_name.insertAdjacentHTML("afterEnd", homeLink)
 
     ftsInput.insertAdjacentHTML("afterEnd", searchButtonHTML)
 
@@ -859,4 +878,22 @@ window.onload = function tocDetail() {
   loadCheckIsDarkMode()
   loadCheckShowPageMarker()
   loadCheckIsAbhidhan()
+
+  // Sync filter‑anna (category) ↔ filter‑annatext (type)
+  const catAnna = document.getElementById("filter-anna")
+  const typeAnnatext = document.getElementById("filter-annatext")
+
+  function syncAnnaCheckboxes(e) {
+    // set the opposite checkbox to match
+    if (e.target === catAnna) {
+      typeAnnatext.checked = catAnna.checked
+    } else {
+      catAnna.checked = typeAnnatext.checked
+    }
+    // re-run your filter logic
+    updateFilters()
+  }
+
+  catAnna.addEventListener("change", syncAnnaCheckboxes, { passive: false })
+  typeAnnatext.addEventListener("change", syncAnnaCheckboxes, { passive: false })
 }
