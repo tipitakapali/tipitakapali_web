@@ -371,6 +371,11 @@ h4 {
 .pfts #toggleButton {
   background: #cbd0d7;
   border-radius: 10px;
+  font-size: smaller;
+}
+
+.smallButton {
+  font-size: smaller;
 }
 
 #clearTextButton {

@@ -581,10 +581,10 @@ function ftsTyping(id) {
 
     const buttonGroup = `
     <div style="text-align: center; margin-top: 5px;">
-      <button id="clearTextButton" onclick="clearTextFTS()">
+      <button class="smallButton" id="clearTextButton" onclick="clearTextFTS()">
         <i class="fas fa-trash-alt" style="color:red"></i> Clear Text
       </button>
-      <button id="searchButton" onclick="fetchFTS()">
+      <button class="smallButton" id="searchButton" onclick="fetchFTS()">
         Search <i class="fa fa-search" style="color:green"></i>
       </button>
     </div>`
@@ -651,7 +651,7 @@ function ftsToggleHideAll(ftsTotalFilesFound) {
 
     let toggleB = document.getElementById("toggleButton")
     toggleB.style.background = "#fff"
-    toggleB.textContent = "Collapse All Contents"
+    toggleB.textContent = "Collapse All"
   } else {
     for (; i < ftsTotalFilesFound; i++) {
       let id = "ce" + (i + 1)
@@ -661,7 +661,7 @@ function ftsToggleHideAll(ftsTotalFilesFound) {
     ftsFoldAllStatus = true
     let toggleB = document.getElementById("toggleButton")
     toggleB.style.background = "#58E973"
-    toggleB.textContent = "Expand All Contents"
+    toggleB.textContent = "Expand All"
   }
 }
 
