@@ -358,6 +358,20 @@ function toggleFTSsetting() {
   }
 }
 
+function openAndJumpToFtsSettings() {
+  let ele = document.getElementById("fts_setting")
+  ele.removeAttribute("class")
+  setTimeout(() => {
+    if (window.location) {
+      // this will respect the CSS that handles notch camera devices
+      // [id] { scroll-margin-top: max(50px, var(--safe-area-inset-top) + 25px)}
+      window.location.assign(`#fts_setting`)
+    } else {
+      ele.scrollIntoView({ behavior: "auto", block: "start" })
+    }
+  }, 100)
+}
+
 function changeSearchButton(working = true) {
   let searchButton = document.getElementById("searchButton")
   if (!searchButton) {
@@ -637,7 +651,7 @@ function ftsToggleHideAll(ftsTotalFilesFound) {
 
     let toggleB = document.getElementById("toggleButton")
     toggleB.style.background = "#fff"
-    toggleB.textContent = "Collapse All"
+    toggleB.textContent = "Collapse All Contents"
   } else {
     for (; i < ftsTotalFilesFound; i++) {
       let id = "ce" + (i + 1)
@@ -647,7 +661,7 @@ function ftsToggleHideAll(ftsTotalFilesFound) {
     ftsFoldAllStatus = true
     let toggleB = document.getElementById("toggleButton")
     toggleB.style.background = "#58E973"
-    toggleB.textContent = "Show All"
+    toggleB.textContent = "Expand All Contents"
   }
 }
 
