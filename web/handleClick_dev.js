@@ -5,7 +5,7 @@
  * Date: 2017 - present
  * Authors: bkpannindriya @ gmail.com
  * Authors: Generative AIs and contributors
- * Last modified 2025.04.11
+ * Last modified 2025.04.18
  *********************************/
 
 //// mobileFlutter switch: false = electron, web, ios;
@@ -1729,6 +1729,45 @@ function scrollToParagraphIdFallBack() {
   }
 }
 
+function highlightTextNodes(element, regex, tagName = "u") {
+  // Recursively process all nodes under the given element
+  function processNode(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent
+      if (regex.test(text)) {
+        const fragment = document.createDocumentFragment()
+        let lastIndex = 0
+        text.replace(regex, (match, offset) => {
+          // Add text before the match
+          if (offset > lastIndex) {
+            fragment.appendChild(document.createTextNode(text.slice(lastIndex, offset)))
+          }
+          // Add highlighted match
+          const highlight = document.createElement(tagName)
+          highlight.textContent = match
+          fragment.appendChild(highlight)
+          lastIndex = offset + match.length
+        })
+        // Add remaining text
+        if (lastIndex < text.length) {
+          fragment.appendChild(document.createTextNode(text.slice(lastIndex)))
+        }
+        // Replace the text node with the fragment
+        node.parentNode.replaceChild(fragment, node)
+      }
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      // Skip script, style, or other elements where text shouldn't be modified
+      if (!["SCRIPT", "STYLE"].includes(node.tagName.toUpperCase())) {
+        // Process child nodes
+        Array.from(node.childNodes).forEach(processNode)
+      }
+    }
+  }
+
+  // Start processing from the element
+  Array.from(element.childNodes).forEach(processNode)
+}
+
 window.onload = function () {
   const urlVisiting = window.location.href
   if (currentScript2char !== "ro" && urlVisiting.includes("chapter/")) {
@@ -1791,20 +1830,29 @@ window.onload = function () {
       const paraId = urlObj.hash.substring(1).match(/k\d+/)?.[0] || ""
       const paraElement = document.getElementById(paraId)
       if (paraElement) {
-        keywords.forEach((keyword) => {
-          if (currentScript2char !== "ro") {
-            keyword = fromToThisPaliScr2Char(keyword, "ro", currentScript2char)
-          }
-          if (keyword && paraElement.innerHTML.includes(keyword)) {
-            // Escape special regex characters but preserve Pāli diacritical marks
-            let escapedKeyword = keyword.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")
-            // Use Unicode-aware word boundaries for Pāli
+        // Prepare keywords and their regex patterns
+        const keywordPatterns = keywords
+          .map((keyword) => {
+            if (currentScript2char !== "ro") {
+              keyword = fromToThisPaliScr2Char(keyword, "ro", currentScript2char)
+            }
+            if (keyword && paraElement.textContent.includes(keyword)) {
+              // Escape special regex characters but preserve Pāli diacritical marks
+              const escapedKeyword = keyword.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")
+              return escapedKeyword
+            }
+            return null
+          })
+          .filter(Boolean)
 
-            const regex = new RegExp(`(?<!\\p{L})${escapedKeyword}(?!\\p{L})`, "gu")
-            const currentHTML = paraElement.innerHTML
-            paraElement.innerHTML = currentHTML.replace(regex, (match) => `<u>${match}</u>`)
-          }
-        })
+        if (keywordPatterns.length > 0) {
+          // Create a combined regex for all keywords
+          const combinedPattern = keywordPatterns.map((pattern) => `(?<!\\p{L})${pattern}(?!\\p{L})`).join("|")
+          const regex = new RegExp(combinedPattern, "gu")
+
+          // Highlight all matches in a single pass
+          highlightTextNodes(paraElement, regex, "u")
+        }
 
         // Scroll to the paragraph after highlighting
         setTimeout(() => {
