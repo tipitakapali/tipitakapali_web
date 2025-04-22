@@ -369,13 +369,155 @@ read its output.</p>
 alt="AI Bot" />
 <figcaption aria-hidden="true">AI Bot</figcaption>
 </figure>
+<h4 id="full-text-search-and-find-in-page">4. Full Text Search and Find
+in Page</h4>
+<p>The full-text search works like Google search. Check out the search
+mode in the <strong>▶ Show|Hide More Search Settings</strong>.</p>
+<p>By default, full-text search ignores Pāḷi diacritic marks and
+automatically adds wildcards to support partial word matching.</p>
+<p>Only when using <strong>Exact match</strong> mode, wildcards are not
+added—however, diacritics are still ignored.</p>
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; margin-top: 10px;">
+<thead style="background-color: #f0f0f0;">
+<tr>
+<th colspan="4" style="text-align:center; font-style: normal;color:rebeccapurple;">
+<b>Examples of supported search input</b>
+<hr>
+Can search with 17 different Pāḷi scripts<br>သာဓု · සාධු · साधु · สาธุ · សាធុ
+· …· са̄дху
+</th>
+</tr>
+<tr>
+<th>
+No.
+</th>
+<th>
+Roman Pāḷi - Examples
+</th>
+<th>
+OK
+</th>
+<th>
+Notes
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+1
+</td>
+<td>
+buddhaṃ saraṇaṃ gacchāmi
+</td>
+<td style="text-align:center;">
+✅
+</td>
+<td>
+Pāḷi <b>with</b> full diacritics
+</td>
+</tr>
+<tr>
+<td>
+2
+</td>
+<td>
+buddham saranam gacchami
+</td>
+<td style="text-align:center;">
+✅
+</td>
+<td>
+Pāḷi <b>without</b> diacritics
+</td>
+</tr>
+<tr>
+<td>
+3
+</td>
+<td>
+buddh* saran* gacch*
+</td>
+<td style="text-align:center;">
+✅
+</td>
+<td>
+<b>Partial</b> words wildcard
+</td>
+</tr>
+<tr>
+<td>
+3
+</td>
+<td>
+buddh saran gacch
+</td>
+<td style="text-align:center;">
+✅
+</td>
+<td>
+<b>Partial</b> words (auto add *)
+</td>
+</tr>
+<tr>
+<td>
+4
+</td>
+<td>
+bu sa ga
+</td>
+<td style="text-align:center;">
+✅
+</td>
+<td>
+<b>Abbreviated</b>, broad results (auto add *)
+</td>
+</tr>
+<tr>
+<td>
+5
+</td>
+<td>
+b s g
+</td>
+<td style="text-align:center;">
+☑️
+</td>
+<td>
+<b>Highly abbreviated</b>, too many results
+</td>
+</tr>
+<tr>
+<td>
+6
+</td>
+<td>
+e m s e s b b v i m t k p b
+</td>
+<td style="text-align:center;">
+☑️
+</td>
+<td>
+<b>Highly abbreviated</b>, broad results
+</td>
+</tr>
+</tbody>
+</table>
+<p>To see longer text snippets without opening the file, increase the
+<strong>Extract text length</strong> in the <strong>▶ Show|Hide More
+Search Settings</strong>.</p>
+<ul>
+<li><strong>To Find in Page</strong>:</li>
+</ul>
+<p>Press <code>Ctrl + F</code> (on MacOS <code>Cmd + F</code>) to open
+the search box.</p>
 <hr />
-<h3 id="offline-software-for-computers">4. 🖥️ Offline Software for
+<h3 id="offline-software-for-computers">5. 🖥️ Offline Software for
 Computers</h3>
 <blockquote>
 <p>These instructions are specific to the computer apps.</p>
 </blockquote>
-<h4 id="toggle-the-menu-bar-with-ctrlshiftm-on-windowslinux-os">4.1.
+<h4 id="toggle-the-menu-bar-with-ctrlshiftm-on-windowslinux-os">5.1.
 Toggle the menu bar with <strong>Ctrl+Shift+M</strong> on Windows/Linux
 OS</h4>
 <ul>
@@ -384,7 +526,7 @@ minute</strong> to enter immersive mode.</p></li>
 <li><p>At any time, you can toggle the menu bar using the shortcut
 <strong>Ctrl+Shift+M</strong> on Windows/Linux.</p></li>
 </ul>
-<h4 id="using-tipitakapali.org-offline-with-your-browser">4.2. Using
+<h4 id="using-tipitakapali.org-offline-with-your-browser">5.2. Using
 Tipitakapali.org Offline with Your Browser</h4>
 <p>You can use Tipitakapali.org Offline on your computer directly
 through a <strong>web browser</strong>.</p>
@@ -409,7 +551,7 @@ alt="Tipitakapali Offline - In A Chrome Browser" />
 <figcaption aria-hidden="true">Tipitakapali Offline - In A Chrome
 Browser</figcaption>
 </figure>
-<h4 id="multi-windowstext">4.3. Multi windows/text</h4>
+<h4 id="multi-windowstext">5.3. Multi windows/text</h4>
 <ul>
 <li>To view multiple windows/texts/Pāḷi scripts, such as opening Mūla,
 Aṭṭhakathā, and Ṭīkā texts simultaneously, please see the instruction
@@ -439,18 +581,6 @@ Scripts</figcaption>
 right-click (or long-press on mobile) any link and select Open link in
 new window. You can open as many windows as you’d like! :)</p>
 </blockquote>
-<h4 id="full-text-search-and-find-in-page">4.4. Full Text Search and
-Find in Page</h4>
-<p>The full-text search works like Google search. Check out the search
-mode in the <strong>Show|Hide Advance Search</strong> settings.</p>
-<p>To see longer text snippets without opening the file, increase the
-<strong>Extract text length</strong> in the <strong>Show|Hide Advance
-Search</strong> settings. The default is set to <code>100</code>.</p>
-<ul>
-<li><strong>To Find in Page</strong>:</li>
-</ul>
-<p>Press <code>Ctrl + F</code> (on MacOS <code>Cmd + F</code>) to open
-the search box.</p>
 <hr />
 <h2 id="feedback-bug-report">Feedback &amp; Bug Report</h2>
 <p>The apps published on the <strong>Apple Store</strong> and

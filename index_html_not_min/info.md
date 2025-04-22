@@ -66,20 +66,57 @@ Available on the online web app only, clicking on `🤖 AI` buttons may provide 
 ![AI Bot](web/img/tipitakapali_ai.png "AI Translation")
 
 
+#### 4. Full Text Search and Find in Page
+
+The full-text search works like Google search. Check out the search mode in the **▶ Show|Hide More Search Settings**.
+
+By default, full-text search ignores Pāḷi diacritic marks and automatically adds wildcards to support partial word matching.
+
+Only when using **Exact match** mode, wildcards are not added—however, diacritics are still ignored.
+
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; margin-top: 10px;">
+<thead style="background-color: #f0f0f0;">
+<tr>
+<th colspan="4" style="text-align:center; font-style: normal;color:rebeccapurple;"><b>Examples of supported search input</b><hr>Can search with 17 different Pāḷi scripts<br>သာဓု · සාධු · साधु · สาธุ · សាធុ · ...· са̄дху</th>
+</tr>
+<tr>
+<th>No.</th>
+<th>Roman Pāḷi - Examples</th>
+<th>OK</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>buddhaṃ saraṇaṃ gacchāmi</td><td style="text-align:center;">✅</td><td>Pāḷi <b>with</b> full diacritics</td></tr>
+<tr><td>2</td><td>buddham saranam gacchami</td><td style="text-align:center;">✅</td><td>Pāḷi <b>without</b> diacritics</td></tr>
+<tr><td>3</td><td>buddh* saran* gacch*</td><td style="text-align:center;">✅</td><td><b>Partial</b> words wildcard</td></tr>
+<tr><td>3</td><td>buddh saran gacch</td><td style="text-align:center;">✅</td><td><b>Partial</b> words (auto add *)</td></tr>
+<tr><td>4</td><td>bu sa ga</td><td style="text-align:center;">✅</td><td><b>Abbreviated</b>, broad results (auto add *)</td></tr>
+<tr><td>5</td><td>b s g</td><td style="text-align:center;">☑️</td><td><b>Highly abbreviated</b>, too many results</td></tr>
+<tr><td>6</td><td>e m s e s b b v i m t k p b</td><td style="text-align:center;">☑️</td><td><b>Highly abbreviated</b>, broad results</td></tr>
+</tbody>
+</table>
+
+To see longer text snippets without opening the file, increase the **Extract text length** in the **▶ Show|Hide More Search Settings**.
+
++ **To Find in Page**:
+
+Press `Ctrl + F` (on MacOS `Cmd + F`) to open the search box.
+
 ---
 
-### 4. 🖥️ Offline Software for Computers
+### 5. 🖥️ Offline Software for Computers
 
 > These instructions are specific to the computer apps.
 
-#### 4.1. Toggle the menu bar with **Ctrl+Shift+M** on Windows/Linux OS
+#### 5.1. Toggle the menu bar with **Ctrl+Shift+M** on Windows/Linux OS
 
 - The app will automatically hide its menu bar after **1 minute** to enter immersive mode.
 
 - At any time, you can toggle the menu bar using the shortcut **Ctrl+Shift+M** on Windows/Linux.
 
 
-#### 4.2. Using Tipitakapali.org Offline with Your Browser
+#### 5.2. Using Tipitakapali.org Offline with Your Browser
 
 You can use Tipitakapali.org Offline on your computer directly through a **web browser**.
 
@@ -96,7 +133,7 @@ Tipitakapali.org Offline will then open in your default browser, just like when 
 ![Tipitakapali Offline - In A Chrome Browser](web/img/Offline_Tipitkapali_In_Browser.png "Tipitakapali Offline Open in Default Browser")
 
 
-#### 4.3. Multi windows/text
+#### 5.3. Multi windows/text
 
 - To view multiple windows/texts/Pāḷi scripts, such as opening Mūla, Aṭṭhakathā, and Ṭīkā texts simultaneously, please see the instruction image. Instead of using the **+ More Window** button, you can also press **Ctrl + click** on any link to open a new app window.
 
@@ -109,15 +146,6 @@ Tipitakapali.org Offline will then open in your default browser, just like when 
 
 > If you're using Tipitakapali.org through a web browser, simply right-click (or long-press on mobile) any link and select Open link in new window. You can open as many windows as you'd like! :)
 
-#### 4.4. Full Text Search and Find in Page
-
-The full-text search works like Google search. Check out the search mode in the **Show|Hide Advance Search** settings.
-
-To see longer text snippets without opening the file, increase the **Extract text length** in the **Show|Hide Advance Search** settings. The default is set to `100`.
-
-+ **To Find in Page**:
-
-Press `Ctrl + F` (on MacOS `Cmd + F`) to open the search box.
 
 ---
 
