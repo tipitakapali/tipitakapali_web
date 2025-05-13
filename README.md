@@ -1,5 +1,11 @@
-## CSS
 
+
+## Cloudflare cache
+To overcome Cloudflare cache, we will append version to the resources
+
+[append_version_to_resources.py](append_version_to_resources.py)
+
+## CSS
 
 The template for all script is `./web/tp_templete.css`.
 
