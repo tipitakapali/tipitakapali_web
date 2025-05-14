@@ -23,6 +23,7 @@ text = '''<!DOCTYPE html>
     <meta name=mobile-web-app-capable content=yes>
     <meta name=robots content="index, follow">
     <title>TipitakaPali.Org - Attributions and Downloads</title>
+    <meta name="theme-color" content="#ffffff">
     <meta name=description
         content="Explore and learn Tipiṭaka Pāḷi in the Chaṭṭha Saṅgāyana Tipiṭaka with tipitakapali.org. Discover the complete Buddhist canon, enhanced with dictionaries, various Pali scripts, and resources for pali study and practice.">
     <meta property=og:title content="Explore and learn Tipiṭaka Pāḷi in the Chaṭṭha Saṅgāyana Tipiṭaka with tipitakapali.org">
@@ -36,7 +37,6 @@ text = '''<!DOCTYPE html>
     <link rel=manifest href=web/icons/site.webmanifest>
     <link rel=mask-icon href=web/icons/safari-pinned-tab.svg color=#5bbad5>
     <meta name=msapplication-TileColor content=#da532c>
-    <meta name=theme-color content=#ffffff>
 
     <style>
       :root {
@@ -216,14 +216,36 @@ text = '''<!DOCTYPE html>
       height: 50px; /* Adjust the height as needed */
     }
 
+    #gobackFromSearch {
+      position: absolute;
+      top: 0;
+      left: max(calc(var(--safe-area-inset-left) + 30px), 0);
+      /* Prevents the button from overflowing the 80% body width */
+      max-width: 100%;
+      padding-top: calc(var(--safe-area-inset-top) + 30px);
+      z-index: 1000;
+    }
+
   
     </style>
   </head>
  
 <body>
 <a class="aNoHover" href="index.html"><div class="loader-container"><div class="loader"></div></div></a>
+<div id="gobackFromSearch" style="position: absolute;">
+  <button class="smallButton" id="goBackButton" onclick="window.history.back()">
+    <img width="16" height="16" src="web/icons/toplogo.webp" alt="Go back" /> Go back
+  </button>
+</div>
 
 ''' + html_output + '''
+
+<div>
+  <button class="smallButton" id="goBackButtonBottom" onclick="window.history.back()">
+    <img width="16" height="16" src="web/icons/toplogo.webp" alt="Go back" /> Go back
+  </button>
+</div>
+
 </body>
 </html>
 '''

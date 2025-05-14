@@ -296,5 +296,3 @@ The dictionary data in this app is adapted from <a href="https://buddhadust.net/
       window.location.assign(e);
     }
   </script>
-
-<p><button onclick="linkGoback()" id="goBackButton">📚 Go back tipitakapali.org</button></p>
