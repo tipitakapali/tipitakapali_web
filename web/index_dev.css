@@ -146,6 +146,12 @@ li {
   font-size: var(--pali-font-size);
 }
 
+
+.tdetail {
+  font-size: var(--pali-font-size);
+}
+
+
 .pT.loaded.hide {
   color: #6532d2;
   font-size: var(--pali-font-size);
@@ -267,6 +273,7 @@ h4 {
   text-align: center;
   color: midnightblue;
 }
+
 .uiLink {
   text-decoration: none;
   color: #205eda;
@@ -651,5 +658,9 @@ h4 {
   body {
     width: 95%;
     padding: calc(var(--safe-area-inset-top) + 25px) calc(var(--safe-area-inset-right) + 10px) calc(var(--safe-area-inset-bottom) + 10px) calc(var(--safe-area-inset-left) + 10px);
+  }
+  :root {
+    /* 16 May 2025 tested on iPhone 6.9 inch */
+    --pali-font-size: 130%;
   }
 }

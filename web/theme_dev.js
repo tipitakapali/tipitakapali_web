@@ -123,8 +123,9 @@ if (currentScript2char !== "ro" && !["si", "my", "hi", "thai"].includes(currentS
 }
 
 if (localStorage.getItem("tipitakapali_org_isDarkMode") == "yes") {
-  document.documentElement.style.setProperty("--pali-color", "white")
-  document.head.insertAdjacentHTML("beforeEnd", `<style>body{background:#242730;color:white;}#dictionary-res{background:#242730 !important;color:white;}.phraseword{color:yellow;}.pwordInput{background:#242730 !important;}.tmmAbhidhan .definition{color:white;}</style>`)
+  document.documentElement.style.setProperty("--page-background", "#1f2022")
+  document.documentElement.style.setProperty("--pali-color", "#e8e6e3")
+  document.head.insertAdjacentHTML("beforeEnd", `<style>.phraseword{color:yellow;}.tmmAbhidhan .definition{color:#e8e6e3;}</style>`)
 }
 
 if (localStorage.getItem("tipitakapali_org_showPageMarker") == "yes") {

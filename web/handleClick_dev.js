@@ -36,6 +36,7 @@ let currentPEleForAI = null
 let isPendingAITasks = false
 
 let hlLastClickEle, currentPObj, topInputDisplayWord
+let dpdLastClickButtonEl = null
 
 let aParaIdsInFile = null
 const allPaliScripts = ["si", "my", "hi", "ro", "thai", "laos", "km", "beng", "gurm", "guja", "telu", "kann", "mala", "tham", "brah", "tibt", "cyrl"]
@@ -50,7 +51,8 @@ const wmSanskritAPIURL = isRunningOnMobileApp ? "sans" : "https://api.tipitakapa
 const aiAPIURL = "https://api.tipitakapali.org/v1/translator"
 
 const STORAGE_SCRIPT_KEY = "tipitakapali_org_paliScript"
-const ABDtitle = "\ud83d\udcd1 အဘိဓာန်"
+// const ABDtitle = "\ud83d\udcd1 အဘိဓာန်"
+const ABDtitle = "\ud83d\udcd1 Abhidhan"
 const PTStitle = "\ud83d\udcd1 PTSPED"
 const sanskritStr = "\ud83d\udcd6 Sanskrit"
 const notFoundHeadAbhidhan = `<div class="notFoundHead">\ud83d\ude0c Not found - ရှာမတွေ့ပါ။</div>`
@@ -689,6 +691,12 @@ function button_click(el) {
 
   dpdLastClickEle = nowClickEle
 
+ // Remove 'active' class from the previously clicked button
+  if (dpdLastClickButtonEl && dpdLastClickButtonEl !== el) {
+    dpdLastClickButtonEl.classList.remove("active");
+  }
+
+
   //// do post REQUEST for inflection
   if (nowId.startsWith("declension_") || nowId.startsWith("conjugation_")) {
     setTimeout(() => {
@@ -696,6 +704,8 @@ function button_click(el) {
     }, 0)
   }
   dpd_button_click(el)
+    // Store the current button as the last clicked button
+  dpdLastClickButtonEl = el;
 }
 
 function dpd_button_click(el) {
@@ -964,8 +974,8 @@ async function fetchDictDefi(word, useSplitter = "no") {
         }, 0)
 
         //// converting spliter
-        //// span class=p2w is the heading word
-        const decons = defiEl.querySelectorAll(".dp8 p.deconstructor, .dp8 span.p2w")
+        //// span class=p2w is the hzeading word
+        const decons = defiEl.querySelectorAll(".dp9 p.dec, .dp9 span.p2w")
         if (decons) {
           decons.forEach((element) => {
             convertPaliInElement_FromRo(element, true)
@@ -990,7 +1000,7 @@ async function fetchDictDefi(word, useSplitter = "no") {
 }
 
 async function convertMainDpdContentScript(defiEl) {
-  //// Class dp9 is for main dpd, dp8 is for deconstructor
+  //// Class dp9 is for main dpd, and also for deconstructor
   const sections = defiEl.querySelectorAll("section.dp9")
   sections.forEach((section) => {
     if (section.querySelector("b.epd")) {
@@ -1007,11 +1017,10 @@ async function convertMainDpdContentScript(defiEl) {
     }
   })
   //// Class pali text in example, worse in MM
-
-  // const classPT = defiEl.querySelectorAll(".pt")
-  // classPT.forEach((element) => {
-  //   convertPaliInElement_FromRo(element)
-  // })
+  const classPT = defiEl.querySelectorAll(".pt")
+  classPT.forEach((element) => {
+    convertPaliInElement_FromRo(element)
+  })
 
   //// Do converting pali root family, compound family for all
   convertPaliTableCells(defiEl, "table.family, table.root_family", "th", false)
@@ -1034,7 +1043,7 @@ async function convertMainDpdContentScript(defiEl) {
 //       //// converting
 //       if (currentScript2char !== "ro") {
 //         //// span class=p2w is the heading word
-//         const decons = deconsEle.querySelectorAll(".dp8 p.deconstructor, .dp8 span.p2w")
+//         const decons = deconsEle.querySelectorAll(".dp9 p.deconstructor, .dp9 span.p2w")
 //         decons.forEach((element) => {
 //           convertPaliInElement_FromRo(element, true)
 //         })

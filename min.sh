@@ -34,13 +34,16 @@ for file in web/*_dev.css; do
     echo "Minifying $base to $(basename "$output")"
     
     # Run html-minifier on the file
-    npx html-minifier \
-        --file-ext css \
-        --decode-entities \
-        --collapse-whitespace \
-        --remove-comments \
-        --output "$output" \
-        "$file"
+    # npx html-minifier \
+    #     --file-ext css \
+    #     --decode-entities \
+    #     --collapse-whitespace \
+    #     --remove-comments \
+    #     --output "$output" \
+    #     "$file"
+    # now using cssnano https://cssnano.github.io/cssnano/docs/getting-started/
+    npx postcss "$file" > "$output"
+
 done
 
 echo "==== Minification css complete ===="

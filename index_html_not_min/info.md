@@ -130,7 +130,7 @@ From the **Open** menu, select **Use This App In Browser**.
 
 Tipitakapali.org Offline will then open in your default browser, just like when you access Tipitakapali.org online.
 
-![Tipitakapali Offline - In A Chrome Browser](web/img/Offline_Tipitkapali_In_Browser.png "Tipitakapali Offline Open in Default Browser")
+![Tipitakapali Offline - In A Chrome Browser](web/img/Offline_Tipitkapali_In_Browser.png "Tipitakapali Offline Use This App In Browser")
 
 
 #### 5.3. Multi windows/text

@@ -1,4 +1,18 @@
 
+# Use cssnano to minify  CSS
+
+https://cssnano.github.io/cssnano/docs/getting-started/
+
+```js
+module.exports = {
+    plugins: [
+        require('cssnano')({
+            preset: 'default',
+        }),
+    ],
+};
+
+```
 
 ## Cloudflare cache
 To overcome Cloudflare cache, we will append version to the resources
