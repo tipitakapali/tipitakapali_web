@@ -686,6 +686,7 @@ hr {
   border: 2px solid #55b9d8;
   border-radius: 5px;
   margin-top: 5px;
+  font-size: calc(var(--pali-font-size));
 }
 
 .pts15 {
