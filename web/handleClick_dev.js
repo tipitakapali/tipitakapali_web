@@ -1017,10 +1017,10 @@ async function convertMainDpdContentScript(defiEl) {
     }
   })
   //// Class pali text in example, worse in MM
-  const classPT = defiEl.querySelectorAll(".pt")
-  classPT.forEach((element) => {
-    convertPaliInElement_FromRo(element)
-  })
+  // const classPT = defiEl.querySelectorAll(".pt")
+  // classPT.forEach((element) => {
+  //   convertPaliInElement_FromRo(element)
+  // })
 
   //// Do converting pali root family, compound family for all
   convertPaliTableCells(defiEl, "table.family, table.root_family", "th", false)
