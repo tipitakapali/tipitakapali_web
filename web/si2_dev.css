@@ -1622,12 +1622,20 @@ u {
 
   :root {
     /* --pali-font-size: clamp(1.5rem, calc(1.25rem + 1.5vw), 2.5rem); */
-    --pali-font-size: 150%;
+    --pali-font-size: 140%;
     /* 16 May 2025 tested on iPhone 6.9 inch */
   }
 
   .dp9 {
-    font-size: 130%;
+    font-size: 120%;
     /* 16 May 2025 tested on iPhone 6.9 inch */
+  }
+
+  .note {
+    font-size: large;
+  }
+
+  .paranum {
+    font-size: large;
   }
 }
