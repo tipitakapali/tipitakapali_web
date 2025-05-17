@@ -934,6 +934,12 @@ hr {
   font-family: charterindocapital;
 }
 
+.MWS {
+  font-size: calc(11pt + 0.6vw);
+  /* Slightly larger than original dictionary-res font-size */
+}
+
+
 u {
   text-decoration: none;
   border-bottom: solid red 1px;
@@ -1608,9 +1614,8 @@ u {
   overflow-wrap: break-word;
 } */
 
-
-
 /*-- end of overwrite dpd css --*/
+
 
 @media screen and (max-width: 768px) {
   body {
@@ -1620,18 +1625,17 @@ u {
 
   :root {
     /* --pali-font-size: clamp(1.5rem, calc(1.25rem + 1.5vw), 2.5rem); */
-    --pali-font-size: 150%;
+    --pali-font-size: 148%;
     /* 16 May 2025 tested on iPhone 6.9 inch */
   }
 
   .dp9 {
-    font-size: 120%;
+    font-size: 122%;
     /* 16 May 2025 tested on iPhone 6.9 inch */
   }
 
   .bld {
     font-size: calc(var(--pali-font-size)*0.65);
-    /* color: rgb(142, 80, 234); */
   }
 
   .note {
@@ -1641,4 +1645,9 @@ u {
   .paranum {
     font-size: large;
   }
+  /* Sanskrit font-size */
+  .MWS {
+    font-size: 150%;
+  }
+
 }
