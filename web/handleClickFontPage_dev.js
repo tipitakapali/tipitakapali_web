@@ -874,9 +874,9 @@ window.onload = function tocDetail() {
 
   let exPandedThisSession = localStorage.getItem(expandSessionKey)
 
-  if (exPandedThisSession == undefined) {
-    exPandedThisSession = "sa_session_content"
-  }
+  // if (exPandedThisSession == undefined) {
+  //   exPandedThisSession = "sa_session_content"
+  // }
 
   if (exPandedThisSession) {
     setTimeout(function () {
