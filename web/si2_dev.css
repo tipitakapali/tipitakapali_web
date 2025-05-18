@@ -1612,7 +1612,7 @@ overflow-wrap: break-word;
   }
 
   .bld {
-    font-size: calc(14pt + 0.96vw);
+    font-size: var(--pali-font-size);
   }
 
   .paranum {
