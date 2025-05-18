@@ -1,0 +1,1631 @@
+:root {
+
+  /* Use https://cssnano.github.io/cssnano/docs/getting-started to minify the css */
+  --pali-font: "#1#", "Times Ext Roman", "DejaVu Sans", "Indic Times", "Doulos SIL", Tahoma, "Arial Unicode MS", Gentium;
+  --pali-color: rgba(0, 0, 0, 0.888);
+  --pali-line-height: 150%;
+  --pali-font-size: calc(12pt + 0.8vw);
+  --pinfo-display: none;
+
+  --safe-area-inset-top: env(safe-area-inset-top, 25px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-inset-left: env(safe-area-inset-left, 0px);
+  --safe-area-inset-right: env(safe-area-inset-right, 0px);
+  /* --page-background: hsl(28, 15%, 97%); */
+  --page-background: #ffffff;
+
+  --dictionary-font-size: calc(10pt + 0.5vw);
+
+  /* New variables for font sizes */
+  --book-font-size: calc(21pt + 0.8vw);
+  --chapter-font-size: calc(18pt + 0.8vw);
+  --nikaya-font-size: calc(24pt + 0.8vw);
+  --small-font-size: calc(11pt + 0.6vw);
+
+
+  /* Below color vars are adapted from DPD GoldenDict CSS */
+  /* https://github.com/digitalpalidictionary/dpd-db/blob/main/docs/stylesheets/dpd-variables.css */
+  /* Background in light mode, text in dark mode */
+  --light: hsl(198, 100%, 95%);
+  --light-shade: hsl(198, 100%, 93%);
+
+  /* Background in dark mode, text in light mode */
+  --dark: hsl(198, 100%, 5%);
+  --dark-shade: hsl(198, 100%, 7%);
+
+  /* Primary colour used for logo, buttons, etc */
+  --primary: hsl(198, 100%, 50%);
+
+  /* Primary alternative used for pressed buttons */
+  --primary-alt: hsl(205, 100%, 40%);
+
+  /* Primary colour suitable for text in light and dark mode */
+  --primary-text: hsl(205, 79%, 48%);
+
+  /* Button shadows */
+  --shadow-default: 2px 2px 4px hsla(0, 0%, 20%, 0.4);
+  --shadow-hover: 2px 2px 4px hsla(0, 0%, 20%, 0.5);
+
+  /* Various grays */
+  --gray: hsl(0, 0%, 50%);
+  --gray-light: hsl(0, 0%, 75%);
+  --gray-dark: hsl(0, 0%, 25%);
+  --gray-transparent: hsla(0, 0%, 50%, 0.25);
+  /* Secondary colour just for help and abbreviations */
+  --secondary: hsl(158, 100%, 35%);
+
+  /* Frequency heatmap  */
+  /* --freq0: hsla(198, 90%, 50%, 0.10);
+--freq1: hsla(200, 90%, 50%, 0.20);
+--freq2: hsla(202, 90%, 50%, 0.30);
+--freq3: hsla(204, 90%, 50%, 0.40);
+--freq4: hsla(206, 90%, 50%, 0.50);
+--freq5: hsla(208, 90%, 50%, 0.60);
+--freq6: hsla(210, 90%, 50%, 0.70);
+--freq7: hsla(212, 90%, 50%, 0.80);
+--freq8: hsla(214, 90%, 50%, 0.90);
+--freq9: hsla(216, 90%, 50%, 1.00);
+--freq10: hsla(218, 90%, 50%, 1.00); */
+}
+
+/*#AddPaliFF#*/
+
+
+
+@font-face {
+  font-family: "Noto Sans";
+  src: url("fonts/pali/Noto_Sans/static/NotoSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  src: url("fonts/pali/Noto_Sans/static/NotoSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Pyidaungsu;
+  src: url("fonts/pali/Pyidaungsu/static/Pyidaungsu-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Pyidaungsu;
+  src: url("fonts/pali/Pyidaungsu/static/Pyidaungsu-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* new dpd Inter font */
+/* @font-face {
+font-family: 'Inter';
+src: url('fonts/pali/Inter/Inter-VariableFont_opsz_wght.ttf') format('truetype-variations');
+font-weight: 100 900;
+font-style: normal;
+}
+
+@font-face {
+font-family: 'Inter';
+src: url('fonts/pali/Inter/Inter-Italic-VariableFont_opsz_wght.ttf') format('truetype-variations');
+font-weight: 100 900;
+font-style: italic;
+} */
+
+.pinfo {
+  display: var(--pinfo-display);
+}
+
+#tocDivBox a,
+.pinfo {
+  text-decoration: none;
+}
+
+body,
+table.tCenter {
+  margin: 0 auto;
+}
+
+body {
+  cursor: pointer;
+}
+
+.pinfo,
+#dictionary-res,
+p#floatingTocButton {
+  cursor: pointer;
+}
+
+.bodytext,
+.hangnum,
+.indent {
+  text-indent: 2em;
+}
+
+#tocDivBox {
+  position: fixed;
+  top: max(0px, var(--safe-area-inset-top));
+  left: max(0px, var(--safe-area-inset-left));
+  max-height: 70%;
+  overflow-y: scroll;
+  width: auto;
+  /* z-index: 999; Add Mar 2025 iOS z-index to ensure it's above other content */
+}
+
+#dictionary-res {
+  position: fixed;
+  top: 0;
+  left: max(0px, var(--safe-area-inset-left));
+  max-height: 70%;
+  overflow-y: scroll;
+  width: auto;
+}
+
+#floatingTocButton,
+#hideTocButton,
+.MWS .g,
+.MWS .lang,
+.MWS i,
+.pitakaHead0 {
+  font-style: italic;
+}
+
+.MWS #disp,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--pali-color);
+  background-color: var(--page-background);
+  font-family: "Noto Sans", "DejaVu Sans", "Times Ext Roman", "Indic Times", "Doulos SIL", Tahoma, "Arial Unicode MS", Gentium;
+  width: 85%;
+  /* Add padding to account for safe areas */
+  padding: calc(var(--safe-area-inset-top) + 10px) calc(var(--safe-area-inset-right) + 10px) calc(var(--safe-area-inset-bottom) + 10px) calc(var(--safe-area-inset-left) + 10px);
+  margin: 0 auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  text-align: justify;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  /* Add safe area for iOS */
+  padding-top: max(20px, var(--safe-area-inset-top) + 20px);
+}
+
+/* [id] safe area scroll for all ID click */
+[id] {
+  scroll-margin-top: max(50px, var(--safe-area-inset-top) + 25px);
+}
+
+.beng,
+.brah,
+.cyrl,
+.guja,
+.gurm,
+.hi,
+.kann,
+.km,
+.laos,
+.mala,
+.my,
+.ro,
+.si,
+.telu,
+.thai,
+.tham,
+.tibt {
+  font-family: var(--pali-font);
+  color: var(--pali-color);
+  line-height: var(--pali-line-height);
+  font-size: var(--pali-font-size);
+}
+
+#cinput {
+  margin-top: max(0px, var(--safe-area-inset-top));
+}
+
+#dictionary-res {
+  background: var(--page-background) !important;
+  font-size: var(--dictionary-font-size) !important;
+  display: none;
+  right: 0;
+  padding: 4px;
+  border-bottom: 1.5px solid orange;
+  overflow-x: scroll;
+  z-index: 999;
+}
+
+.noHover:hover {
+  background-color: initial;
+}
+
+.tmmAbhidhan div,
+p {
+  margin-top: 0;
+}
+
+.tRight {
+  text-align: right;
+}
+
+.phraseword,
+.pword,
+.pwordInput,
+.tLeft {
+  text-align: left;
+}
+
+#goHomeFloating,
+#goParaButton,
+#hideTOCFloating,
+.pageGoButton {
+  padding: 4px 6px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 4px #393838a0;
+  z-index: 900;
+}
+
+.matn {
+  font-size: small !important;
+}
+
+.notFoundHead,
+.notFoundHeadInstruction {
+  color: grey;
+  padding: 5px;
+  font-size: small;
+}
+
+#goParaButton {
+  color: #f5f5f5;
+  background: #032353;
+}
+
+.pageGoButton.V {
+  background-color: #a5d6a7;
+  color: #000;
+  font-size: 0.7em;
+}
+
+.pageGoButton.M,
+.pageGoButton.O,
+.pageGoButton.P,
+.pageGoButton.T {
+  color: #003;
+  font-size: 0.7em;
+}
+
+.pageGoButton.M {
+  background-color: #ce93d8;
+}
+
+.pageGoButton.P {
+  background-color: #90caf9;
+}
+
+.pageGoButton.T {
+  background-color: #ffe082;
+}
+
+.pageGoButton.O {
+  background-color: #e57373;
+}
+
+.pageGoButton:hover {
+  background-color: darken(10%);
+}
+
+a.pinfo.M,
+a.pinfo.O,
+a.pinfo.P,
+a.pinfo.T,
+a.pinfo.V {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+a.pinfo.M {
+  color: #ce93d8;
+}
+
+a.pinfo.O {
+  color: #e57373;
+}
+
+a.pinfo.P {
+  color: #90caf9;
+}
+
+a.pinfo.T {
+  color: #ffe082;
+}
+
+a.pinfo.V {
+  color: #a5d6a7;
+}
+
+a:hover {
+  background-color: #ffa700;
+}
+
+.MWS .Dn,
+.MWS plex {
+  background-color: #36648b;
+}
+
+.pinfo {
+  position: relative;
+}
+
+.notFoundHeadInstruction {
+  border: 2px solid grey;
+  border-radius: 5px;
+}
+
+#floatingTocButton,
+.pword {
+  font-size: x-large;
+  font-weight: 700;
+}
+
+.pword {
+  color: #be564d;
+}
+
+.phraseword {
+  color: #00f;
+  font-weight: 700;
+  font-size: large;
+}
+
+.pwordInput {
+  color: #be564d !important;
+  background-color: var(--page-background);
+  font-weight: 700 !important;
+  right: 0;
+  left: 0;
+  margin: 0;
+  width: 97%;
+  border: none;
+  line-height: 1.6em;
+}
+
+#inputParaNo,
+#tocDivBox .book a,
+#tocDivBox .nikaya a,
+.MWS .Dn,
+.MWS .divm,
+.MWS .gram,
+.bld,
+.book,
+.chapter,
+.nikaya,
+.p2w,
+.p3w,
+.paranum,
+.pm1w,
+.pm2w,
+.pp1w,
+.pp2w,
+.pwordInputAbhidhan,
+.tmmAbhidhan .word {
+  font-weight: 700;
+}
+
+#inputParaNo,
+.book,
+.centered,
+.chapter,
+.nikaya {
+  text-align: center;
+}
+
+.bodytext,
+.centered,
+.hangnum,
+.indent,
+.unindented {
+  font-size: var(--pali-font-size);
+}
+
+.bodytext,
+.tmmAbhidhan p {
+  line-height: 150%;
+}
+
+.p2w,
+.p3w,
+.pp2w,
+.pm2w {
+  color: orange;
+}
+
+z {
+  background-color: #f4e776;
+  border-radius: 5px;
+}
+
+.note {
+  color: grey;
+}
+
+p {
+  border-top: 0;
+  border-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0.5cm;
+}
+
+.indent {
+  margin-left: 3em;
+}
+
+.hangnum {
+  margin-bottom: -0.75cm;
+}
+
+.book {
+  font-size: var(--book-font-size);
+}
+
+.chapter {
+  font-size: var(--chapter-font-size);
+}
+
+.nikaya {
+  font-size: var(--nikaya-font-size);
+}
+
+.subhead,
+.subsubhead,
+.title {
+  font-size: var(--pali-font-size);
+  text-align: center;
+  font-weight: 700;
+}
+
+.gatha1,
+.gatha2,
+.gatha3 {
+  font-size: var(--pali-font-size);
+  margin-bottom: 0;
+}
+
+.gathalast {
+  font-size: var(--pali-font-size);
+  margin-bottom: 0.5cm;
+}
+
+#inputParaNo {
+  color: brown;
+}
+
+#hideTocButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #fff;
+  background: brown;
+}
+
+hr {
+  font-weight: lighter;
+  color: #fff;
+}
+
+#floatingTocButton {
+  position: fixed;
+  bottom: max(2%, var(--safe-area-inset-bottom) + 2%);
+  left: max(1%, var(--safe-area-inset-left) + 1%);
+
+  -webkit-user-select: none;
+  user-select: none;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  color: red;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  z-index: 900;
+}
+
+#tocDivBox,
+#tocDivBox a,
+.MWS a:link,
+.tmmAbhidhan .definition {
+  color: #000;
+}
+
+/* this trick will remove the white gap under the dictionary-res */
+#dictionary-res::-webkit-scrollbar {
+  background-color: var(--page-background);
+}
+
+#dictionary-res::-webkit-scrollbar-thumb {
+  background-color: #5b5b5b5b;
+  width: 8px;
+  border-radius: 10px;
+}
+
+#tocDivBox::-webkit-scrollbar {
+  width: 8px;
+}
+
+#tocDivBox::-webkit-scrollbar-track {
+  background: 0 0;
+}
+
+#tocDivBox::-webkit-scrollbar-thumb {
+  background-color: #5b5b5b5b;
+  border-radius: 8px;
+}
+
+#tocDivBox {
+  text-align: left;
+  border: 1px solid #5b458c;
+  border-radius: 0 8px 8px 0;
+  padding: 4px;
+  background-color: #ccc;
+  z-index: 900;
+}
+
+#tocDivBox p {
+  font-size: large;
+  text-align: left;
+  margin-top: 5px;
+}
+
+#tocDivBox .nikaya a {
+  margin-bottom: 20px;
+  text-align: left;
+  color: brown;
+}
+
+#tocDivBox .book a {
+  margin-bottom: 15px;
+  text-align: left;
+  color: brown;
+}
+
+#tocDivBox .chapter a {
+  padding-left: 15px;
+  text-align: left;
+  margin-top: 20px;
+}
+
+#tocDivBox .title a {
+  padding-left: 20px;
+  text-align: left;
+  margin-top: 20px;
+}
+
+#tocDivBox .subhead a {
+  padding-left: 45px;
+  text-align: left;
+  font-weight: 400;
+}
+
+#tocDivBox .subsubhead a {
+  padding-left: 60px;
+  text-align: left;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.bld {
+  color: rgb(36, 146, 245);
+}
+
+.gatha1,
+.gatha2,
+.gatha3,
+.gathalast {
+  margin-left: 5em;
+}
+
+.pitakaHead1 {
+  border-bottom: 3px solid #4caf50;
+  color: brown;
+  background: #03a9f4;
+}
+
+.hidden {
+  display: none;
+}
+
+.tmmAbhidhan .seeBookInfo {
+  color: grey;
+  font-size: x-small;
+}
+
+.tmmAbhidhan .word {
+  color: orange;
+}
+
+.tmmAbhidhan .gender {
+  color: green;
+}
+
+.pm1w,
+.tmmAbhidhan .viggaha {
+  color: #55b9d8;
+}
+
+.tmmAbhidhan .reference,
+.tmmAbhidhan .source {
+  text-align: right;
+  color: grey;
+}
+
+.tmmAbhidhan {
+  font-family: Pyidaungsu;
+  padding: 4px;
+  border: 2px solid #55b9d8;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: var(--pali-font-size);
+}
+
+.pts15 {
+  padding: 12px;
+  border: 2px solid #59c837;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: var(--small-font-size);
+}
+
+.pts15 i {
+  color: #4000ff;
+}
+
+.pts15 .f2 g {
+  /*page no., ped 2015 edition+ */
+  color: green;
+  font-size: small;
+  font-weight: normal;
+}
+
+.pts15 .f2 {
+  /*page no., ped before 2015*/
+  color: grey;
+  font-size: small;
+  font-weight: normal;
+}
+
+.pts15 .in1 {
+  margin-left: 15px;
+  border-left: 3px solid brown;
+  padding: 6px;
+}
+
+.pts15 .in2 {
+  margin-left: 20px;
+  border-left: 3px solid brown;
+  padding: 6px;
+}
+
+.MWS .Dn,
+.sanskritButton,
+.ptsButton,
+.aiButton,
+.tmmAbhidhanButton {
+  box-shadow: 0 4px 4px -2px #888;
+  cursor: pointer;
+  display: inline-block;
+  padding: 3px 5px;
+  text-decoration: none;
+}
+
+.pwordInputAbhidhan {
+  color: #be564d;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: left;
+  margin: 5px 0;
+}
+
+.sanskritButton,
+.ptsButton,
+.aiButton,
+.tmmAbhidhanButton {
+  /* background-color: #65dbff; */
+  background-color: #dddbdb;
+  border-radius: 7px;
+  color: #000;
+  font-size: 11px;
+  font-weight: 400;
+  margin: 0 1px 2px 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.sanskritSection {
+  padding: 4px;
+  border: 2px solid teal;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+#abhidhanHere,
+#ptsHere,
+#sanskritHere {
+  margin-bottom: 8px;
+}
+
+.MWS td {
+  line-height: 130%;
+}
+
+.MWS .greek {
+  font-family: Gentium, Palatino Linotype, Arial Unicode MS;
+  font-size: 12pt;
+}
+
+.MWS .footnote,
+.MWS .g,
+.MWS .hrefdata,
+.MWS .lang,
+.MWS .lnum,
+.MWS .pb {
+  font-size: smaller;
+}
+
+.MWS .sdata {
+  color: teal;
+}
+
+.MWS .sdatadeva {
+  color: teal;
+  font-size: larger;
+}
+
+.MWS .asdata {
+  color: #00f;
+  font-size: larger;
+}
+
+.MWS .hom {
+  color: red;
+}
+
+.MWS .ls {
+  color: gray;
+  font-size: 10pt;
+}
+
+.MWS .wide {
+  font-stretch: wider;
+}
+
+.MWS p {
+  padding-left: 15pt;
+  padding-right: 15pt;
+}
+
+.MWS table.display {
+  width: 100%;
+  margin-left: 5px;
+  margin-top: 5px;
+  max-width: 99%;
+  text-align: justify;
+  margin-right: 10px;
+  font-family: oldstandard;
+}
+
+.MWS td,
+.MWS th {
+  padding: 5px;
+  text-align: left;
+}
+
+.MWS h2,
+.MWS h3 {
+  padding-top: 20pt;
+}
+
+.MWS plex {
+  color: #000;
+  font-size: 12pt;
+}
+
+.MWS h1 {
+  font-size: x-large;
+  margin-top: 2px;
+  margin-bottom: 1px;
+}
+
+.MWS h2 {
+  font-size: 20pt;
+  padding-left: 15pt;
+}
+
+.MWS .Dn {
+  border-radius: 4px;
+  font-size: 12px;
+  margin: 10px 1px 2px 0;
+  -webkit-user-select: none;
+  user-select: none;
+  color: #fff;
+  width: 97%;
+}
+
+.MWS h3 {
+  font-size: 18pt;
+  padding-left: 30pt;
+}
+
+.MWS a:visited {
+  color: #36648b;
+}
+
+.MWS a:active {
+  color: #4876ff;
+}
+
+.MWS a:hover {
+  background-color: #ffc;
+  color: #003;
+}
+
+.MWS #Z .cssshade {
+  background-color: #eaeaea;
+}
+
+.MWS #disp {
+  position: absolute;
+  background-color: #fff;
+  left: 1%;
+  right: 5px;
+  overflow-y: auto;
+}
+
+.MWS .dotunder {
+  border-bottom: 1px dotted #000;
+}
+
+.MWS .sdata_siddhanta {
+  color: teal;
+  font-size: larger;
+  font-weight: 400;
+  font-family: siddhanta_deva;
+}
+
+.MWS .sdata_system {
+  color: teal;
+  font-size: larger;
+  font-family: "";
+}
+
+.MWS .display,
+.MWS .noti,
+.MWS td.display {
+  font-family: oldstandard;
+}
+
+.MWS .sdata_italic_iast i {
+  color: teal;
+  font-family: oldstandard_i;
+}
+
+.MWS .ls {
+  font-family: charterindocapital;
+}
+
+.MWS {
+  font-size: var(--small-font-size);
+}
+
+u {
+  text-decoration: none;
+  border-bottom: solid red 1px;
+}
+
+.aiTranslation {
+  text-align: justify;
+  background: linear-gradient(to right, transparent, rgba(160, 82, 45, 0.3), transparent);
+  font-size: medium;
+  padding-left: 6px;
+  border-left: 5px solid #90caf9;
+  border-radius: 10px;
+  list-style-position: inside;
+  font-size: var(--pali-font-size);
+}
+
+/********************************
+adapted from dpd css for goldendict
+https://github.com/digitalpalidictionary/dpd-db/blob/main/docs/stylesheets/dpd-variables.css
+https://github.com/digitalpalidictionary/dpd-db/blob/main/docs/stylesheets/extra.css
+
+Note: wrap the dpd css inside .dp9 class
+/********************************/
+
+.dp9 h3 {
+  font-size: 130%;
+  margin-top: 10px;
+  margin-bottom: 1px;
+}
+
+.dp9 div.dpd {
+  border: 2px solid var(--primary);
+  border-radius: 7px;
+  line-height: 150%;
+  margin: 0px 0px;
+  overflow: auto;
+  padding: 3px 7px;
+  text-align: left;
+}
+
+.dp9 p {
+  line-height: 150%;
+  margin: 0px 0px;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.dp9 b {
+  font-weight: 700;
+}
+
+/* .dp9 .epd {
+color: var(--primary-text);
+} tpo */
+
+/* .dp9 .epd:hover {
+color: var(--primary-alt);
+text-decoration: underline;
+} tpo */
+
+.dp9 a {
+  color: var(--primary);
+}
+
+.dp9 p.heading {
+  margin: 0px 0px;
+  padding: 2px 0px;
+}
+
+.dp9 .underlined {
+  border-bottom: 1px solid var(--primary);
+  margin-bottom: 5px;
+}
+
+.dp9 .overlined {
+  border-top: 1px solid var(--primary);
+  margin-top: 5px;
+}
+
+.dp9 p.heading b {
+  font-weight: 700;
+}
+
+.dp9 p.footer {
+  border-top: 1px solid var(--primary);
+  font-size: 80%;
+  padding: 5px 0px;
+  margin-top: 5px;
+}
+
+.dp9 hr {
+  background-color: var(--gray-transparent);
+  width: 100%;
+  border: none;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+/* tables */
+
+.dp9 table {
+  margin: 3px 0px;
+}
+
+.dp9 table.grammar {
+  border: none;
+}
+
+.dp9 table.grammar td,
+.dp9 table.grammar th {
+  text-align: left;
+  vertical-align: top;
+  padding: 0px 0px;
+}
+
+.dp9 table.grammar th {
+  color: var(--primary-text);
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 0px 5px 2px 0px;
+}
+
+.dp9 table.grammar b {
+  font-weight: 700;
+}
+
+/* sutta */
+
+.dp9 p.sutta {
+  color: var(--primary-text);
+  font-style: italic;
+  padding: 0px 0px 3px 0px;
+}
+
+.dp9 a.sutta_link {
+  color: var(--primary-text);
+  font-style: italic;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.dp9 a.sutta_link:hover {
+  color: var(--primary-alt);
+  text-decoration: underline;
+}
+
+/* inflection tables */
+
+.dp9 table.inflection {
+  width: 100%;
+  padding: 0 0 5px 0px;
+  border-radius: 7px;
+  border-collapse: separate;
+  border: none;
+  /* border-spacing: 0; */
+}
+
+.dp9 table.inflection td,
+.dp9 table.inflection th {
+  border-collapse: separate;
+  border-radius: 7px;
+  /* border-spacing: 0; */
+  border: 1px solid var(--gray);
+  line-height: 150%;
+  padding: 5px 5px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.dp9 table.inflection th {
+  border: 1px solid var(--primary);
+  color: var(--primary-text);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dp9 table.inflection tr:first-child th:first-child {
+  border-top-left-radius: 7px;
+}
+
+.dp9 table.inflection tr:first-child th:last-child {
+  border-top-right-radius: 7px;
+}
+
+.dp9 table.inflection tr:last-child td:first-child {
+  border-bottom-left-radius: 7px;
+}
+
+.dp9 table.inflection tr:last-child td:last-child {
+  border-bottom-right-radius: 7px;
+}
+
+.dp9 span.gray {
+  color: var(--gray);
+}
+
+.dp9 a.jump {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* family tables */
+
+.dp9 table.family {
+  border: none;
+}
+
+.dp9 table.family td,
+.dp9 table.family th {
+  text-align: left;
+  vertical-align: top;
+}
+
+.dp9 table.family th {
+  color: var(--primary-text);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dp9 table.family td {
+  padding-right: 7px;
+}
+
+.dp9 table.family b {
+  font-weight: 700;
+}
+
+/* buttons */
+/* tpo button_box */
+.dp9 div.button_box,
+.dp9 div.button-box {
+  /* margin: 2px 0px 3px 0px; tpo */
+  margin: 2px 0px 3px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.dp9 a.button {
+  /* background-color: var(--primary); tpo */
+  background-color: #dddbdb;
+  /* border: 1px solid var(--primary); tpo */
+  border: 1px solid #d6d3d3;
+  border-radius: 7px;
+  color: var(--dark);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 65%;
+  font-weight: 400;
+  margin: 1px 1px 2px 1px;
+  padding: 3px 5px;
+  text-decoration: none;
+  /* user-select: none; tpo */
+  user-select: none !important;
+  /* box-shadow: var(--shadow-default); tpo */
+  box-shadow: 0 4px 4px -2px #888;
+}
+
+.dp9 a.button.close {
+  float: right;
+  margin: 10px;
+}
+
+.dp9 a.button.active {
+  background-color: var(--primary-alt);
+  border-color: var(--primary-alt);
+  color: var(--light);
+  user-select: none;
+}
+
+.dp9 a.button:hover {
+  box-shadow: var(--shadow-hover);
+  border: 1px solid var(--primary-alt);
+  background-color: var(--primary-alt);
+  color: var(--light);
+  user-select: none;
+}
+
+.dp9 .link {
+  color: var(--primary-text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.dp9 .link:hover {
+  color: var(--primary-alt);
+  text-decoration: underline;
+}
+
+.dp9 .hidden {
+  display: none;
+}
+
+/* freq tables */
+/* .dp9 table.freq { TPO
+border-radius: 7px;
+border-collapse: separate;
+border: none;
+}
+
+.dp9 .vertical-text {
+writing-mode: vertical-lr;
+text-orientation: upright;
+inline-size: fit-content;
+}
+
+.dp9 table.freq thead th {
+text-align: center;
+}
+
+.dp9 table.freq tbody th {
+border: 1px solid var(--primary);
+border-radius: 7px;
+padding: 5px;
+text-align: center;
+width: 12px;
+white-space: nowrap;
+vertical-align: middle;
+}
+
+
+.dp9 table.freq td {
+border-collapse: separate;
+border-radius: 7px;
+border: 1px solid var(--gray-transparent);
+font-size: 0.8em;
+min-width: 30px;
+text-align: center;
+vertical-align: middle;
+white-space: nowrap;
+width: 2.5em;
+}
+
+.dp9 table.freq td.void {
+border: 0px solid transparent;
+}
+
+.dp9 table.freq td.gap {
+border: 0px solid transparent;
+width: 10px;
+}
+
+.dp9 table.freq td.gr0 {
+border: 1px solid var(--freq0);
+border-color: var(--gray-transparent);
+color: transparent;
+}
+
+.dp9 .dark-mode table.freq td.gr0 {
+border: 1px solid var(--freq0);
+border-color: var(--gray-transparent);
+color: transparent;
+}
+
+.dp9 table.freq td.gr1 {
+background-color: var(--freq1);
+border-color: var(--freq1);
+color: var(--dark);
+}
+
+.dp9 table.freq td.gr2 {
+background-color: var(--freq2);
+border-color: var(--freq2);
+color: var(--dark);
+}
+
+.dp9 table.freq td.gr3 {
+background-color: var(--freq3);
+border-color: var(--freq3);
+color: var(--dark);
+}
+
+.dp9 table.freq td.gr4 {
+background-color: var(--freq4);
+border-color: var(--freq4);
+color: var(--dark);
+}
+
+.dp9 table.freq td.gr5 {
+background-color: var(--freq5);
+border-color: var(--freq5);
+color: var(--dark);
+}
+
+.dp9 table.freq td.gr6 {
+background-color: var(--freq6);
+border-color: var(--freq6);
+color: var(--light);
+}
+
+.dp9 table.freq td.gr7 {
+background-color: var(--freq7);
+border-color: var(--freq7);
+color: var(--light);
+}
+
+.dp9 table.freq td.gr8 {
+background-color: var(--freq8);
+border-color: var(--freq8);
+color: var(--light);
+}
+
+.dp9 table.freq td.gr9 {
+background-color: var(--freq9);
+border-color: var(--freq9);
+color: var(--light);
+}
+
+.dp9 table.freq td.gr10 {
+background-color: var(--freq10);
+border-color: var(--freq10);
+color: var(--light);
+}
+
+.dp9 .dark-mode table.freq td {
+color: var(--light);
+} */
+
+/* variant */
+
+.dp9 table.variants,
+.dp9 table.grammar_dict {
+  border-collapse: collapse;
+  border: none;
+  line-height: 150%;
+  margin: 0px;
+  max-width: 100%;
+  overflow: auto;
+  padding: 2px 0px;
+  text-align: left;
+  vertical-align: top;
+  width: auto;
+}
+
+.dp9 .variants th,
+.dp9 .variants td,
+.dp9 .grammar_dict th,
+.dp9 .grammar_dict td {
+  padding: 2px 10px 0px 0px;
+  text-align: left;
+  vertical-align: center;
+}
+
+.dp9 .variants td:first-child,
+.dp9 .variants td:nth-child(2) {
+  white-space: nowrap;
+}
+
+/* help */
+
+.dp9 div.tertiary {
+  border: 2px solid var(--secondary);
+  border-radius: 7px;
+  line-height: 150%;
+  margin: 0px 0px;
+  overflow: auto;
+  padding: 3px 5px;
+  text-align: left;
+}
+
+.dp9 table.help {
+  border: none;
+  width: 100%;
+}
+
+.dp9 table.help td,
+.dp9 table.help th {
+  line-height: 150%;
+  padding: 0px 5px 0px 0px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.dp9 table.help th {
+  color: var(--secondary);
+  font-weight: 700;
+  width: 10%;
+}
+
+.dp9 table.help td {
+  width: 90%;
+}
+
+.dp9 table.help b {
+  font-weight: 700;
+}
+
+/* roots */
+
+.dp9 table.root_info {
+  border: none;
+}
+
+.dp9 table.root_info td,
+.dp9 table.root_info th {
+  text-align: left;
+  vertical-align: top;
+  padding: 0px 0px;
+}
+
+.dp9 table.root_info th {
+  color: var(--primary-text);
+  font-weight: 700;
+  white-space: normal;
+  padding: 0px 5px 2px 0px;
+}
+
+.dp9 table.root_info b {
+  font-weight: 700;
+}
+
+.dp9 table.root_family td,
+.dp9 table.root_family th {
+  text-align: left;
+  vertical-align: top;
+}
+
+.dp9 table.root_family th {
+  color: var(--primary-text);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dp9 table.root_family b {
+  font-weight: 700;
+}
+
+.dp9 table.root_matrix {
+  width: 100%;
+}
+
+.dp9 table.root_matrix th,
+.dp9 table.root_matrix td {
+  border-radius: 5px;
+  line-height: 150%;
+  vertical-align: top;
+  padding: 5px 5px;
+  overflow: auto;
+}
+
+.dp9 table.root_matrix th {
+  border: 1px solid var(--primary);
+  color: var(--primary-text);
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.dp9 table.root_matrix td {
+  border: 1px solid var(--gray-transparent);
+  text-align: left;
+}
+
+.dp9 table.root_matrix td b {
+  color: var(--primary-text);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/*-- end of dpd css --*/
+
+/*-- tpo more css --*/
+/* .dp9 {
+font-family: "Inter", "Noto Sans", "sans-serif" !important;
+} */
+
+.dp9 div.content,
+.dp9 div.root_content {
+  border: 2px solid #00a4cc;
+  border-radius: 7px;
+  line-height: 150%;
+  margin: 0;
+  overflow: auto;
+  padding: 3px 7px;
+  text-align: left;
+}
+
+.dp9 sup {
+  font-size: 0.6em;
+  vertical-align: super;
+}
+
+.dp9 div.help {
+  border: 2px solid #0ab33d;
+  border-radius: 7px;
+  padding: 3px 5px;
+}
+
+.dp9 div.variant {
+  border: 2px solid #f05;
+  border-radius: 7px;
+  line-height: 150%;
+  margin: 0;
+  overflow: auto;
+  padding: 3px 7px;
+  text-align: left;
+}
+
+.dp9 p.variant {
+  line-height: 150%;
+  margin: 2px 0;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.dp9 p.deconstructor {
+  line-height: 150%;
+  margin: 0;
+  vertical-align: middle;
+  text-align: left;
+}
+
+/* tpo epd */
+
+.dp9 div.epd {
+  border: 2px solid #8b008b;
+  border-radius: 7px;
+  line-height: 150%;
+  margin: 2px 0px 0px;
+  overflow: auto;
+  padding: 3px 7px;
+  text-align: left;
+}
+
+.dp9 b.epd {
+  color: #8b008b;
+  font-weight: 700;
+}
+
+/* better display on mobile*/
+
+.dp9 table {
+  border-collapse: collapse;
+  overflow-wrap: break-word;
+}
+
+/* Ensure table cells display properly */
+.dp9 td,
+.dp9 th {
+  display: table-cell;
+  text-align: left;
+  vertical-align: top;
+  padding: 8px;
+  word-break: normal;
+  white-space: normal;
+}
+
+/* pnry added for mobile */
+/* .dp9 table {
+overflow-x: auto;
+} */
+
+/* .dp9 td,
+.dp9 th {
+word-wrap: break-word;
+word-break: auto-phrase;
+white-space: normal;
+overflow-wrap: break-word;
+} */
+
+/*-- end of overwrite dpd css --*/
+
+@media screen and (max-width: 768px) {
+  body {
+    width: 95%;
+    padding: calc(var(--safe-area-inset-top) + 25px) calc(var(--safe-area-inset-right) + 10px) calc(var(--safe-area-inset-bottom) + 10px) calc(var(--safe-area-inset-left) + 10px);
+  }
+
+  :root {
+    --pali-font-size: calc(13pt + 0.8vw);
+  }
+
+  .bld {
+    font-size: calc(14pt + 0.96vw);
+  }
+
+  .paranum {
+    font-size: large;
+  }
+
+  .note {
+    font-size: var(--pali-font-size);
+  }
+
+  .dp9 {
+    font-size: calc(11pt + 0.5vw);
+  }
+
+  .dp9 a.button {
+    font-size: 60%;
+  }
+
+  /* Sanskrit font-size */
+  .MWS {
+    font-size: 120%;
+  }
+
+  .pts15 {
+    font-size: 120%;
+  }
+}

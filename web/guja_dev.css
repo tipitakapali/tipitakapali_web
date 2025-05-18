@@ -1,4 +1,5 @@
 :root {
+  /* Use https://cssnano.github.io/cssnano/docs/getting-started to minify the css */
   --pali-font: "Noto Sans Gujarati", "Times Ext Roman", "DejaVu Sans", "Indic Times", "Doulos SIL", Tahoma, "Arial Unicode MS", Gentium;
   --pali-color: rgba(0, 0, 0, 0.888);
   --pali-line-height: 150%;
@@ -12,9 +13,16 @@
   /* --page-background: hsl(28, 15%, 97%); */
   --page-background: #ffffff;
 
-  /* below color vars are adapted dpd goldendict css */
-  /* https://github.com/digitalpalidictionary/dpd-db/blob/main/docs/stylesheets/dpd-variables.css */
+  --dictionary-font-size: calc(10pt + 0.5vw);
 
+  /* New variables for font sizes */
+  --book-font-size: calc(21pt + 0.8vw);
+  --chapter-font-size: calc(18pt + 0.8vw);
+  --nikaya-font-size: calc(24pt + 0.8vw);
+  --small-font-size: calc(11pt + 0.6vw);
+
+  /* Below color vars are adapted from DPD GoldenDict CSS */
+  /* https://github.com/digitalpalidictionary/dpd-db/blob/main/docs/stylesheets/dpd-variables.css */
   /* Background in light mode, text in dark mode */
   --light: hsl(198, 100%, 95%);
   --light-shade: hsl(198, 100%, 93%);
@@ -46,16 +54,16 @@
 
   /* Frequency heatmap  */
   /* --freq0: hsla(198, 90%, 50%, 0.10);
-  --freq1: hsla(200, 90%, 50%, 0.20);
-  --freq2: hsla(202, 90%, 50%, 0.30);
-  --freq3: hsla(204, 90%, 50%, 0.40);
-  --freq4: hsla(206, 90%, 50%, 0.50);
-  --freq5: hsla(208, 90%, 50%, 0.60);
-  --freq6: hsla(210, 90%, 50%, 0.70);
-  --freq7: hsla(212, 90%, 50%, 0.80);
-  --freq8: hsla(214, 90%, 50%, 0.90);
-  --freq9: hsla(216, 90%, 50%, 1.00);
-  --freq10: hsla(218, 90%, 50%, 1.00); */
+--freq1: hsla(200, 90%, 50%, 0.20);
+--freq2: hsla(202, 90%, 50%, 0.30);
+--freq3: hsla(204, 90%, 50%, 0.40);
+--freq4: hsla(206, 90%, 50%, 0.50);
+--freq5: hsla(208, 90%, 50%, 0.60);
+--freq6: hsla(210, 90%, 50%, 0.70);
+--freq7: hsla(212, 90%, 50%, 0.80);
+--freq8: hsla(214, 90%, 50%, 0.90);
+--freq9: hsla(216, 90%, 50%, 1.00);
+--freq10: hsla(218, 90%, 50%, 1.00); */
 }
 
 @font-face {
@@ -71,8 +79,6 @@
   font-weight: bold;
   font-display: swap;
 }
-
-/* use this to minify https://www.toptal.com/developers/cssminifier */
 
 @font-face {
   font-family: "Noto Sans";
@@ -104,19 +110,18 @@
 
 /* new dpd Inter font */
 /* @font-face {
-  font-family: 'Inter';
-  src: url('fonts/pali/Inter/Inter-VariableFont_opsz_wght.ttf') format('truetype-variations');
-  font-weight: 100 900;
-  font-style: normal;
+font-family: 'Inter';
+src: url('fonts/pali/Inter/Inter-VariableFont_opsz_wght.ttf') format('truetype-variations');
+font-weight: 100 900;
+font-style: normal;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('fonts/pali/Inter/Inter-Italic-VariableFont_opsz_wght.ttf') format('truetype-variations');
-  font-weight: 100 900;
-  font-style: italic;
+font-family: 'Inter';
+src: url('fonts/pali/Inter/Inter-Italic-VariableFont_opsz_wght.ttf') format('truetype-variations');
+font-weight: 100 900;
+font-style: italic;
 } */
-
 
 .pinfo {
   display: var(--pinfo-display);
@@ -141,7 +146,6 @@ body {
 p#floatingTocButton {
   cursor: pointer;
 }
-
 
 .bodytext,
 .hangnum,
@@ -184,15 +188,12 @@ body {
 
 body {
   color: var(--pali-color);
-  /* background-color: #fef8ff; */
   background-color: var(--page-background);
   font-family: "Noto Sans", "DejaVu Sans", "Times Ext Roman", "Indic Times", "Doulos SIL", Tahoma, "Arial Unicode MS", Gentium;
   width: 85%;
-  /* padding: 10px; */
   /* Add padding to account for safe areas */
   padding: calc(var(--safe-area-inset-top) + 10px) calc(var(--safe-area-inset-right) + 10px) calc(var(--safe-area-inset-bottom) + 10px) calc(var(--safe-area-inset-left) + 10px);
   margin: 0 auto;
-
   overflow-wrap: break-word;
   word-break: break-word;
   text-align: justify;
@@ -202,8 +203,9 @@ body {
   padding-top: max(20px, var(--safe-area-inset-top) + 20px);
 }
 
+/* [id] safe area scroll for all ID click */
 [id] {
-  scroll-margin-top: max(50px, var(--safe-area-inset-top) + 25px)
+  scroll-margin-top: max(50px, var(--safe-area-inset-top) + 25px);
 }
 
 .beng,
@@ -235,7 +237,7 @@ body {
 
 #dictionary-res {
   background: var(--page-background) !important;
-  font-size: calc(10pt + 0.5vw) !important;
+  font-size: var(--dictionary-font-size) !important;
   display: none;
   right: 0;
   padding: 4px;
@@ -281,7 +283,6 @@ p {
 .matn {
   font-size: small !important;
 }
-
 
 .notFoundHead,
 .notFoundHeadInstruction {
@@ -480,21 +481,21 @@ p {
 }
 
 .book {
-  font-size: calc(21pt + 0.8vw);
+  font-size: var(--book-font-size);
 }
 
 .chapter {
-  font-size: calc(18pt + 0.8vw);
+  font-size: var(--chapter-font-size);
 }
 
 .nikaya {
-  font-size: calc(24pt + 0.8vw);
+  font-size: var(--nikaya-font-size);
 }
 
 .subhead,
 .subsubhead,
 .title {
-  font-size: calc(12pt + 0.8vw);
+  font-size: var(--pali-font-size);
   text-align: center;
   font-weight: 700;
 }
@@ -502,12 +503,12 @@ p {
 .gatha1,
 .gatha2,
 .gatha3 {
-  font-size: calc(12pt + 0.8vw);
+  font-size: var(--pali-font-size);
   margin-bottom: 0;
 }
 
 .gathalast {
-  font-size: calc(12pt + 0.8vw);
+  font-size: var(--pali-font-size);
   margin-bottom: 0.5cm;
 }
 
@@ -530,8 +531,6 @@ hr {
 
 #floatingTocButton {
   position: fixed;
-  /* bottom: 2%;
-  left: 1%; */
   bottom: max(2%, var(--safe-area-inset-bottom) + 2%);
   left: max(1%, var(--safe-area-inset-left) + 1%);
 
@@ -553,7 +552,6 @@ hr {
 .tmmAbhidhan .definition {
   color: #000;
 }
-
 
 /* this trick will remove the white gap under the dictionary-res */
 #dictionary-res::-webkit-scrollbar {
@@ -578,9 +576,6 @@ hr {
   background-color: #5b5b5b5b;
   border-radius: 8px;
 }
-
-
-
 
 #tocDivBox {
   text-align: left;
@@ -635,7 +630,6 @@ hr {
 }
 
 .bld {
-  /* color: #be564d; */
   color: rgb(36, 146, 245);
 }
 
@@ -694,6 +688,7 @@ hr {
   border: 2px solid #59c837;
   border-radius: 5px;
   margin-top: 5px;
+  font-size: var(--small-font-size);
 }
 
 .pts15 i {
@@ -724,10 +719,6 @@ hr {
   margin-left: 20px;
   border-left: 3px solid brown;
   padding: 6px;
-}
-
-.pts15 {
-  font-size: calc(11pt + 0.6vw);
 }
 
 .MWS .Dn,
@@ -939,10 +930,8 @@ hr {
 }
 
 .MWS {
-  font-size: calc(11pt + 0.6vw);
-  /* Slightly larger than original dictionary-res font-size */
+  font-size: var(--small-font-size);
 }
-
 
 u {
   text-decoration: none;
@@ -957,15 +946,15 @@ u {
   border-left: 5px solid #90caf9;
   border-radius: 10px;
   list-style-position: inside;
+  font-size: var(--pali-font-size);
 }
 
-
 /********************************
-    adapted from dpd css for goldendict
-    https://github.com/digitalpalidictionary/dpd-db/blob/main/docs/stylesheets/dpd-variables.css
-    https://github.com/digitalpalidictionary/dpd-db/blob/main/docs/stylesheets/extra.css
+adapted from dpd css for goldendict
+https://github.com/digitalpalidictionary/dpd-db/blob/main/docs/stylesheets/dpd-variables.css
+https://github.com/digitalpalidictionary/dpd-db/blob/main/docs/stylesheets/extra.css
 
-    Note: wrap the dpd css inside .dp9 class
+Note: wrap the dpd css inside .dp9 class
 /********************************/
 
 .dp9 h3 {
@@ -984,7 +973,6 @@ u {
   text-align: left;
 }
 
-
 .dp9 p {
   line-height: 150%;
   margin: 0px 0px;
@@ -997,16 +985,16 @@ u {
 }
 
 /* .dp9 .epd {
-  color: var(--primary-text);
+color: var(--primary-text);
 } tpo */
 
 /* .dp9 .epd:hover {
-  color: var(--primary-alt);
-  text-decoration: underline;
+color: var(--primary-alt);
+text-decoration: underline;
 } tpo */
 
 .dp9 a {
-  color: var(--primary)
+  color: var(--primary);
 }
 
 .dp9 p.heading {
@@ -1049,7 +1037,6 @@ u {
 
 .dp9 table {
   margin: 3px 0px;
-
 }
 
 .dp9 table.grammar {
@@ -1067,7 +1054,7 @@ u {
   color: var(--primary-text);
   font-weight: 700;
   white-space: nowrap;
-  padding: 0px 5px 2px 0px
+  padding: 0px 5px 2px 0px;
 }
 
 .dp9 table.grammar b {
@@ -1082,12 +1069,11 @@ u {
   padding: 0px 0px 3px 0px;
 }
 
-
 .dp9 a.sutta_link {
   color: var(--primary-text);
   font-style: italic;
   text-decoration: none;
-  font-weight: bold
+  font-weight: bold;
 }
 
 .dp9 a.sutta_link:hover {
@@ -1245,127 +1231,127 @@ u {
 
 /* freq tables */
 /* .dp9 table.freq { TPO
-  border-radius: 7px;
-  border-collapse: separate;
-  border: none;
+border-radius: 7px;
+border-collapse: separate;
+border: none;
 }
 
 .dp9 .vertical-text {
-  writing-mode: vertical-lr;
-  text-orientation: upright;
-  inline-size: fit-content;
+writing-mode: vertical-lr;
+text-orientation: upright;
+inline-size: fit-content;
 }
 
 .dp9 table.freq thead th {
-  text-align: center;
+text-align: center;
 }
 
 .dp9 table.freq tbody th {
-  border: 1px solid var(--primary);
-  border-radius: 7px;
-  padding: 5px;
-  text-align: center;
-  width: 12px;
-  white-space: nowrap;
-  vertical-align: middle;
+border: 1px solid var(--primary);
+border-radius: 7px;
+padding: 5px;
+text-align: center;
+width: 12px;
+white-space: nowrap;
+vertical-align: middle;
 }
 
 
 .dp9 table.freq td {
-  border-collapse: separate;
-  border-radius: 7px;
-  border: 1px solid var(--gray-transparent);
-  font-size: 0.8em;
-  min-width: 30px;
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: 2.5em;
+border-collapse: separate;
+border-radius: 7px;
+border: 1px solid var(--gray-transparent);
+font-size: 0.8em;
+min-width: 30px;
+text-align: center;
+vertical-align: middle;
+white-space: nowrap;
+width: 2.5em;
 }
 
 .dp9 table.freq td.void {
-  border: 0px solid transparent;
+border: 0px solid transparent;
 }
 
 .dp9 table.freq td.gap {
-  border: 0px solid transparent;
-  width: 10px;
+border: 0px solid transparent;
+width: 10px;
 }
 
 .dp9 table.freq td.gr0 {
-  border: 1px solid var(--freq0);
-  border-color: var(--gray-transparent);
-  color: transparent;
+border: 1px solid var(--freq0);
+border-color: var(--gray-transparent);
+color: transparent;
 }
 
 .dp9 .dark-mode table.freq td.gr0 {
-  border: 1px solid var(--freq0);
-  border-color: var(--gray-transparent);
-  color: transparent;
+border: 1px solid var(--freq0);
+border-color: var(--gray-transparent);
+color: transparent;
 }
 
 .dp9 table.freq td.gr1 {
-  background-color: var(--freq1);
-  border-color: var(--freq1);
-  color: var(--dark);
+background-color: var(--freq1);
+border-color: var(--freq1);
+color: var(--dark);
 }
 
 .dp9 table.freq td.gr2 {
-  background-color: var(--freq2);
-  border-color: var(--freq2);
-  color: var(--dark);
+background-color: var(--freq2);
+border-color: var(--freq2);
+color: var(--dark);
 }
 
 .dp9 table.freq td.gr3 {
-  background-color: var(--freq3);
-  border-color: var(--freq3);
-  color: var(--dark);
+background-color: var(--freq3);
+border-color: var(--freq3);
+color: var(--dark);
 }
 
 .dp9 table.freq td.gr4 {
-  background-color: var(--freq4);
-  border-color: var(--freq4);
-  color: var(--dark);
+background-color: var(--freq4);
+border-color: var(--freq4);
+color: var(--dark);
 }
 
 .dp9 table.freq td.gr5 {
-  background-color: var(--freq5);
-  border-color: var(--freq5);
-  color: var(--dark);
+background-color: var(--freq5);
+border-color: var(--freq5);
+color: var(--dark);
 }
 
 .dp9 table.freq td.gr6 {
-  background-color: var(--freq6);
-  border-color: var(--freq6);
-  color: var(--light);
+background-color: var(--freq6);
+border-color: var(--freq6);
+color: var(--light);
 }
 
 .dp9 table.freq td.gr7 {
-  background-color: var(--freq7);
-  border-color: var(--freq7);
-  color: var(--light);
+background-color: var(--freq7);
+border-color: var(--freq7);
+color: var(--light);
 }
 
 .dp9 table.freq td.gr8 {
-  background-color: var(--freq8);
-  border-color: var(--freq8);
-  color: var(--light);
+background-color: var(--freq8);
+border-color: var(--freq8);
+color: var(--light);
 }
 
 .dp9 table.freq td.gr9 {
-  background-color: var(--freq9);
-  border-color: var(--freq9);
-  color: var(--light);
+background-color: var(--freq9);
+border-color: var(--freq9);
+color: var(--light);
 }
 
 .dp9 table.freq td.gr10 {
-  background-color: var(--freq10);
-  border-color: var(--freq10);
-  color: var(--light);
+background-color: var(--freq10);
+border-color: var(--freq10);
+color: var(--light);
 }
 
 .dp9 .dark-mode table.freq td {
-  color: var(--light);
+color: var(--light);
 } */
 
 /* variant */
@@ -1454,7 +1440,7 @@ u {
   color: var(--primary-text);
   font-weight: 700;
   white-space: normal;
-  padding: 0px 5px 2px 0px
+  padding: 0px 5px 2px 0px;
 }
 
 .dp9 table.root_info b {
@@ -1511,11 +1497,9 @@ u {
 
 /*-- end of dpd css --*/
 
-
-
 /*-- tpo more css --*/
 /* .dp9 {
-  font-family: "Inter", "Noto Sans", "sans-serif" !important;
+font-family: "Inter", "Noto Sans", "sans-serif" !important;
 } */
 
 .dp9 div.content,
@@ -1529,7 +1513,6 @@ u {
   text-align: left;
 }
 
-
 .dp9 sup {
   font-size: 0.6em;
   vertical-align: super;
@@ -1540,7 +1523,6 @@ u {
   border-radius: 7px;
   padding: 3px 5px;
 }
-
 
 .dp9 div.variant {
   border: 2px solid #f05;
@@ -1559,15 +1541,12 @@ u {
   text-align: left;
 }
 
-
-
 .dp9 p.deconstructor {
   line-height: 150%;
   margin: 0;
   vertical-align: middle;
   text-align: left;
 }
-
 
 /* tpo epd */
 
@@ -1604,22 +1583,20 @@ u {
   white-space: normal;
 }
 
-
 /* pnry added for mobile */
 /* .dp9 table {
-  overflow-x: auto;
+overflow-x: auto;
 } */
 
 /* .dp9 td,
 .dp9 th {
-  word-wrap: break-word;
-  word-break: auto-phrase;
-  white-space: normal;
-  overflow-wrap: break-word;
+word-wrap: break-word;
+word-break: auto-phrase;
+white-space: normal;
+overflow-wrap: break-word;
 } */
 
 /*-- end of overwrite dpd css --*/
-
 
 @media screen and (max-width: 768px) {
   body {
@@ -1628,37 +1605,35 @@ u {
   }
 
   :root {
-    /* --pali-font-size: clamp(1.5rem, calc(1.25rem + 1.5vw), 2.5rem); */
-    /* --pali-font-size: 148%; */
-    --pali-font-size: calc(calc(12pt + 0.8vw)*1.25);
-
-    /* 16 May 2025 tested on iPhone 6.9 inch */
-  }
-
-  .dp9 {
-    font-size: 125%;
+    --pali-font-size: calc(13pt + 0.8vw);
   }
 
   .bld {
-    /* font-size: calc(var(--pali-font-size)*0.65); */
-    font-size: calc(calc(12pt + 0.8vw)*1.2);
-  }
-
-  .note {
-    font-size: large;
+    font-size: calc(14pt + 0.96vw);
   }
 
   .paranum {
     font-size: large;
   }
 
+  .note {
+    font-size: var(--pali-font-size);
+  }
+
+  .dp9 {
+    font-size: calc(11pt + 0.5vw);
+  }
+
+  .dp9 a.button {
+    font-size: 60%;
+  }
+
   /* Sanskrit font-size */
   .MWS {
-    font-size: 150%;
+    font-size: 120%;
   }
 
   .pts15 {
-    font-size: 140%;
+    font-size: 120%;
   }
-
 }
