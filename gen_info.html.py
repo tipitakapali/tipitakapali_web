@@ -225,6 +225,10 @@ text = '''<!DOCTYPE html>
       padding-top: calc(var(--safe-area-inset-top) + 30px);
       z-index: 1000;
     }
+    
+    .smallButton {
+      cursor: pointer;
+    }
     </style>
   </head>
  
