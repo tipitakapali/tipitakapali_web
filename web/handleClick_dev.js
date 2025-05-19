@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /*********************************
  * https://tipitakapali.org & offline apps
  * File: handleClick_dev.js
@@ -396,7 +397,7 @@ async function translatorAI() {
     return
   }
 
-  let notAvailableSms = "AI Assistant is not available for paragraphs in this area."
+  let notAvailableSms = "AI Assistant works only if you click a word in a Tipitakapali.org paragraph, then click the AI button.";
 
   if (!currentPEleForAI) {
     alert(notAvailableSms)
