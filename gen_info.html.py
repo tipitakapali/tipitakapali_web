@@ -230,21 +230,27 @@ text = '''<!DOCTYPE html>
       cursor: pointer;
     }
     </style>
+    <script>
+      function goBackOnCloudflare() {
+        // note: Cloudlfare redirect /page.html to /page which made window.history.back() does not work
+        window.location.href='https://tipitakapali.org'
+      }
+    </script>
   </head>
  
 <body>
 <a class="aNoHover" href="index.html"><div class="loader-container"><div class="loader"></div></div></a>
 <div id="gobackFromSearch" style="position: absolute;">
-  <button class="smallButton" id="goBackButton" onclick="window.history.back()">
-    <img width="16" height="16" src="web/icons/toplogo.webp" alt="Go back" /> Go back
+  <button class="smallButton" id="goBackButton" onclick="goBackOnCloudflare()">
+    <img width="16" height="16" src="web/icons/toplogo.webp" alt="Go back" /> Go Back
   </button>
 </div>
 
 ''' + html_output + '''
 
 <div>
-  <button class="smallButton" id="goBackButtonBottom" onclick="window.history.back()">
-    <img width="16" height="16" src="web/icons/toplogo.webp" alt="Go back" /> Go back
+  <button class="smallButton" id="goBackButtonBottom" onclick="goBackOnCloudflare()">
+    <img width="16" height="16" src="web/icons/toplogo.webp" alt="Go back" /> Go Back
   </button>
 </div>
 

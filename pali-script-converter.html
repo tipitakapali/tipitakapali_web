@@ -191,7 +191,15 @@
   }
   
   </style>
+      <script>
+      function goBackOnCloudflare() {
+        // note: Cloudlfare redirect /page.html to /page which made window.history.back() does not work
+        window.location.href='https://tipitakapali.org'
+      }
+    </script>
 </head>
+
+
 
 <body>
   <div class="dhammaWheelLoader">
@@ -200,8 +208,8 @@
   
 
   <div id="gobackFromSearch" style="position: absolute;">
-    <button class="smallButton" id="goBackButton" onclick="window.history.back()">
-      <img width="16" height="16" src="web/icons/toplogo.webp" alt="Go back" /> Go back
+    <button class="smallButton" id="goBackButton" onclick="goBackOnCloudflare()">
+      <img width="16" height="16" src="web/icons/toplogo.webp" alt="Go back" /> Go Back
     </button>
   </div>
   <div class="uForm">
@@ -224,8 +232,8 @@
 
   <br>
   <div class="help">
-     <button class="smallButton" onclick="window.history.back()">
-      <img width="16" height="16" src="web/icons/toplogo.webp" alt="Go back" /> Go back
+     <button class="smallButton" onclick="goBackOnCloudflare()">
+      <img width="16" height="16" src="web/icons/toplogo.webp" alt="Go back" /> Go Back
     </button> | 
     <span><a href="https://tipitakapali.org/pali-script-converter.zip" style="text-decoration:none; color: green;">[Download this tool ~ 12 KB]</a></span>
   </div>
