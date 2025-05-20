@@ -68,8 +68,8 @@ const regExpSpacePunctuations = new RegExp(`[${stripChars}]+`, "g")
 const regExpFeedbackDPDId = /#z3@(.*?)_fb@/g
 
 // const reDPDLinks = [
-//   ["https://docs.google.com/forms/d/1iMD9sCSWFfJAFCFYuG9HRIyrr9KFRy0nAOVApM998wM/viewform", "L#1@"],
-//   ["https://docs.google.com/forms/d/e/1FAIpQLScNC5v2gQbBCM3giXfYIib9zrp-WMzwJuf_iVXEMX2re4BFFw/viewform", "L#2@"],
+// ru lang ["https://docs.google.com/forms/d/1iMD9sCSWFfJAFCFYuG9HRIyrr9KFRy0nAOVApM998wM/viewform", "L#1@"],
+// sbs ["https://docs.google.com/forms/d/e/1FAIpQLScNC5v2gQbBCM3giXfYIib9zrp-WMzwJuf_iVXEMX2re4BFFw/viewform", "L#2@"],
 //   ["https://docs.google.com/forms/d/e/1FAIpQLSdAL2PzavyrtXgGmtNrZAMyh3hV6g3fU0chxhWFxunQEZtH0g/viewform", "L#3@"],
 //   ["https://docs.google.com/forms/d/e/1FAIpQLSf9boBe7k5tCwq7LdWgBHHGIPVc4ROO5yjVDo1X5LDAxkmGWQ/viewform", "L#4@"],
 //   ["https://docs.google.com/forms/d/e/1FAIpQLSfKUBx-icfRCWmhHqUwzX60BVQE21s_NERNfU2VvbjEfE371A/viewform", "L#5@"],
@@ -77,14 +77,14 @@ const regExpFeedbackDPDId = /#z3@(.*?)_fb@/g
 // ]
 
 const reDPDLinks = [
-  // ru lang ["https://docs.google.com/forms/d/1iMD9sCSWFfJAFCFYuG9HRIyrr9KFRy0nAOVApM998wM/viewform", "L#1@"],
-  // sbs ["https://docs.google.com/forms/d/e/1FAIpQLScNC5v2gQbBCM3giXfYIib9zrp-WMzwJuf_iVXEMX2re4BFFw/viewform", "L#2@"],
+  /* always keep for splitter */
+  ["https://docs.google.com/forms/d/e/1FAIpQLSf9boBe7k5tCwq7LdWgBHHGIPVc4ROO5yjVDo1X5LDAxkmGWQ/viewform", "L#0@"],
+  
   ["https://docs.google.com/forms/d/e/1FAIpQLSdAL2PzavyrtXgGmtNrZAMyh3hV6g3fU0chxhWFxunQEZtH0g/viewform", "L#1@"],
   ["https://docs.google.com/forms/d/e/1FAIpQLSf9boBe7k5tCwq7LdWgBHHGIPVc4ROO5yjVDo1X5LDAxkmGWQ/viewform", "L#2@"],
   ["https://docs.google.com/forms/d/e/1FAIpQLSfKUBx-icfRCWmhHqUwzX60BVQE21s_NERNfU2VvbjEfE371A/viewform", "L#3@"],
-  ["https://docs.google.com/forms/d/e/1FAIpQLSfResxEUiRCyFITWPkzoQ2HhHEvUS5fyg68Rl28hFH6vhHlaA/viewform", "L#4@"]
+  ["https://docs.google.com/forms/d/e/1FAIpQLSfResxEUiRCyFITWPkzoQ2HhHEvUS5fyg68Rl28hFH6vhHlaA/viewform", "L#4@"],
 ]
-
 
 let isAbhidhan = localStorage.getItem("tipitakapali_org_isAbhidhan") || "yes"
 var currentScript2char = currentScript2char ? currentScript2char : localStorage.getItem(STORAGE_SCRIPT_KEY) || "ro"
@@ -397,7 +397,7 @@ async function translatorAI() {
     return
   }
 
-  let notAvailableSms = "AI Assistant works only if you click a word in a Tipitakapali.org paragraph, then click the AI button.";
+  let notAvailableSms = "AI Assistant works only if you click a word in a Tipitakapali.org paragraph, then click the AI button."
 
   if (!currentPEleForAI) {
     alert(notAvailableSms)
@@ -692,11 +692,10 @@ function button_click(el) {
 
   dpdLastClickEle = nowClickEle
 
- // Remove 'active' class from the previously clicked button
+  // Remove 'active' class from the previously clicked button
   if (dpdLastClickButtonEl && dpdLastClickButtonEl !== el) {
-    dpdLastClickButtonEl.classList.remove("active");
+    dpdLastClickButtonEl.classList.remove("active")
   }
-
 
   //// do post REQUEST for inflection
   if (nowId.startsWith("declension_") || nowId.startsWith("conjugation_")) {
@@ -705,8 +704,8 @@ function button_click(el) {
     }, 0)
   }
   dpd_button_click(el)
-    // Store the current button as the last clicked button
-  dpdLastClickButtonEl = el;
+  // Store the current button as the last clicked button
+  dpdLastClickButtonEl = el
 }
 
 function dpd_button_click(el) {
