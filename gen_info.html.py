@@ -22,7 +22,7 @@ text = '''<!DOCTYPE html>
     <meta name=apple-mobile-web-app-title content=Tipitakapali.org>
     <meta name=mobile-web-app-capable content=yes>
     <meta name=robots content="index, follow">
-    <title>TipitakaPali.Org - Attributions and Downloads</title>
+    <title>Tipitaka Pali Org - Attributions and Downloads</title>
     <meta name="theme-color" content="#ffffff">
     <meta name=description
         content="Explore and learn Tipiṭaka Pāḷi in the Chaṭṭha Saṅgāyana Tipiṭaka with tipitakapali.org. Discover the complete Buddhist canon, enhanced with dictionaries, various Pali scripts, and resources for pali study and practice.">
