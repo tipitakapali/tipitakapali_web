@@ -40,7 +40,10 @@ Tipitakapali.org offline software is available for all major platforms: Windows,
 Most of what you see on the screen are self-explaining and **click-able**. Simply click or tap on them to discover the functions.
 
 
-> [How to use videos](https://tipitakapali.org/how-to-use-tipitakapali-video.html).
+[How to use videos](https://tipitakapali.org/how-to-use-tipitakapali-video.html)
+
+<iframe width=560 height=315 src="https://www.youtube.com/embed/videoseries?list=PL_yc3HlmeNQrYWo_dPLOqC5Bo74HmO3IJ" frameborder=0 allowfullscreen></iframe>
+
 
 ![It is also click-able here](web/img/input_clickable.jpg "Yes, it is also click-able here")
 
