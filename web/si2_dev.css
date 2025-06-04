@@ -533,9 +533,18 @@ hr {
 }
 
 #floatingTocButton {
+
   position: fixed;
-  bottom: max(2%, var(--safe-area-inset-bottom) + 2%);
-  left: max(1%, var(--safe-area-inset-left) + 1%);
+  /* Primary positioning - works on all OLD browsers */
+  bottom: 2%;
+  left: 1%;
+
+  /* Alternative approach using CSS custom properties with better fallbacks */
+  bottom: calc(2% + var(--safe-area-inset-bottom, 0px));
+  left: calc(1% + var(--safe-area-inset-left, 0px));
+
+  /* bottom: max(2%, var(--safe-area-inset-bottom) + 2%);
+  left: max(1%, var(--safe-area-inset-left) + 1%); */
 
   -webkit-user-select: none;
   user-select: none;
@@ -548,6 +557,7 @@ hr {
   padding-bottom: 5px;
   z-index: 900;
 }
+
 
 #tocDivBox,
 #tocDivBox a,
@@ -1602,6 +1612,12 @@ overflow-wrap: break-word;
 /*-- end of overwrite dpd css --*/
 
 @media screen and (max-width: 768px) {
+
+  /* #floatingTocButton {
+    bottom: 10px;
+    left: 10px;
+  } */
+
   body {
     width: 95%;
     padding: calc(var(--safe-area-inset-top) + 25px) calc(var(--safe-area-inset-right) + 10px) calc(var(--safe-area-inset-bottom) + 10px) calc(var(--safe-area-inset-left) + 10px);
