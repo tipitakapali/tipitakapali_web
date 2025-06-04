@@ -1846,7 +1846,12 @@ window.onload = function () {
     const keywordsParam = urlObj.searchParams.get("keywords")
     if (keywordsParam) {
       const keywords = decodeURIComponent(keywordsParam).split("|")
-      const paraId = urlObj.hash.substring(1).match(/k\d+/)?.[0] || ""
+
+      // const paraId = urlObj.hash.substring(1).match(/k\d+/)?.[0] || "" // this syntax will cause issues on old devices
+
+      const matchResult = urlObj.hash.substring(1).match(/k\d+/);
+      const paraId = matchResult ? matchResult[0] : "";
+
       const paraElement = document.getElementById(paraId)
       if (paraElement) {
         // Prepare keywords and their regex patterns
