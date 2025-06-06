@@ -61,6 +61,6 @@ echo "==== Minification css complete ===="
 
 echo "Sadhu x3.14"
 
-echo "\n\nWarning updated JS CSS version is $updateVersion"
+echo "Warning updated JS CSS version is $updateVersion"
 
 echo "File is named with $updateVersion"

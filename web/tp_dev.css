@@ -151,14 +151,7 @@ p#floatingTocButton {
   /* z-index: 999; Add Mar 2025 iOS z-index to ensure it's above other content */
 }
 
-#dictionary-res {
-  position: fixed;
-  top: 0;
-  left: max(0px, var(--safe-area-inset-left));
-  max-height: 70%;
-  overflow-y: scroll;
-  width: auto;
-}
+
 
 #floatingTocButton,
 #hideTocButton,
@@ -224,15 +217,41 @@ body {
 }
 
 #dictionary-res {
+  position: fixed;
+  display: none;
+
+  top: 0;
+
+  left: 0;
+  right: 0;
+  /* fallback: older device does not have the safe area*/
+
+  left: max(0px, var(--safe-area-inset-left));
+  right: max(0px, var(--safe-area-inset-right));
+
+  width: 100%;
+  /* this will shrink the div if the defi is short. 2025 June 05*/
+  max-height: 70%;
+
+  overflow-y: scroll;
+  overflow-x: scroll;
+
   background: var(--page-background) !important;
   font-size: var(--dictionary-font-size) !important;
-  display: none;
-  right: 0;
   padding: 4px;
   border-bottom: 1.5px solid orange;
-  overflow-x: scroll;
+
+  /* Add box-sizing to include padding in width calculation */
+  box-sizing: border-box;
+
   z-index: 999;
 }
+
+#dictionary-res * {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
 
 .noHover:hover {
   background-color: initial;
@@ -518,15 +537,15 @@ hr {
 }
 
 #floatingTocButton {
-
   position: fixed;
+
   /* Primary positioning - works on all OLD browsers */
   bottom: 2%;
   left: 1%;
-
   /* Alternative approach using CSS custom properties with better fallbacks */
   bottom: calc(2% + var(--safe-area-inset-bottom, 0px));
   left: calc(1% + var(--safe-area-inset-left, 0px));
+
 
   /* bottom: max(2%, var(--safe-area-inset-bottom) + 2%);
   left: max(1%, var(--safe-area-inset-left) + 1%); */
@@ -542,7 +561,6 @@ hr {
   padding-bottom: 5px;
   z-index: 900;
 }
-
 
 #tocDivBox,
 #tocDivBox a,
@@ -1229,127 +1247,127 @@ text-decoration: underline;
 
 /* freq tables */
 /* .dp9 table.freq { TPO
-border-radius: 7px;
-border-collapse: separate;
-border: none;
+  border-radius: 7px;
+  border-collapse: separate;
+  border: none;
 }
 
 .dp9 .vertical-text {
-writing-mode: vertical-lr;
-text-orientation: upright;
-inline-size: fit-content;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  inline-size: fit-content;
 }
 
 .dp9 table.freq thead th {
-text-align: center;
+  text-align: center;
 }
 
 .dp9 table.freq tbody th {
-border: 1px solid var(--primary);
-border-radius: 7px;
-padding: 5px;
-text-align: center;
-width: 12px;
-white-space: nowrap;
-vertical-align: middle;
+  border: 1px solid var(--primary);
+  border-radius: 7px;
+  padding: 5px;
+  text-align: center;
+  width: 12px;
+  white-space: nowrap;
+  vertical-align: middle;
 }
 
 
 .dp9 table.freq td {
-border-collapse: separate;
-border-radius: 7px;
-border: 1px solid var(--gray-transparent);
-font-size: 0.8em;
-min-width: 30px;
-text-align: center;
-vertical-align: middle;
-white-space: nowrap;
-width: 2.5em;
+  border-collapse: separate;
+  border-radius: 7px;
+  border: 1px solid var(--gray-transparent);
+  font-size: 0.8em;
+  min-width: 30px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 2.5em;
 }
 
 .dp9 table.freq td.void {
-border: 0px solid transparent;
+  border: 0px solid transparent;
 }
 
 .dp9 table.freq td.gap {
-border: 0px solid transparent;
-width: 10px;
+  border: 0px solid transparent;
+  width: 10px;
 }
 
 .dp9 table.freq td.gr0 {
-border: 1px solid var(--freq0);
-border-color: var(--gray-transparent);
-color: transparent;
+  border: 1px solid var(--freq0);
+  border-color: var(--gray-transparent);
+  color: transparent;
 }
 
 .dp9 .dark-mode table.freq td.gr0 {
-border: 1px solid var(--freq0);
-border-color: var(--gray-transparent);
-color: transparent;
+  border: 1px solid var(--freq0);
+  border-color: var(--gray-transparent);
+  color: transparent;
 }
 
 .dp9 table.freq td.gr1 {
-background-color: var(--freq1);
-border-color: var(--freq1);
-color: var(--dark);
+  background-color: var(--freq1);
+  border-color: var(--freq1);
+  color: var(--dark);
 }
 
 .dp9 table.freq td.gr2 {
-background-color: var(--freq2);
-border-color: var(--freq2);
-color: var(--dark);
+  background-color: var(--freq2);
+  border-color: var(--freq2);
+  color: var(--dark);
 }
 
 .dp9 table.freq td.gr3 {
-background-color: var(--freq3);
-border-color: var(--freq3);
-color: var(--dark);
+  background-color: var(--freq3);
+  border-color: var(--freq3);
+  color: var(--dark);
 }
 
 .dp9 table.freq td.gr4 {
-background-color: var(--freq4);
-border-color: var(--freq4);
-color: var(--dark);
+  background-color: var(--freq4);
+  border-color: var(--freq4);
+  color: var(--dark);
 }
 
 .dp9 table.freq td.gr5 {
-background-color: var(--freq5);
-border-color: var(--freq5);
-color: var(--dark);
+  background-color: var(--freq5);
+  border-color: var(--freq5);
+  color: var(--dark);
 }
 
 .dp9 table.freq td.gr6 {
-background-color: var(--freq6);
-border-color: var(--freq6);
-color: var(--light);
+  background-color: var(--freq6);
+  border-color: var(--freq6);
+  color: var(--light);
 }
 
 .dp9 table.freq td.gr7 {
-background-color: var(--freq7);
-border-color: var(--freq7);
-color: var(--light);
+  background-color: var(--freq7);
+  border-color: var(--freq7);
+  color: var(--light);
 }
 
 .dp9 table.freq td.gr8 {
-background-color: var(--freq8);
-border-color: var(--freq8);
-color: var(--light);
+  background-color: var(--freq8);
+  border-color: var(--freq8);
+  color: var(--light);
 }
 
 .dp9 table.freq td.gr9 {
-background-color: var(--freq9);
-border-color: var(--freq9);
-color: var(--light);
+  background-color: var(--freq9);
+  border-color: var(--freq9);
+  color: var(--light);
 }
 
 .dp9 table.freq td.gr10 {
-background-color: var(--freq10);
-border-color: var(--freq10);
-color: var(--light);
+  background-color: var(--freq10);
+  border-color: var(--freq10);
+  color: var(--light);
 }
 
 .dp9 .dark-mode table.freq td {
-color: var(--light);
+  color: var(--light);
 } */
 
 /* variant */
@@ -1597,15 +1615,17 @@ overflow-wrap: break-word;
 /*-- end of overwrite dpd css --*/
 
 @media screen and (max-width: 768px) {
-
-  /* #floatingTocButton {
-    bottom: 10px;
-    left: 10px;
-  } */
-
   body {
     width: 95%;
     padding: calc(var(--safe-area-inset-top) + 25px) calc(var(--safe-area-inset-right) + 10px) calc(var(--safe-area-inset-bottom) + 10px) calc(var(--safe-area-inset-left) + 10px);
+  }
+
+  #dictionary-res .dp9 div.dpd {
+    /* iOS: width: auto; or 100%;
+    Android: width: min-content; // Android 10*/
+    width: auto;
+    min-width: 98%;
+    box-sizing: border-box;
   }
 
   :root {
