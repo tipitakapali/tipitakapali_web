@@ -726,6 +726,15 @@ function enterKeyfetchFTS(e) {
 function load_lastUserPaliScript(id) {
   try {
     let ele = document.getElementById(id)
+    if (!ele) {
+      console.error(`Critical: Element with ID '${id}' (expected 'uSelectScript') not found in load_lastUserPaliScript. ` + `Pali script selection UI cannot be initialized. Attempting to clear potentially problematic stored script setting.`)
+      // Clear the stored script key to prevent getting stuck with a bad value if the UI element is missing.
+      localStorage.removeItem(STORAGE_SCRIPT_KEY) // Corrected from .remove
+      // Returning here prevents an error from 'ele.value' and avoids the catch block's reload,
+      // thus preventing a potential reload loop if the element is persistently missing.
+      return
+    }
+
     ele.value = currentScript2char
 
     if (currentScript2char != "ro") {
@@ -735,11 +744,13 @@ function load_lastUserPaliScript(id) {
       // }, 0)
     }
   } catch (e) {
-    console.log(`${e} \n\nError when loading last used pali script.
-	Is this id ${id} changed in the UI?
-	It is now removing the mising key and reloading.`)
-    localStorage.remove(STORAGE_SCRIPT_KEY)
-    window.location.reload(true)
+    // This catch block handles errors that might occur within the try block,
+    // e.g., an error inside convertBookCenter.
+    console.error(`Error during Pali script initialization (element ID: '${id}'): ${e.message}. ` + `This could be an issue in 'convertBookCenter' or related functions. ` + `Attempting to clear stored script and reload to recover.`, e)
+    localStorage.removeItem(STORAGE_SCRIPT_KEY) // Corrected from .remove
+    setTimeout(() => {
+      window.location.reload(true)
+    }, 50)
   }
 }
 
@@ -777,6 +788,11 @@ function convertBookCenter(fromScript, targetScript) {
 
 function onChangeConvertMainScript() {
   let select = document.getElementById("uSelectScript")
+  if (!select) {
+    console.error("Critical: Element with ID 'uSelectScript' not found in onChangeConvertMainScript. Cannot process script change.")
+    return
+  }
+
   previousFromScript = currentScript2char
 
   let selectedScript = select.options[select.selectedIndex].value
@@ -785,8 +801,14 @@ function onChangeConvertMainScript() {
   currentScript2char = selectedScript
 
   localStorage.setItem(STORAGE_SCRIPT_KEY, selectedScript)
+
   if (previousFromScript != selectedScript) {
-    window.location.reload(true)
+    // Adding a small delay before reloading. Immediate reloads can sometimes cause
+    // instability in WebViews, especially on older Android versions.
+    // This allows the current JavaScript execution stack to clear.
+    setTimeout(() => {
+      window.location.reload(true)
+    }, 50) // 50ms delay, can be adjusted if needed
   }
 }
 
