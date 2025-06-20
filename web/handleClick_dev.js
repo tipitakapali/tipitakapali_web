@@ -62,6 +62,9 @@ const notFoundHeadSanskrit = `<div class="notFoundHead">\ud83d\ude0c Not found i
 
 const stripChars = '…‘ ’!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~' + "0123456789"
 
+const romanPaliChars = "a-zA-ZāīūṅñṭḍṇḷṃṁṛṝśṣĀĪŪŊÑṬḌṆḶṂṀṚṜŚṢ√"
+const nonRomanPaliCharsRex = new RegExp(`[^${romanPaliChars}]`)
+
 //// do not strip the single quote '
 //// many instances are in the synonym dict (m'evaṃ => mevaṃ)
 const regExpSpacePunctuations = new RegExp(`[${stripChars}]+`, "g")
@@ -79,7 +82,7 @@ const regExpFeedbackDPDId = /#z3@(.*?)_fb@/g
 const reDPDLinks = [
   /* always keep for splitter */
   ["https://docs.google.com/forms/d/e/1FAIpQLSf9boBe7k5tCwq7LdWgBHHGIPVc4ROO5yjVDo1X5LDAxkmGWQ/viewform", "L#0@"],
-  
+
   ["https://docs.google.com/forms/d/e/1FAIpQLSdAL2PzavyrtXgGmtNrZAMyh3hV6g3fU0chxhWFxunQEZtH0g/viewform", "L#1@"],
   ["https://docs.google.com/forms/d/e/1FAIpQLSf9boBe7k5tCwq7LdWgBHHGIPVc4ROO5yjVDo1X5LDAxkmGWQ/viewform", "L#2@"],
   ["https://docs.google.com/forms/d/e/1FAIpQLSfKUBx-icfRCWmhHqUwzX60BVQE21s_NERNfU2VvbjEfE371A/viewform", "L#3@"],
@@ -940,8 +943,14 @@ async function fetchDictDefi(word, useSplitter = "no") {
 
   //// converting
   topInputDisplayWord = word
+
   if (currentScript2char !== "ro") {
     word = fromMixThisPaliScr(word, "ro")
+  } else {
+    /// allow multi script
+    if (nonRomanPaliCharsRex.test(word)) {
+      word = fromMixThisPaliScr(word, "ro")
+    }
   }
 
   word = word.replace(regExpSpacePunctuations, " ").trim()
@@ -1849,8 +1858,8 @@ window.onload = function () {
 
       // const paraId = urlObj.hash.substring(1).match(/k\d+/)?.[0] || "" // this syntax will cause issues on old devices
 
-      const matchResult = urlObj.hash.substring(1).match(/k\d+/);
-      const paraId = matchResult ? matchResult[0] : "";
+      const matchResult = urlObj.hash.substring(1).match(/k\d+/)
+      const paraId = matchResult ? matchResult[0] : ""
 
       const paraElement = document.getElementById(paraId)
       if (paraElement) {
