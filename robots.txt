@@ -1,1 +1,1 @@
-Sitemap: https://tipitakapali.org/sitemap.txt
+Sitemap: https://tipitakapali.org/sitemap.xml
