@@ -477,10 +477,14 @@ a:hover {
   color: orange;
 }
 
+
 z {
-  background-color: #f4e776;
+  /* background-color: #f4e776; */
+  background-color: #ffff00; /* so that it will show good on the darkmode too*/
+  color: #000;
   border-radius: 5px;
 }
+
 
 .note {
   color: grey;
