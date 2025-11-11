@@ -3,7 +3,8 @@
   --pali-font: "Noto Sans Gurmukhi", "Times Ext Roman", "DejaVu Sans", "Indic Times", "Doulos SIL", Tahoma, "Arial Unicode MS", Gentium;
   --pali-color: rgba(0, 0, 0, 0.888);
   --pali-line-height: 150%;
-  --pali-font-size: calc(12pt + 0.8vw);
+  --font-size-multiplier: 1;
+  --pali-font-size: calc((12pt + 0.8vw) * var(--font-size-multiplier));
   --pinfo-display: none;
 
   --safe-area-inset-top: env(safe-area-inset-top, 25px);
@@ -13,13 +14,14 @@
   /* --page-background: hsl(28, 15%, 97%); */
   --page-background: #ffffff;
 
-  --dictionary-font-size: calc(10pt + 0.5vw);
+  --dictionary-font-size: calc((10pt + 0.5vw) * var(--font-size-multiplier));
+  --toc-font-size: calc(16px * var(--font-size-multiplier));
 
   /* New variables for font sizes */
-  --book-font-size: calc(21pt + 0.8vw);
-  --chapter-font-size: calc(18pt + 0.8vw);
-  --nikaya-font-size: calc(24pt + 0.8vw);
-  --small-font-size: calc(11pt + 0.6vw);
+  --book-font-size: calc((21pt + 0.8vw) * var(--font-size-multiplier));
+  --chapter-font-size: calc((18pt + 0.8vw) * var(--font-size-multiplier));
+  --nikaya-font-size: calc((24pt + 0.8vw) * var(--font-size-multiplier));
+  --small-font-size: calc((11pt + 0.6vw) * var(--font-size-multiplier));
 
   /* Below color vars are adapted from DPD GoldenDict CSS */
   /* https://github.com/digitalpalidictionary/dpd-db/blob/main/docs/stylesheets/dpd-variables.css */
@@ -380,6 +382,7 @@ a.pinfo.V {
 
 a:hover {
   background-color: #ffa700;
+  border-radius: 5px;
 }
 
 .MWS .Dn,
@@ -1645,7 +1648,8 @@ overflow-wrap: break-word;
   }
 
   :root {
-    --pali-font-size: calc(13pt + 0.8vw);
+    /* --pali-font-size: calc(13pt + 0.8vw); */
+    --pali-font-size: calc((13pt + 0.8vw) * var(--font-size-multiplier));
   }
 
   .bld {
@@ -1661,7 +1665,8 @@ overflow-wrap: break-word;
   }
 
   .dp9 {
-    font-size: calc(11pt + 0.5vw);
+    /* font-size: calc(11pt + 0.5vw); */
+    font-size: calc((11pt + 0.5vw) * var(--font-size-multiplier));
   }
 
   .dp9 a.button {

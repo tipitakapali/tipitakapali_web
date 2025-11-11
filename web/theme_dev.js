@@ -2,6 +2,9 @@
 
 var currentScript2char = localStorage.getItem("tipitakapali_org_paliScript") || "ro"
 
+var FONT_SIZE_MULTIPLIER_KEY = "tipitakapali_org_fontSizeMultiplier";
+var currentFontSizeMultiplier = localStorage.getItem(FONT_SIZE_MULTIPLIER_KEY) || "1"; // Default font size multiplier
+
 const scriptK3ys = ["si", "my", "hi", "thai", "laos", "km", "beng", "gurm", "guja", "telu", "kann", "mala", "tham", "brah", "tibt", "cyrl"]
 const urlVisiting = window.location.href
 const isReadingBook = urlVisiting.includes("book/")
@@ -131,3 +134,8 @@ if (localStorage.getItem("tipitakapali_org_isDarkMode") == "yes") {
 if (localStorage.getItem("tipitakapali_org_showPageMarker") == "yes") {
   document.documentElement.style.setProperty("--pinfo-display", "inline")
 }
+
+
+document.documentElement.style.setProperty("--font-size-multiplier", currentFontSizeMultiplier);
+
+

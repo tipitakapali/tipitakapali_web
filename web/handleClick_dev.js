@@ -39,6 +39,10 @@ let isPendingAITasks = false
 let hlLastClickEle, currentPObj, topInputDisplayWord
 let dpdLastClickButtonEl = null
 
+var FONT_SIZE_MULTIPLIER_KEY = "tipitakapali_org_fontSizeMultiplier";
+var currentFontSizeMultiplier = localStorage.getItem(FONT_SIZE_MULTIPLIER_KEY) || "1"; // Default font size multiplier
+
+
 let aParaIdsInFile = null
 const allPaliScripts = ["si", "my", "hi", "ro", "thai", "laos", "km", "beng", "gurm", "guja", "telu", "kann", "mala", "tham", "brah", "tibt", "cyrl"]
 
@@ -539,6 +543,20 @@ function restoreDPDFeedbackStr(html) {
   return html
 }
 
+function changeFontSize(amount) {
+  currentFontSizeMultiplier = (parseFloat(currentFontSizeMultiplier) + amount).toFixed(1);
+  if (currentFontSizeMultiplier < 0.2) {
+    currentFontSizeMultiplier = 0.2;
+  }
+  document.documentElement.style.setProperty("--font-size-multiplier", currentFontSizeMultiplier);
+  localStorage.setItem(FONT_SIZE_MULTIPLIER_KEY, currentFontSizeMultiplier);
+  
+  const fontSizeDisplay = document.getElementById("fontSizeDisplay");
+  if(fontSizeDisplay) {
+    fontSizeDisplay.innerText = currentFontSizeMultiplier + "x";
+  }
+}
+
 function showHideToc() {
   var defiEl = document.getElementById("dictionary-res")
   if (nowDict) {
@@ -565,11 +583,21 @@ function showHideToc() {
     nowToc = true
     tocbox.style.display = ""
 
-    const buttonGoHomeWithMatn = prepareMATNButtons() + buttonGoHome
+    const fontSizeControl = `
+      <div id="fontSizeControl" style="display: flex; align-items: center; margin-top: 10px;">
+        <span id="fontSizeDisplayTextSize" style="font-style: normal; color: blue; padding-right: 5px; font-size: small;">Text size</span>
+        <button id="decreaseFontSize" style="font-size: 16px; padding: 5px 10px;">-</button>
+        <span id="fontSizeDisplay" style="font-size: medium; margin: 0 10px;">${currentFontSizeMultiplier}x</span>
+        <button id="increaseFontSize" style="font-size: 16px; padding: 5px 10px;">+</button>
+      </div>
+    `;
 
-    button.innerHTML = buttonGoHomeWithMatn
-    button.style.background = "#ccc"
-    button.style.color = "brown"
+    button.innerHTML = prepareMATNButtons() + fontSizeControl + buttonGoHome;
+    button.style.background = "#ccc";
+    button.style.color = "brown";
+
+    document.getElementById("decreaseFontSize").addEventListener("click", () => changeFontSize(-0.1));
+    document.getElementById("increaseFontSize").addEventListener("click", () => changeFontSize(0.1));
   }
 }
 

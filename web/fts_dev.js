@@ -349,7 +349,7 @@ function load_lastUserPaliScript(id) {
     console.log(`${e} \n\nError when loading last used pali script.
 	Is this id ${id} changed in the UI?
 	It is now removing the mising key and reloading.`)
-    localStorage.remove(STORAGE_SCRIPT_KEY)
+    localStorage.removeItem(STORAGE_SCRIPT_KEY)
     window.location.reload(true)
   }
 }
