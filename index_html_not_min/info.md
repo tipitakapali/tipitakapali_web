@@ -15,7 +15,7 @@ Tipitakapali.org offline software is available for all major platforms: Windows,
 
 **1. Mobile Apps:**
 
-<div class="download-badges"><a href="https://apps.apple.com/vn/app/tipitakacst/id6743404213"><img src="web/img/os/download-on-the-app-store.svg" alt="Download on the App Store"></a><a href="https://play.google.com/store/apps/details?id=org.tipitakapali.android"><img src="web/img/os/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play"></a></div>
+<div class="download-badges"><a href="https://apps.apple.com/vn/app/tipitaka-pali-cst/id6743404213"><img src="web/img/os/download-on-the-app-store.svg" alt="Download on the App Store"></a><a href="https://play.google.com/store/apps/details?id=org.tipitakapali.android"><img src="web/img/os/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play"></a></div>
 
 
 > **Android APK**: If your **Android** powered devices do not have Google Play Store, you may find and download the Tipitaka CST **APK** file directly from <div class="download-badges"><a href="https://github.com/tipitakapali/tipitakapali.org/releases">Github Releases: <img src="web/img/tipitakapali.org.apk.png" alt="Download APK on Github"></a></div>
