@@ -219,6 +219,7 @@ a:hover,
 .bookCenter:hover,
 .bookCenterAnna:hover {
   background-color: #ffa700;
+  border-radius: 5px;
 }
 
 a {
