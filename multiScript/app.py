@@ -15,7 +15,7 @@ with open("index_.html", "r", encoding="utf-8") as file:
 parts = html_input.split("<!-- cst book starts here -->")
 
 header = parts[0]
-# header = header.replace('<link rel="stylesheet" href="web/index_v2.5.css">', '')
+# header = header.replace('<link rel="stylesheet" href="web/index_v3.css">', '')
 body = parts[1].split("<!-- cst book ends here -->")[0]
 tail = parts[1].split("<!-- cst book ends here -->")[1]
 
