@@ -1,6 +1,6 @@
 :root {
   /* Use https://cssnano.github.io/cssnano/docs/getting-started to minify the css */
-  --pali-font: "TH Sarabun New", "Times Ext Roman", "DejaVu Sans", "Indic Times", "Doulos SIL", Tahoma, "Arial Unicode MS", Gentium;
+  --pali-font: "THSarabunPali", "Times Ext Roman", "DejaVu Sans", "Indic Times", "Doulos SIL", Tahoma, "Arial Unicode MS", Gentium;
   --pali-color: rgba(0, 0, 0, 0.888);
   --pali-line-height: 150%;
   --font-size-multiplier: 1;
@@ -69,15 +69,15 @@
 }
 
 @font-face {
-  font-family: "TH Sarabun New";
-  src: url("fonts/pali/TH_Sarabun_New/static/THSarabunNew-Regular.ttf") format("truetype");
+  font-family: "THSarabunPali";
+  src: url("fonts/pali/THSarabunPali/static/THSarabunPali-Regular.ttf") format("truetype");
   font-weight: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "TH Sarabun New";
-  src: url("fonts/pali/TH_Sarabun_New/static/THSarabunNew-Bold.ttf") format("truetype");
+  font-family: "THSarabunPali";
+  src: url("fonts/pali/THSarabunPali/static/THSarabunPali-Bold.ttf") format("truetype");
   font-weight: bold;
   font-display: swap;
 }

@@ -353,7 +353,8 @@ const scriptFonts = {
   my: ["Pyidaungsu", "", ""],
   hi: ["Noto Sans Devanagari", "", ""],
   ro: ["Noto Sans", "", ""],
-  thai: ["TH Sarabun New", "2rem", ""],
+  // thai: ["TH Sarabun New", "2rem", ""],
+  thai: ["THSarabunPali", "2rem", ""],
   laos: ["Noto Sans Lao", "", ""],
   km: ["Noto Sans Khmer", "", ""],
   beng: ["Noto Sans Bengali", "", ""],
@@ -405,7 +406,8 @@ function loadFonts(paliScript) {
       }
       `
   }
-  let bodyCss = ` body { font-family: "${fontFamily}" ;}`
+  
+  let bodyCss = ` body, textarea { font-family: "${fontFamily}" ;}`
 
   style.textContent = textContent + bodyCss
   document.head.appendChild(style)

@@ -15,7 +15,8 @@ const scriptFonts = {
   hi: ["Noto Sans Devanagari", "", ""],
   // default ro tp.css
   tp: ["Noto Sans", "", ""],
-  thai: ["TH Sarabun New", "2rem", ""],
+  // thai: ["TH Sarabun New", "2rem", ""],
+  thai: ["THSarabunPali", "2rem", ""],
   laos: ["Noto Sans Lao", "", ""],
   km: ["Noto Sans Khmer", "", ""],
   beng: ["Noto Sans Bengali", "", ""],
