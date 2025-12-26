@@ -214,7 +214,8 @@
   </div>
   <div class="uForm">
     <form name="mainForm" id="mainForm" method="POST" action="" enctype="multipart/form-data" style="padding: 5px">
-      <b>Pāḷi Script Converter</b>
+      <b style="font-family: 'Noto Sans', sans-serif !important;">Pāḷi Script Converter</b>
+
 
       <p id="buildPaliScriptMenu"></p>
 
@@ -415,9 +416,9 @@ function loadFonts(paliScript) {
 
 function buildPaliScriptMenu() {
   let html = `
-<label for="uSelectScript">Convert To Pāḷi Script</label>
-<select id="uSelectScript" name="uSelectScript" style="font-family: 'Noto Sans', sans-serif;">
-<option disabled value="" style="font-family: 'Noto Sans', sans-serif;">--Please choose an option--</option>`
+<label for="uSelectScript" style="font-family: 'Noto Sans', sans-serif !important;">Convert To Pāḷi Script</label>
+<select id="uSelectScript" name="uSelectScript" style="font-family: 'Noto Sans', sans-serif !important;">
+<option disabled value="" style="font-family: 'Noto Sans', sans-serif !important;">--Please choose an option--</option>`
 
   Object.entries(CVT.Script).forEach(([key, value]) => {
     const s = CVT.PaliScriptInfo.get(value)
