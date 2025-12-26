@@ -407,7 +407,7 @@ function loadFonts(paliScript) {
       `
   }
   
-  let bodyCss = ` body, textarea { font-family: "${fontFamily}" ;}`
+  let bodyCss = ` body, #convertedArea { font-family: "${fontFamily}" ;}`
 
   style.textContent = textContent + bodyCss
   document.head.appendChild(style)
