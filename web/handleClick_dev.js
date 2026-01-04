@@ -744,7 +744,7 @@ function dpd_button_click(el) {
    * This function button_click is extracted from
    * Digital Pāḷi Dictionary
    * Creative Commons Attribution-NonCommercial 4.0 International License
-   * https://github.com/digitalpalidictionary/digitalpalidictionary/releases
+   * https://github.com/digitalpalidictionary/dpd-db/releases
    **/
 
   const targetId = el.getAttribute("data-target")
@@ -765,6 +765,40 @@ function dpd_button_click(el) {
     }
   }
 }
+
+function playAudio(headword, buttonElement) {
+  /**
+   * This function playAudio is extracted from
+   * Digital Pāḷi Dictionary
+   * Creative Commons Attribution-NonCommercial 4.0 International License
+   * https://github.com/digitalpalidictionary/dpd-db/releases
+   **/
+  const gender = "male"
+  const baseUrl = "https://www.dpdict.net/audio/"
+  var audio = new Audio(baseUrl + headword + "?gender=" + gender)
+
+  audio.addEventListener("error", function () {
+    if (buttonElement) {
+      // Change icon to cross
+      buttonElement.innerHTML = `
+                <svg viewBox="0 0 24 24" width="16px" height="16px" fill="currentColor" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            `
+      // Disable button
+      buttonElement.classList.add("disabled")
+      buttonElement.style.pointerEvents = "none"
+      buttonElement.title = "Audio not found"
+      buttonElement.removeAttribute("onclick")
+    }
+  })
+
+  audio.play().catch(function (error) {
+    console.log("Audio play failed: ", error)
+  })
+}
+
 
 // function closeByHeadWord() {
 //   var defiEl = document.getElementById("dictionary-res")
