@@ -480,7 +480,6 @@ a:hover {
   color: orange;
 }
 
-
 z {
   /* background-color: #f4e776; */
   background-color: #ffff00; /* so that it will show good on the darkmode too*/
@@ -1054,7 +1053,7 @@ text-decoration: underline;
   font-weight: 700;
 }
 
-.dp9 p.footer {
+.dp9 p.dpd-footer {
   border-top: 1px solid var(--primary);
   font-size: 80%;
   padding: 5px 0px;
@@ -1240,7 +1239,7 @@ text-decoration: underline;
   flex-wrap: wrap;
 }
 
-.dp9 a.button {
+.dp9 a.dpd-button {
   /* background-color: var(--primary); tpo */
   background-color: #dddbdb;
   /* border: 1px solid var(--primary); tpo */
@@ -1260,19 +1259,19 @@ text-decoration: underline;
   box-shadow: 0 4px 4px -2px #888;
 }
 
-.dp9 a.button.close {
+.dp9 a.dpd-button.close {
   float: right;
   margin: 10px;
 }
 
-.dp9 a.button.active {
+.dp9 a.dpd-button.active {
   background-color: var(--primary-alt);
   border-color: var(--primary-alt);
   color: var(--light);
   user-select: none;
 }
 
-.dp9 a.button:hover {
+.dp9 a.dpd-button:hover {
   box-shadow: var(--shadow-hover);
   border: 1px solid var(--primary-alt);
   background-color: var(--primary-alt);
@@ -1280,13 +1279,13 @@ text-decoration: underline;
   user-select: none;
 }
 
-.dp9 .link {
+.dp9 .dpd-link {
   color: var(--primary-text);
   font-weight: 700;
   text-decoration: none;
 }
 
-.dp9 .link:hover {
+.dp9 .dpd-link:hover {
   color: var(--primary-alt);
   text-decoration: underline;
 }
@@ -1449,6 +1448,11 @@ text-decoration: underline;
 .dp9 .variants td:nth-child(2) {
   white-space: nowrap;
 }
+
+.dp9.grammar_dict .col_empty {
+  display: none;
+}
+
 
 /* help */
 
@@ -1650,7 +1654,94 @@ font-family: "Inter", "Noto Sans", "sans-serif" !important;
 }
 
 
+.dp9 .inflection-highlight {
+  background-color: yellow;
+  color: var(--dark);
+  border-radius: 3px;
+  padding: 0 2px;
+}
 
+/* play button */
+
+.dp9 a.dpd-button.play {
+  padding: 2px 5px;
+  /* match standard button padding */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  /* ensure height matches neighbors */
+}
+
+.dp9 a.dpd-button.play:hover {
+  background-color: var(--primary-alt);
+  border-color: var(--primary-alt);
+}
+
+.dp9 a.dpd-button.play:hover svg {
+  fill: var(--light);
+  stroke: var(--light);
+}
+
+.dp9 a.dpd-button.play svg {
+  width: 1em;
+  height: 1em;
+  fill: var(--dark);
+  stroke: var(--dark);
+}
+
+/* small play button */
+
+.dp9 a.dpd-button.play.small {
+  padding: 0px;
+  margin: 0px 2px;
+  width: 1.1em;
+  height: 1.1em;
+  border-radius: 50%;
+  background-color: var(--dark);
+  border: 1px solid var(--dark);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+}
+
+.dp9 a.dpd-button.play.small svg {
+  fill: var(--light);
+  stroke: var(--light);
+  width: 0.7em;
+  height: 0.7em;
+}
+
+.dp9 a.dpd-button.play.small:hover {
+  background-color: var(--primary-alt);
+  border-color: var(--primary-alt);
+}
+
+.dp9 a.dpd-button.play.small:hover svg {
+  fill: var(--light);
+  stroke: var(--light);
+}
+
+.dp9 .dark-mode a.dpd-button.play.small {
+  background-color: var(--light);
+  border: 1px solid var(--light);
+}
+
+.dp9 .dark-mode a.dpd-button.play.small svg {
+  fill: var(--dark);
+  stroke: var(--dark);
+}
+
+.dp9 .dark-mode a.dpd-button.play.small:hover {
+  background-color: var(--primary-alt);
+  border-color: var(--primary-alt);
+}
+
+.dp9 .dark-mode a.dpd-button.play.small:hover svg {
+  fill: var(--light);
+  stroke: var(--light);
+}
 
 /* pnry added for mobile */
 /* .dp9 table {

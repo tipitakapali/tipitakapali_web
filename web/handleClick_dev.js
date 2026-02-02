@@ -751,7 +751,7 @@ function dpd_button_click(el) {
   const target = document.getElementById(targetId)
   target.classList.toggle("hidden")
   if (el.classList.contains("close")) {
-    const targetControl = document.querySelector(`a.button[data-target="${targetId}"]`)
+    const targetControl = document.querySelector(`a.dpd-button[data-target="${targetId}"]`)
     targetControl.classList.toggle("active")
   } else {
     el.classList.toggle("active")
@@ -773,6 +773,12 @@ function playAudio(headword, buttonElement) {
    * Creative Commons Attribution-NonCommercial 4.0 International License
    * https://github.com/digitalpalidictionary/dpd-db/releases
    **/
+
+  // const validGenders = ["male", "female", "male1", "male2", "female1"];
+  // if (!validGenders.includes(gender)) {
+  //   gender = "male";
+  // }
+
   const gender = "male"
   const baseUrl = "https://www.dpdict.net/audio/"
   var audio = new Audio(baseUrl + headword + "?gender=" + gender)
@@ -839,7 +845,7 @@ function handleClickEvent(e) {
   }
 
   //// For DPD's buttons
-  if (e.target.classList.contains("root_button") || e.target.classList.contains("button")) {
+  if (e.target.classList.contains("root_button") || e.target.classList.contains("dpd-button")) {
     e.preventDefault()
     return button_click(e.target)
   }
