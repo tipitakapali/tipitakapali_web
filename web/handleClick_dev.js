@@ -1323,17 +1323,22 @@ async function fetchInflection(nowId, script = "ro") {
       if (inflectElement) {
         roInflectionTable = `<hr><h3 style="text-align:center;color: orange;">Inflection in Roman Pāḷi</h3><hr>` + inflectElement.outerHTML
       }
-
+      if (currentPObj["w"]) {
+          highlightInflections(currentPObj["w"])
+      }
       //// pali converter task
       if (currentScript2char !== "ro") {
         convertPaliTableCells(thisEle, "table.inflection", "td", true)
         thisEle.innerHTML = thisEle.innerHTML + roInflectionTable
+        // for the Roman and converted pali
+        if (currentPObj["w"]) {
+          highlightInflections(currentPObj["w"])
+        }
       }
+
       thisEle.style.display = ""
 
-      if (currentPObj["w"]) {
-          highlightInflections(currentPObj["w"])
-      }
+
       //// Scroll to the parent element of the target content
       if (location.pathname) {
         const parentElement = thisEle.parentElement
