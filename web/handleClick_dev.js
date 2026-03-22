@@ -1236,6 +1236,62 @@ async function fetchWMSanskrit(hideNotfound = false, isDPDSplitter = "no") {
   }
 }
 
+
+// Function to highlight matching inflections in tables
+// This function is adapted from DPD (CC BY-NC-SA 4.0)
+// https://github.com/digitalpalidictionary/dpd-db
+function highlightInflections(searchTerm) {
+  if (!searchTerm) return;
+
+  // Normalize the incoming searchTerm to text
+  const tempDiv = document.createElement("div");
+  tempDiv.textContent = searchTerm;
+  const normalizedSearch = tempDiv.textContent;
+
+  // Find all inflection tables
+  const inflectionTables = document.querySelectorAll("table.inflection");
+
+  // Process each inflection table
+  inflectionTables.forEach(function (table) {
+    // Find all td elements (inflection cells)
+    const cells = table.querySelectorAll("td");
+
+    // Process each cell
+    cells.forEach(function (cell) {
+      // Get the innerHTML of the cell
+      const cellHTML = cell.innerHTML;
+
+      // Split the cell content by <br> tags to get individual inflections
+      const parts = cellHTML.split(/<br\s*\/?>/i);
+
+      let modified = false;
+      const newParts = parts.map(function (part) {
+        // Create a temporary element to get the text content of this part
+        const tempElement = document.createElement("div");
+        tempElement.innerHTML = part;
+        const partText = tempElement.textContent || "";
+
+        // Check if the normalized search term matches this part exactly
+        if (partText === normalizedSearch) {
+          // Create a span and set its textContent to partText
+          const span = document.createElement("span");
+          span.className = "inflection-highlight";
+          span.textContent = partText;
+          modified = true;
+          return span.outerHTML;
+        }
+        return part;
+      });
+
+      // If we modified any parts, update the cell content
+      if (modified) {
+        cell.innerHTML = newParts.join("<br>");
+      }
+    });
+  });
+}
+
+
 async function fetchInflection(nowId, script = "ro") {
   let thisEle = document.getElementById(nowId)
 
@@ -1275,6 +1331,9 @@ async function fetchInflection(nowId, script = "ro") {
       }
       thisEle.style.display = ""
 
+      if (currentPObj["w"]) {
+          highlightInflections(currentPObj["w"])
+      }
       //// Scroll to the parent element of the target content
       if (location.pathname) {
         const parentElement = thisEle.parentElement
