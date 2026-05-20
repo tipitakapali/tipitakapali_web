@@ -185,9 +185,11 @@ The digital pāḷi tipiṭaka text is adapted from the Tipitaka.org XML files o
 > Tipitaka.org XML files
 > These files are made freely available for non-commericial use. Please attribute Vipassana Research Institute when incorporating these files into your projects.
 
-### 2. Pali Script Converter
+### 2. Pali Script Converter and Pali-Sinhala Dictionary
 
 Powerful [Pali Script Converter](https://github.com/Path-Nirvana-Foundation/pali-script-converter) - a library for transliterating pāḷi across multiple scripts.
+
+- Pali-Sinhala dictionary data from [Pali-Sinhala dictionary](https://github.com/pnfo/pali-sinhala-dictionary). Used with permissions from Path Nirvana Foundation.
 
 ### 3. တိပိဋက ပါဠိ-မြန်မာအဘိဓာန် Data
 

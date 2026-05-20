@@ -97,6 +97,21 @@
   font-weight: 700;
   font-display: swap;
 }
+/* Pali Sinhala dictionary */
+@font-face {
+  font-family: "UN-Abhaya";
+  src: url("fonts/pali/UN-Abhaya/static/UN-Abhaya-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "UN-Abhaya";
+  src: url("fonts/pali/UN-Abhaya/static/UN-Abhaya-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-display: swap;
+}
+
 
 /* new dpd Inter font */
 /* @font-face {
@@ -467,7 +482,8 @@ a:hover {
 
 z {
   /* background-color: #f4e776; */
-  background-color: #ffff00; /* so that it will show good on the darkmode too*/
+  background-color: #ffff00;
+  /* so that it will show good on the darkmode too*/
   color: #000;
   border-radius: 5px;
 }
@@ -745,15 +761,26 @@ hr {
 
 .MWS .Dn,
 .sanskritButton,
+.paliSinhButton,
 .ptsButton,
 .aiButton,
 .tmmAbhidhanButton {
   box-shadow: 0 4px 4px -2px #888;
   cursor: pointer;
   display: inline-block;
-  padding: 3px 5px;
+  padding: 0px 8px;
   text-decoration: none;
+  line-height: 2.5;
+  /* line-height: 29px; */
+  vertical-align: middle;
+  /* ← keeps buttons aligned with each other */
+  /* height: 24px; */
 }
+
+/* .tmmAbhidhanButton,
+.paliSinhButton {
+  font-weight: bold;
+} */
 
 .pwordInputAbhidhan {
   color: #be564d;
@@ -765,6 +792,7 @@ hr {
 }
 
 .sanskritButton,
+.paliSinhButton,
 .ptsButton,
 .aiButton,
 .tmmAbhidhanButton {
@@ -778,6 +806,72 @@ hr {
   -webkit-user-select: none;
   user-select: none;
 }
+
+.tmmAbhidhanButton {
+  font-family: Pyidaungsu;
+}
+
+.paliSinhButton {
+  font-family: "UN-Abhaya";
+}
+
+/* Pali-Sinhala dictionary css  */
+/* outside border */
+.psinh26 {
+  font-family: "UN-Abhaya";
+  padding: 4px;
+  border: 2px solid rgb(137, 0, 123);
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: var(--pali-font-size);
+}
+
+/* dictionary titles  */
+.PSD .psdT {
+  font-weight: 700;
+  box-shadow: 0 4px 4px -2px #888;
+  cursor: pointer;
+  display: inline-block;
+  padding: 2px 8px;
+  text-decoration: none;
+
+  /* background-color: #4a5568;
+  color: #f0f0f0; */
+
+  background-color: #3d4b8f;
+  color: #e8eaf6;
+
+  vertical-align: middle;
+  border-radius: 4px;
+  font-size: 13px;
+  margin: 10px 1px 2px 0;
+  -webkit-user-select: none;
+  user-select: none;
+  width: 97%;
+}
+
+/* head word normal*/
+.PSD .psdW {
+  color: teal;
+}
+
+/* h1 head word */
+.PSD h1 {
+  margin: 0em 0;
+  font-size: 1.5em;
+}
+
+/* definition li */
+.PSD ul {
+  margin: 0.2em 0.5em;
+  /* padding-left: 1.2em; */
+}
+
+/* Pali-Sinhala dictionary css  */
+
+
+
+
 
 .sanskritSection {
   padding: 4px;

@@ -6,6 +6,7 @@
  * Date: 2017 - present
  * Authors: bkpannindriya @ gmail.com
  * Authors: Generative AIs and contributors
+ * Last modified 2026.05.20: add Pali-Sinhala
  * Last modified 2025.04.18
  *********************************/
 
@@ -28,6 +29,7 @@ var nowToc = false
 var stopWordClick = false
 var nowDict = false
 let isAbhidhanFetched = false
+let isPaliSinhFetched = false
 let isPTSFetched = false
 let isSanskritFetched = false
 
@@ -39,9 +41,8 @@ let isPendingAITasks = false
 let hlLastClickEle, currentPObj, topInputDisplayWord
 let dpdLastClickButtonEl = null
 
-var FONT_SIZE_MULTIPLIER_KEY = "tipitakapali_org_fontSizeMultiplier";
-var currentFontSizeMultiplier = localStorage.getItem(FONT_SIZE_MULTIPLIER_KEY) || "1"; // Default font size multiplier
-
+var FONT_SIZE_MULTIPLIER_KEY = "tipitakapali_org_fontSizeMultiplier"
+var currentFontSizeMultiplier = localStorage.getItem(FONT_SIZE_MULTIPLIER_KEY) || "1" // Default font size multiplier
 
 let aParaIdsInFile = null
 const allPaliScripts = ["si", "my", "hi", "ro", "thai", "laos", "km", "beng", "gurm", "guja", "telu", "kann", "mala", "tham", "brah", "tibt", "cyrl"]
@@ -51,17 +52,23 @@ const allPaliScripts = ["si", "my", "hi", "ro", "thai", "laos", "km", "beng", "g
 const dpdAPIURL = isRunningOnMobileApp ? "dpd" : "https://api.tipitakapali.org/api/dpd"
 const infAPIURL = isRunningOnMobileApp ? "inf" : "https://api.tipitakapali.org/api/inf"
 const abhiDhanAPIURL = isRunningOnMobileApp ? "abd" : "https://api.tipitakapali.org/api/abd"
+const paliSinhAPIURL = isRunningOnMobileApp ? "psd" : "https://api.tipitakapali.org/api/psd"
 const ptsAPIURL = isRunningOnMobileApp ? "pts" : "https://api.tipitakapali.org/api/pts"
 const wmSanskritAPIURL = isRunningOnMobileApp ? "sans" : "https://api.tipitakapali.org/api/sans"
 const aiAPIURL = "https://api.tipitakapali.org/v1/translator"
 
 const STORAGE_SCRIPT_KEY = "tipitakapali_org_paliScript"
-// const ABDtitle = "\ud83d\udcd1 အဘိဓာန်"
-const ABDtitle = "\ud83d\udcd1 Abhidhan"
-const PTStitle = "\ud83d\udcd1 PTSPED"
+
+const ABDtitle = "\ud83c\uddf2\ud83c\uddf2 အဘိဓာန" // Abhidhāna // အဘိဓာန
+const paliSinhTitle = "\ud83c\uddf1\ud83c\uddf0 අභිධාන" // අභිධාන
+// const PTStitle = "\ud83d\udcd1 PTSPED"
+const PTStitle = "\ud83c\uddec\ud83c\udde7 PTS"
+
 const sanskritStr = "\ud83d\udcd6 Sanskrit"
-const notFoundHeadAbhidhan = `<div class="notFoundHead">\ud83d\ude0c Not found - ရှာမတွေ့ပါ။</div>`
-const notFoundHeadPTS = `<div class="notFoundHead">\ud83d\ude0c PTS PED - Not found</div>`
+const notFoundHeadAbhidhan = `<div class="notFoundHead">\ud83d\ude0c Not found: ရှာမတွေ့ပါ။</div>`
+const notFoundHeadPaliSinh = `<div class="notFoundHead">\ud83d\ude0c Pali-Sinhala: Not found</div>`
+
+const notFoundHeadPTS = `<div class="notFoundHead">\ud83d\ude0c PTS PED: Not found</div>`
 const notFoundHeadSanskrit = `<div class="notFoundHead">\ud83d\ude0c Not found in this Sanskrit dictionary db.</div>`
 
 const stripChars = '…‘ ’!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~' + "0123456789"
@@ -104,7 +111,7 @@ if (TPTK_BOOK_KEY) {
   buttonGoHome = `<a class="noHover" style="text-decoration: none;" href="../index.html"><button id="goHomeFloating"> \ud83c\udfe0 Tipitakapali Home</button></a><span> </span><button style="color:red;" id="hideTOCFloating" onclick="onlyHideToc()"> \ud83d\udcdc Hide TOC</button>`
 }
 
-let notFoundHead = `<div class="notFoundHead">\ud83d\ude0c Not found, try ${ABDtitle}/${sanskritStr}</div>`
+let notFoundHead = `<div class="notFoundHead">\ud83d\ude0c Not found, try ${ABDtitle} / ${paliSinhTitle} / ${sanskritStr}</div>`
 
 let aiLanguage = localStorage.getItem("tipitakapali_org_aiLanguage") || "English"
 
@@ -117,9 +124,9 @@ if (aiButton) {
 }
 
 if (isAbhidhan == "yes") {
-  abd_SansEle = `<div class="pwordInputAbhidhan"><a href="javascript:void(0);" onclick="fetchMmAbhidhan()" class="tmmAbhidhanButton">${ABDtitle}</a>  <a href="javascript:void(0);" onclick="fetchPTSPED()" class="ptsButton">${PTStitle}</a> <a href="javascript:void(0);" onclick="fetchWMSanskrit(false)" class="sanskritButton">${sanskritStr}</a> ${aiButton}</div><div id="abhidhanHere"></div><div id="ptsHere"></div><div id="sanskritHere"></div>`
+  abd_SansEle = `<div class="pwordInputAbhidhan"><a href="javascript:void(0);" onclick="fetchMmAbhidhan()" class="tmmAbhidhanButton">${ABDtitle}</a>  <a href="javascript:void(0);" onclick="fetchPaliSinh()" class="paliSinhButton">${paliSinhTitle}</a> <a href="javascript:void(0);" onclick="fetchPTSPED()" class="ptsButton">${PTStitle}</a> <a href="javascript:void(0);" onclick="fetchWMSanskrit(false)" class="sanskritButton">${sanskritStr}</a> ${aiButton}</div><div id="abhidhanHere"></div><div id="paliSinhHere"></div><div id="ptsHere"></div><div id="sanskritHere"></div>`
 } else {
-  abd_SansEle = `<div class="pwordInputAbhidhan"><a href="javascript:void(0);" onclick="fetchPTSPED()" class="ptsButton">${PTStitle}</a>  <a href="javascript:void(0);" onclick="fetchWMSanskrit(false)" class="sanskritButton">${sanskritStr}</a> ${aiButton}</div><div id="abhidhanHere"></div><div id="ptsHere"></div><div id="sanskritHere"></div>`
+  abd_SansEle = `<div class="pwordInputAbhidhan"><a href="javascript:void(0);" onclick="fetchPaliSinh()" class="paliSinhButton">${paliSinhTitle}</a> <a href="javascript:void(0);" onclick="fetchPTSPED()" class="ptsButton">${PTStitle}</a>  <a href="javascript:void(0);" onclick="fetchWMSanskrit(false)" class="sanskritButton">${sanskritStr}</a> ${aiButton}</div><div id="abhidhanHere"></div><div id="paliSinhHere"></div><div id="ptsHere"></div><div id="sanskritHere"></div>`
 }
 
 let spanDpdSplitter = `${abd_SansEle}<span id="dpdSplitterEle" class="dpdSplitterClass"></span>`
@@ -340,7 +347,7 @@ function createLangSelect() {
     .map(
       (lang) => `<option class="aiLang" value="${lang.value}" 
     ${lang.value === aiLanguage ? "selected" : ""}>
-    ${lang.label}</option>`
+    ${lang.label}</option>`,
     )
     .join("")}</select>`
 
@@ -365,7 +372,7 @@ async function postAI(clickedE, md) {
         from: "Pali",
         to: aiLanguage,
         url: requestSource,
-      })
+      }),
     )
 
     let html = await response.text()
@@ -438,6 +445,7 @@ async function translatorAI() {
     dpdLastClickEle = false
     isAbhidhanFetched = false
     isPTSFetched = false
+    isPaliSinhFetched = false
     isSanskritFetched = false
 
     dictRes.innerHTML = aiTranslatingString
@@ -481,7 +489,7 @@ async function abhidhanTranslatorAI() {
         from: "Myanmar",
         to: aiLanguage,
         url: "Abhidhan",
-      })
+      }),
     )
 
     let aiHTMLResponse = await response.text()
@@ -544,16 +552,16 @@ function restoreDPDFeedbackStr(html) {
 }
 
 function changeFontSize(amount) {
-  currentFontSizeMultiplier = (parseFloat(currentFontSizeMultiplier) + amount).toFixed(1);
+  currentFontSizeMultiplier = (parseFloat(currentFontSizeMultiplier) + amount).toFixed(1)
   if (currentFontSizeMultiplier < 0.2) {
-    currentFontSizeMultiplier = 0.2;
+    currentFontSizeMultiplier = 0.2
   }
-  document.documentElement.style.setProperty("--font-size-multiplier", currentFontSizeMultiplier);
-  localStorage.setItem(FONT_SIZE_MULTIPLIER_KEY, currentFontSizeMultiplier);
-  
-  const fontSizeDisplay = document.getElementById("fontSizeDisplay");
-  if(fontSizeDisplay) {
-    fontSizeDisplay.innerText = currentFontSizeMultiplier + "x";
+  document.documentElement.style.setProperty("--font-size-multiplier", currentFontSizeMultiplier)
+  localStorage.setItem(FONT_SIZE_MULTIPLIER_KEY, currentFontSizeMultiplier)
+
+  const fontSizeDisplay = document.getElementById("fontSizeDisplay")
+  if (fontSizeDisplay) {
+    fontSizeDisplay.innerText = currentFontSizeMultiplier + "x"
   }
 }
 
@@ -590,14 +598,14 @@ function showHideToc() {
         <span id="fontSizeDisplay" style="font-size: medium; margin: 0 10px;">${currentFontSizeMultiplier}x</span>
         <button id="increaseFontSize" style="font-size: 16px; padding: 5px 10px;">+</button>
       </div>
-    `;
+    `
 
-    button.innerHTML = prepareMATNButtons() + fontSizeControl + buttonGoHome;
-    button.style.background = "#ccc";
-    button.style.color = "brown";
+    button.innerHTML = prepareMATNButtons() + fontSizeControl + buttonGoHome
+    button.style.background = "#ccc"
+    button.style.color = "brown"
 
-    document.getElementById("decreaseFontSize").addEventListener("click", () => changeFontSize(-0.1));
-    document.getElementById("increaseFontSize").addEventListener("click", () => changeFontSize(0.1));
+    document.getElementById("decreaseFontSize").addEventListener("click", () => changeFontSize(-0.1))
+    document.getElementById("increaseFontSize").addEventListener("click", () => changeFontSize(0.1))
   }
 }
 
@@ -805,7 +813,6 @@ function playAudio(headword, buttonElement) {
   })
 }
 
-
 // function closeByHeadWord() {
 //   var defiEl = document.getElementById("dictionary-res")
 
@@ -897,6 +904,7 @@ function handleClickEvent(e) {
       dpdLastClickEle = false
       isAbhidhanFetched = false
       isPTSFetched = false
+      isPaliSinhFetched = false
       isSanskritFetched = false
 
       return
@@ -908,6 +916,7 @@ function handleClickEvent(e) {
 
     isAbhidhanFetched = false
     isPTSFetched = false
+    isPaliSinhFetched = false
     isSanskritFetched = false
 
     /** word click */
@@ -1027,6 +1036,7 @@ async function fetchDictDefi(word, useSplitter = "no") {
 
   isAbhidhanFetched = false
   isPTSFetched = false
+  isPaliSinhFetched = false
   isSanskritFetched = false
 
   try {
@@ -1136,13 +1146,18 @@ async function convertMainDpdContentScript(defiEl) {
 
 // eslint-disable-next-line no-unused-vars
 async function fetchMmAbhidhan(isDPDSplitter = "no") {
-  if (isSanskritFetched) {
-    let hidMS = document.getElementById("sanskritHere")
+  if (isPaliSinhFetched) {
+    let hidMS = document.getElementById("paliSinhHere")
     hidMS.classList.add("hidden")
   }
 
   if (isPTSFetched) {
     let hidMS = document.getElementById("ptsHere")
+    hidMS.classList.add("hidden")
+  }
+
+  if (isSanskritFetched) {
+    let hidMS = document.getElementById("sanskritHere")
     hidMS.classList.add("hidden")
   }
 
@@ -1167,14 +1182,62 @@ async function fetchMmAbhidhan(isDPDSplitter = "no") {
   }
 }
 
-async function fetchPTSPED(isDPDSplitter = "no") {
+async function fetchPaliSinh(isDPDSplitter = "no") {
+  if (isAbhidhanFetched) {
+    let hidMS = document.getElementById("abhidhanHere")
+    hidMS.classList.add("hidden")
+  }
+
+  if (isPTSFetched) {
+    let hidMS = document.getElementById("ptsHere")
+    hidMS.classList.add("hidden")
+  }
+
   if (isSanskritFetched) {
     let hidMS = document.getElementById("sanskritHere")
     hidMS.classList.add("hidden")
   }
 
+  let defiEl = document.getElementById("paliSinhHere")
+  if (isPaliSinhFetched) {
+    defiEl.classList.toggle("hidden")
+    return
+  }
+
+  try {
+    const response = await tpoFetch(paliSinhAPIURL, preparePostOp(currentPObj))
+    const htmlres = await response.text()
+
+    isPaliSinhFetched = true
+    // if (htmlres) {
+    //   defiEl.innerHTML = `<section id="tmmAbhidhan" class="tmmAbhidhan">${aiButtonMM}${htmlres}</section>`
+    // } else {
+    //   defiEl.innerHTML = `<section id="tmmAbhidhan" class="tmmAbhidhan">${notFoundHeadAbhidhan}</section>`
+    // }
+
+    if (htmlres) {
+      defiEl.innerHTML = `<section id="psinh26" class="psinh26">${htmlres}</section>`
+    } else {
+      defiEl.innerHTML = `<section id="psinh26" class="psinh26">${notFoundHeadPaliSinh}</section>`
+    }
+  } catch (er) {
+    console.log(er)
+  }
+}
+
+async function fetchPTSPED(isDPDSplitter = "no") {
   if (isAbhidhanFetched) {
     let hidMS = document.getElementById("abhidhanHere")
+    hidMS.classList.add("hidden")
+  }
+
+  if (isPaliSinhFetched) {
+    let hidMS = document.getElementById("paliSinhHere")
+    hidMS.classList.add("hidden")
+  }
+
+  if (isSanskritFetched) {
+    let hidMS = document.getElementById("sanskritHere")
     hidMS.classList.add("hidden")
   }
 
@@ -1202,6 +1265,11 @@ async function fetchPTSPED(isDPDSplitter = "no") {
 async function fetchWMSanskrit(hideNotfound = false, isDPDSplitter = "no") {
   if (isAbhidhanFetched) {
     let hidMS = document.getElementById("abhidhanHere")
+    if (hidMS) hidMS.classList.add("hidden")
+  }
+
+  if (isPaliSinhFetched) {
+    let hidMS = document.getElementById("paliSinhHere")
     if (hidMS) hidMS.classList.add("hidden")
   }
 
@@ -1236,61 +1304,59 @@ async function fetchWMSanskrit(hideNotfound = false, isDPDSplitter = "no") {
   }
 }
 
-
 // Function to highlight matching inflections in tables
 // This function is adapted from DPD (CC BY-NC-SA 4.0)
 // https://github.com/digitalpalidictionary/dpd-db
 function highlightInflections(searchTerm) {
-  if (!searchTerm) return;
+  if (!searchTerm) return
 
   // Normalize the incoming searchTerm to text
-  const tempDiv = document.createElement("div");
-  tempDiv.textContent = searchTerm;
-  const normalizedSearch = tempDiv.textContent;
+  const tempDiv = document.createElement("div")
+  tempDiv.textContent = searchTerm
+  const normalizedSearch = tempDiv.textContent
 
   // Find all inflection tables
-  const inflectionTables = document.querySelectorAll("table.inflection");
+  const inflectionTables = document.querySelectorAll("table.inflection")
 
   // Process each inflection table
   inflectionTables.forEach(function (table) {
     // Find all td elements (inflection cells)
-    const cells = table.querySelectorAll("td");
+    const cells = table.querySelectorAll("td")
 
     // Process each cell
     cells.forEach(function (cell) {
       // Get the innerHTML of the cell
-      const cellHTML = cell.innerHTML;
+      const cellHTML = cell.innerHTML
 
       // Split the cell content by <br> tags to get individual inflections
-      const parts = cellHTML.split(/<br\s*\/?>/i);
+      const parts = cellHTML.split(/<br\s*\/?>/i)
 
-      let modified = false;
+      let modified = false
       const newParts = parts.map(function (part) {
         // Create a temporary element to get the text content of this part
-        const tempElement = document.createElement("div");
-        tempElement.innerHTML = part;
-        const partText = tempElement.textContent || "";
+        const tempElement = document.createElement("div")
+        tempElement.innerHTML = part
+        const partText = tempElement.textContent || ""
 
         // Check if the normalized search term matches this part exactly
         if (partText === normalizedSearch) {
           // Create a span and set its textContent to partText
-          const span = document.createElement("span");
-          span.className = "inflection-highlight";
-          span.textContent = partText;
-          modified = true;
-          return span.outerHTML;
+          const span = document.createElement("span")
+          span.className = "inflection-highlight"
+          span.textContent = partText
+          modified = true
+          return span.outerHTML
         }
-        return part;
-      });
+        return part
+      })
 
       // If we modified any parts, update the cell content
       if (modified) {
-        cell.innerHTML = newParts.join("<br>");
+        cell.innerHTML = newParts.join("<br>")
       }
-    });
-  });
+    })
+  })
 }
-
 
 async function fetchInflection(nowId, script = "ro") {
   let thisEle = document.getElementById(nowId)
@@ -1324,7 +1390,7 @@ async function fetchInflection(nowId, script = "ro") {
         roInflectionTable = `<hr><h3 style="text-align:center;color: orange;">Inflection in Roman Pāḷi</h3><hr>` + inflectElement.outerHTML
       }
       if (currentPObj["w"]) {
-          highlightInflections(currentPObj["w"])
+        highlightInflections(currentPObj["w"])
       }
       //// pali converter task
       if (currentScript2char !== "ro") {
@@ -1337,7 +1403,6 @@ async function fetchInflection(nowId, script = "ro") {
       }
 
       thisEle.style.display = ""
-
 
       //// Scroll to the parent element of the target content
       if (location.pathname) {

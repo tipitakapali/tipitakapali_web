@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #------------------------- provide update version here -----------------------------
-updateVersion="_v3"
+updateVersion="_v4"
 #-----------------------------------------------------------------------------------
 
 python3 gen_info.html.py
