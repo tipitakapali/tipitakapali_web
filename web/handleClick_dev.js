@@ -851,24 +851,22 @@ function handleClickEvent(e) {
     return
   }
 
+  // Prevent any click handling for the dictionary buttons container
+  if (e.target.closest(".pwordInputAbhidhan")) {
+    return
+  }
+
   //// For DPD's buttons
   if (e.target.classList.contains("root_button") || e.target.classList.contains("dpd-button")) {
     e.preventDefault()
     return button_click(e.target)
   }
 
-  //// --- 1. Text Selection Detection (Improved) ---
-  if (
-    window.getSelection().toString() !== "" || // Check for active selection
-    e.detail > 1 ||
-    (e.touches && e.touches.length > 1)
-  ) {
-    return //// Exit if selection is active or multi-touch/click
-  }
-
-  if (e.target.id == "floatingTocButton") {
+  if (e.target.id == "floatingTocButton" || e.target.closest("#floatingTocButton")) {
     /* TOC button */
-    showHideToc()
+    if (e.target.id == "floatingTocButton") {
+      showHideToc()
+    }
     return
   }
 
@@ -911,7 +909,16 @@ function handleClickEvent(e) {
     }
 
     if (nowToc) {
+      onlyHideToc()
       return
+    }
+
+    if (
+      window.getSelection().toString() !== "" || // Check for active selection
+      e.detail > 1 ||
+      (e.touches && e.touches.length > 1)
+    ) {
+      return //// Exit if selection is active or multi-touch/click
     }
 
     isAbhidhanFetched = false
@@ -920,16 +927,44 @@ function handleClickEvent(e) {
     isSanskritFetched = false
 
     /** word click */
-    var node, offset
-    if (document.caretRangeFromPoint) {
-      var range = document.caretRangeFromPoint(e.clientX, e.clientY)
-      node = range.startContainer
-      offset = range.startOffset
-    } else if (document.caretPositionFromPoint) {
-      var caretPos = document.caretPositionFromPoint(e.clientX, e.clientY)
-      node = caretPos.offsetNode
-      offset = caretPos.offset
+
+    // Cross-browser caret range retrieval: prefer the modern `caretPositionFromPoint`
+    // and fall back to legacy `caretRangeFromPoint` if needed. If neither is
+    // available, fall back to a best-effort element/text-node approach.
+    function _rangeFromPoint(x, y) {
+      if (document.caretPositionFromPoint) {
+        const pos = document.caretPositionFromPoint(x, y)
+        if (pos && pos.offsetNode) {
+          const r = document.createRange()
+          r.setStart(pos.offsetNode, pos.offset)
+          r.collapse(true)
+          return r
+        }
+      }
+      if (document.caretRangeFromPoint) {
+        return document.caretRangeFromPoint(x, y)
+      }
+      /* work around fix */
+      const el = document.elementFromPoint(x, y)
+      if (!el) return null
+      // Find a text node inside the element
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false)
+      let tn = walker.nextNode()
+      if (!tn) return null
+      const r = document.createRange()
+      r.setStart(tn, 0)
+      r.collapse(true)
+      return r
     }
+
+    const range = _rangeFromPoint(e.clientX, e.clientY)
+    if (!range) {
+      alert("Please update your browser. Error: Range not found")
+      return
+    }
+
+    var node = range.startContainer
+    var offset = range.startOffset
     var textNodeContent = node.textContent
     var start = offset
     var end = offset
@@ -1144,7 +1179,6 @@ async function convertMainDpdContentScript(defiEl) {
 //   }
 // }
 
-// eslint-disable-next-line no-unused-vars
 async function fetchMmAbhidhan(isDPDSplitter = "no") {
   if (isPaliSinhFetched) {
     let hidMS = document.getElementById("paliSinhHere")
